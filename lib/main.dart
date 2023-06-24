@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/style.dart';
+import 'package:my_profile/tablet/tablet.dart';
 
 import 'desktop/desktop.dart';
 import 'mobile/mobile.dart';
@@ -26,9 +27,6 @@ class ResponsiveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var width = MediaQuery.of(context).size.width;
-    print("width ${SizeConfig.blockX! * 100}");
-    print("Height ${SizeConfig.blockY! * 100}");
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -43,17 +41,6 @@ class ResponsiveWidget extends StatelessWidget {
           return const MobileLayout();
         }
       },
-    );
-  }
-}
-
-class TabletLayout extends StatelessWidget {
-  const TabletLayout({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Tablet")),
     );
   }
 }
