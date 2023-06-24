@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/constant.dart';
 import 'package:my_profile/style.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class DesktopLayout extends StatelessWidget {
   DesktopLayout({super.key});
@@ -40,6 +41,20 @@ class DesktopLayout extends StatelessWidget {
           }),
     ];
 
+    List<TyperAnimatedText> items = [
+      TyperAnimatedText(kTextAnimated_1,
+          textStyle: kPoppinBold.copyWith(
+              fontSize: SizeConfig.blockX! * 2, color: kWhite),
+          speed: const Duration(milliseconds: 100)),
+      TyperAnimatedText(kTextAnimated_2,
+          textStyle: kPoppinBold.copyWith(
+              fontSize: SizeConfig.blockX! * 2, color: kWhite),
+          speed: const Duration(milliseconds: 100)),
+      TyperAnimatedText(kTextAnimated_3,
+          textStyle: kPoppinBold.copyWith(
+              fontSize: SizeConfig.blockX! * 2, color: kWhite),
+          speed: const Duration(milliseconds: 100)),
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -82,53 +97,94 @@ class DesktopLayout extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        bottom: SizeConfig.blockY! * 43.94,
+                        bottom: SizeConfig.blockY! * 30.94,
                         left: SizeConfig.blockX! * 10.97),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text.rich(
-                        TextSpan(
+                      child: RichText(
+                        text: TextSpan(
                           children: [
                             TextSpan(
                               text: 'Hi, Welcome to my space\n',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30),
+                              style: kPoppinSemiBold.copyWith(
+                                wordSpacing: SizeConfig.blockX! * 0.2,
+                                letterSpacing: SizeConfig.blockX! * 0.2,
+                                fontSize: SizeConfig.blockX! * 2.08,
+                                color: kWhite,
+                              ),
                             ),
                             TextSpan(
-                              text: 'I’m Ralph Kevin Rynard \nMacahipay,\n',
+                              text: '\n', // Empty TextSpan for spacing
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 50),
+                                fontSize: SizeConfig.blockY! * 2.95,
+                              ), // Adjust the font size as needed
                             ),
                             TextSpan(
-                              text: 'A Mobile and Web Developer\n',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 36),
+                              text: 'I’m Ralph Kevin Rynard \nMacahipay\n',
+                              style: kPoppinExtraBold.copyWith(
+                                letterSpacing: SizeConfig.blockX! * 0.34,
+                                height: 1.2,
+                                color: kWhite,
+                                fontSize: SizeConfig.blockX! * 3,
+                              ),
                             ),
-                            TextSpan(
-                              text:
-                                  'A freelancer that provides programming \nservices and project implementation.',
+                            const TextSpan(
+                              text: '\n', // Empty TextSpan for spacing
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30),
+                                fontSize: 16,
+                              ), // Adjust the font size as needed
+                            ),
+                            WidgetSpan(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "A",
+                                    style: kPoppinBold.copyWith(
+                                      fontSize: SizeConfig.blockX! * 2,
+                                      color: kWhite,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: SizeConfig.blockX! * 2,
+                                  ),
+                                  AnimatedTextKit(
+                                    animatedTexts: items,
+                                    repeatForever: true,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("Text"),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: SizeConfig.blockX! * 10.90,
+                        top: SizeConfig.blockY! * 38),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            border: Border.all(color: Colors.white),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 24),
+                          child: Text(
+                            "DOWNLOAD CV",
+                            style: kPoppinSemiBold.copyWith(
+                              fontSize: SizeConfig.blockX! * 1.5,
+                              color: kWhite,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
@@ -142,7 +198,7 @@ class DesktopLayout extends StatelessWidget {
                         backgroundImage: AssetImage(kProfile),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -156,7 +212,10 @@ class DesktopLayout extends StatelessWidget {
               height: SizeConfig.blockY! * 100,
               width: SizeConfig.blockX! * 100,
               decoration: const BoxDecoration(color: Colors.blue),
-              child: const Center(child: Text("Blue")),
+              child: AnimatedTextKit(
+                animatedTexts: items,
+                isRepeatingAnimation: true,
+              ),
             ),
             Container(
               height: SizeConfig.blockY! * 100,
@@ -177,3 +236,70 @@ class NavigatorItem {
 
   NavigatorItem({required this.onPressed, required this.kText});
 }
+
+//  TextSpan(
+//                               text:
+//                                   'A freelancer that provides programming \nservices and project implementation.',
+//                               style: kPoppinSemiBold.copyWith(
+//                                 fontSize: SizeConfig.blockX! * 1.5,
+//                                 color: kLightGrey,
+//                               ),
+//                             ),
+
+
+
+// Text.rich(
+//                         TextSpan(
+//                           children: [
+//                             TextSpan(
+//                               text: 'Hi, Welcome to my space\n',
+//                               style: kPoppinSemiBold.copyWith(
+//                                   wordSpacing: SizeConfig.blockX! * 0.2,
+//                                   letterSpacing: SizeConfig.blockX! * 0.2,
+//                                   fontSize: SizeConfig.blockX! * 2.08,
+//                                   color: kWhite),
+//                             ),
+//                             TextSpan(
+//                               text: '\n', // Empty TextSpan for spacing
+//                               style: TextStyle(
+//                                   fontSize: SizeConfig.blockY! *
+//                                       2.95), // Adjust the font size as needed
+//                             ),
+//                             TextSpan(
+//                               text: 'I’m Ralph Kevin Rynard \nMacahipay\n',
+//                               style: kPoppinExtraBold.copyWith(
+//                                   letterSpacing: SizeConfig.blockX! * 0.34,
+//                                   height: 1.2,
+//                                   color: kWhite,
+//                                   fontSize: SizeConfig.blockX! * 3),
+//                             ),
+//                             const TextSpan(
+//                               text: '\n', // Empty TextSpan for spacing
+//                               style: TextStyle(
+//                                   fontSize:
+//                                       16), // Adjust the font size as needed
+//                             ),
+//                             TextSpan(
+//                               text: 'A Mobile and Web Developer\n',
+//                               style: kPoppinBold.copyWith(
+//                                   fontSize: SizeConfig.blockX! * 2,
+//                                   color: kWhite),
+//                             ),
+//                             const TextSpan(
+//                               text: '\n', // Empty TextSpan for spacing
+//                               style: TextStyle(
+//                                   fontSize:
+//                                       16), // Adjust the font size as needed
+//                             ),
+//                             TextSpan(
+//                               text:
+//                                   'A freelancer that provides programming \nservices and project implementation.',
+//                               style: kPoppinSemiBold.copyWith(
+//                                 fontSize: SizeConfig.blockX! * 1.5,
+//                                 color: kLightGrey,
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                         textAlign: TextAlign.left,
+//                       ),
