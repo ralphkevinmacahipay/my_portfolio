@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
-import '../../class_constructor/class_constructor.dart';
 import '../../functions/functions_widget.dart';
 import '../../state_management/state_management.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
@@ -12,16 +11,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../d_contact/contact.dart';
 
-class HomeDesktop extends StatefulWidget {
+class HomeDesktop extends GetView<GetManagerController> {
   const HomeDesktop({super.key});
-
-  @override
-  State<HomeDesktop> createState() => _HomeDesktopState();
-}
-
-class _HomeDesktopState extends State<HomeDesktop> {
-  final GetManagerController kGetController = Get.put(GetManagerController());
-  Color? buttonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -51,24 +42,146 @@ class _HomeDesktopState extends State<HomeDesktop> {
           ),
         ),
         backgroundColor: kDarkBlue,
-        actions: myNav
-            .map((NavigatorItem item) => Container(
+        actions: [
+          Obx(
+            () => MouseRegion(
+              opaque: false,
+              onHover: (event) {
+                if (!controller.isHover.value) {
+                  print("On HOver implemented");
+                  controller.isHover.value = true;
+                  controller.kColorHome.value = kBlue;
+                }
+              },
+              onExit: (event) {
+                if (controller.isHover.value) {
+                  print(" onExit implemented");
+                  controller.isHover.value = false;
+                  controller.kColorHome.value = kTransparent;
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  color: controller.kColorHome.value,
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    scrollToPosition(0);
+                  },
+                  child: Text(
+                    "Home",
+                    style: TextStyle(
+                        fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          MouseRegion(
+            opaque: false,
+            onHover: (event) {
+              print("On HOver");
+              controller.kColorServices.value = kBlue;
+            },
+            onExit: (event) {
+              controller.kColorServices.value = kTransparent;
+            },
+            child: Obx(() => Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
                   decoration: BoxDecoration(
-                    color: kTransparent,
-                    borderRadius: BorderRadius.circular(
-                      kBorderRadius,
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    color: controller.kColorServices.value,
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      scrollToPosition(SizeConfig.blockY! * 100);
+                    },
+                    child: Text(
+                      "Services",
+                      style: TextStyle(
+                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
                     ),
                   ),
-                  margin: EdgeInsets.only(right: SizeConfig.blockX! * 1.94),
+                )),
+          ),
+          MouseRegion(
+            opaque: false,
+            onHover: (event) {
+              print("On HOver");
+              controller.kColorWorks.value = kBlue;
+            },
+            onExit: (event) {
+              controller.kColorWorks.value = kTransparent;
+            },
+            child: Obx(() => Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    color: controller.kColorWorks.value,
+                  ),
                   child: TextButton(
-                      onPressed: item.onPressed,
-                      child: Text(
-                        item.kText,
-                        style: TextStyle(
-                            fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
-                      )),
-                ))
-            .toList(),
+                    onPressed: () {
+                      scrollToPosition(SizeConfig.blockY! * 100 * 2);
+                    },
+                    child: Text(
+                      "Work",
+                      style: TextStyle(
+                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+                    ),
+                  ),
+                )),
+          ),
+          MouseRegion(
+            opaque: false,
+            onHover: (event) {
+              print("On HOver");
+              controller.kColorContact.value = kBlue;
+            },
+            onExit: (event) {
+              controller.kColorContact.value = kTransparent;
+            },
+            child: Obx(() => Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    color: controller.kColorContact.value,
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      scrollToPosition(SizeConfig.blockY! * 100 * 3);
+                    },
+                    child: Text(
+                      "Contact",
+                      style: TextStyle(
+                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+                    ),
+                  ),
+                )),
+          ),
+        ],
+        // myNav
+        //     .map((NavigatorItem item) => Container(
+        //           decoration: BoxDecoration(
+        //             color: kTransparent,
+        //             borderRadius: BorderRadius.circular(
+        //               kBorderRadius,
+        //             ),
+        //           ),
+        //           margin: EdgeInsets.only(right: SizeConfig.blockX! * 1.94),
+        //           child: TextButton(
+        //               onPressed: item.onPressed,
+        //               child: Text(
+        //                 item.kText,
+        // style: TextStyle(
+        //     fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+        //               )),
+        //         ))
+        //     .toList(),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -160,13 +273,13 @@ class _HomeDesktopState extends State<HomeDesktop> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: hoverWidget(
-                          getService: kGetController,
+                          getService: controller,
                           myWidget: InkWell(
                             onTap: () {},
                             child: Obx(
                               () => Container(
                                 decoration: BoxDecoration(
-                                  color: kGetController.kColor.value,
+                                  color: controller.kColorDownloadCV.value,
                                   borderRadius:
                                       BorderRadius.circular(kBorderRadius),
                                   border: Border.all(color: Colors.white),

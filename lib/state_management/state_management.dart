@@ -3,7 +3,13 @@ import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
 
 class GetManagerController extends GetxController {
-  Rx<Color> kColor = Colors.transparent.obs;
+  RxBool isHover = false.obs;
+  Rx<Color> kColorDownloadCV = Colors.transparent.obs;
+  Rx<Color> kColorHome = Colors.transparent.obs;
+  Rx<Color> kColorServices = Colors.transparent.obs;
+  Rx<Color> kColorWorks = Colors.transparent.obs;
+  Rx<Color> kColorContact = Colors.transparent.obs;
+
   late AnimationController kController;
   late Animation<double> kAnimation;
 }
