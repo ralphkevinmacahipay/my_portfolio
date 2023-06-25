@@ -32,7 +32,7 @@ class ResponsiveWidget extends StatelessWidget {
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1024) {
           // Extra large devices (breakpoint: 1024)
-          return DesktopLayout();
+          return const DesktopLayout();
         } else if (constraints.maxWidth >= 768) {
           // Large devices (breakpoint: 992)
           return const TabletLayout();
