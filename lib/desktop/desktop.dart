@@ -37,7 +37,7 @@ class _DesktopLayoutState extends State<DesktopLayout> {
             scrollToPosition(SizeConfig.blockY! * 100);
           }),
       NavigatorItem(
-          kText: "Work",
+          kText: "Works",
           onPressed: () {
             scrollToPosition(SizeConfig.blockY! * 100 * 2);
           }),
@@ -73,16 +73,22 @@ class _DesktopLayoutState extends State<DesktopLayout> {
         ),
         backgroundColor: kDarkBlue,
         actions: myNav
-            .map((NavigatorItem item) => TextButton(
-                onPressed: item.onPressed,
-                child: Container(
-                  padding: EdgeInsets.only(right: SizeConfig.blockX! * 1.94),
-                  child: Text(
-                    item.kText,
-                    style: TextStyle(
-                        fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+            .map((NavigatorItem item) => Container(
+                  decoration: BoxDecoration(
+                    color: kTransparent,
+                    borderRadius: BorderRadius.circular(
+                      kBorderRadius,
+                    ),
                   ),
-                )))
+                  margin: EdgeInsets.only(right: SizeConfig.blockX! * 1.94),
+                  child: TextButton(
+                      onPressed: item.onPressed,
+                      child: Text(
+                        item.kText,
+                        style: TextStyle(
+                            fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+                      )),
+                ))
             .toList(),
       ),
       body: Container(

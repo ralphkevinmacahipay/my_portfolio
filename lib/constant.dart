@@ -6,6 +6,8 @@ String kProfile = "assets/profile.png";
 
 Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
+Color kTransparent = Colors.transparent;
+
 Color kLightGrey = const Color(0xffAAAAAA);
 Color kLighBlue = const Color(0xff132139);
 String kTextAnimated_1 = "Mobile App Developer";
