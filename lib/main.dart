@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/style.dart';
 import 'package:my_profile/tablet/tablet.dart';
-
+import 'package:get/get.dart';
 import 'desktop/desktop.dart';
 import 'mobile/mobile.dart';
+import 'state_management/state_management.dart';
 
 void main() {
+  Get.put(GetManagerController());
+  Get.put(FloatingAvatarController());
   runApp(const MyApp());
 }
 

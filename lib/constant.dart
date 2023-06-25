@@ -13,6 +13,8 @@ Color kLighBlue = const Color(0xff132139);
 String kTextAnimated_1 = "Mobile App Developer";
 String kTextAnimated_2 = "Web App Developer";
 String kTextAnimated_3 = "Website Developer";
+String text_1 = 'Hi, Welcome to my space\n';
+String text_2 = 'I’m Ralph Kevin Rynard \nMacahipay\n';
 
 const double kBorderRadius = 10;
 final kPoppinBold = GoogleFonts.poppins(fontWeight: FontWeight.bold);
