@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/constant.dart';
-import 'package:my_profile/style.dart';
+import 'package:my_profile/configuration/constant.dart';
+import 'package:my_profile/configuration/style.dart';
 import '../../state_management/state_management.dart';
 
 class FloatingAvatar extends GetView<FloatingAvatarController> {

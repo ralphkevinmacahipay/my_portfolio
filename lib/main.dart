@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/style.dart';
-import 'package:my_profile/tablet/tablet.dart';
+import 'package:my_profile/configuration/style.dart';
+import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
-import 'desktop/desktop.dart';
-import 'mobile/mobile.dart';
+import 'a_desktop/desktop.dart';
+import 'b_mobile/mobile.dart';
 import 'state_management/state_management.dart';
 
 void main() {

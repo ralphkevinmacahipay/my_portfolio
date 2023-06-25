@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../class_constructor/class_constructor.dart';
-import '../style.dart';
+import '../configuration/style.dart';
 
 final ScrollController scrollController = ScrollController();
 void scrollToPosition(double position) {

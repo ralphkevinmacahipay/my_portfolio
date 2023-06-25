@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/constant.dart';
-import 'package:my_profile/desktop/navigator.dart';
-import 'package:my_profile/style.dart';
+import 'package:my_profile/a_desktop/services/services.dart';
+import 'package:my_profile/a_desktop/works/works.dart';
+import 'package:my_profile/configuration/constant.dart';
+import 'package:my_profile/a_desktop/navigator.dart';
+import 'package:my_profile/configuration/style.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../class_constructor/class_constructor.dart';
-import '../functions_widget.dart';
+import '../functions/functions_widget.dart';
 import '../play_ground.dart';
 import '../state_management/state_management.dart';
+import 'contact/contact.dart';
 
 class DesktopLayout extends StatefulWidget {
   const DesktopLayout({super.key});
@@ -189,27 +192,9 @@ class _DesktopLayoutState extends State<DesktopLayout> {
                 ],
               ),
             ),
-            Container(
-              height: SizeConfig.blockY! * 100,
-              width: SizeConfig.blockX! * 100,
-              decoration: const BoxDecoration(color: Colors.orange),
-              child: const Center(child: Text("Orage")),
-            ),
-            Container(
-              height: SizeConfig.blockY! * 100,
-              width: SizeConfig.blockX! * 100,
-              decoration: const BoxDecoration(color: Colors.blue),
-              child: AnimatedTextKit(
-                animatedTexts: items,
-                isRepeatingAnimation: true,
-              ),
-            ),
-            Container(
-              height: SizeConfig.blockY! * 100,
-              width: SizeConfig.blockX! * 100,
-              decoration: const BoxDecoration(color: Colors.grey),
-              child: const Center(child: Text("Grey")),
-            ),
+            const ServicesScreen(),
+            Works(items: items),
+            const Contact(),
           ],
         ),
       ),

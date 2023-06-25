@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/constant.dart';
-import 'package:my_profile/style.dart';
+import 'package:my_profile/configuration/constant.dart';
+import 'package:my_profile/configuration/style.dart';
 
 class FloatingAvatar extends StatefulWidget {
   const FloatingAvatar({super.key});
