@@ -13,6 +13,7 @@ class Works extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       height: SizeConfig.blockY! * 100,
       width: SizeConfig.blockX! * 100,

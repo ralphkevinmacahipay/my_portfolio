@@ -5,6 +5,7 @@ MouseRegion hoverWidget(
     {required GetManagerController getService, required Widget myWidget}) {
   return MouseRegion(
     onHover: (event) {
+      print("onHover");
       getService.kColor.value =
           Colors.blue; // Replace with your desired hover color
     },

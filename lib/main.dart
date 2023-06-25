@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/configuration/style.dart';
 import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
-import 'a_desktop/desktop.dart';
+import 'a_desktop/a_home/home.dart';
 import 'b_mobile/mobile.dart';
 import 'state_management/state_management.dart';
 
@@ -29,13 +28,11 @@ class ResponsiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1024) {
           // Extra large devices (breakpoint: 1024)
-          return const DesktopLayout();
+          return const HomeDesktop();
         } else if (constraints.maxWidth >= 768) {
           // Large devices (breakpoint: 992)
           return const TabletLayout();

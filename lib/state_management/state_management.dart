@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:developer' as devtools show log;
 
 class GetManagerController extends GetxController {
   Rx<Color> kColor = Colors.transparent.obs;
@@ -22,11 +23,13 @@ class FloatingAvatarController extends GetxController
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
     _kAnimation = Tween<double>(begin: 0, end: 50).animate(kController);
+    devtools.log("GOT PRINTED");
   }
 
   @override
   void onClose() {
     kController.dispose();
     super.onClose();
+    devtools.log("GOT PRINTED 2");
   }
 }
