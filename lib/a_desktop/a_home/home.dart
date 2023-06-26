@@ -47,16 +47,16 @@ class HomeDesktop extends GetView<GetManagerController> {
             () => MouseRegion(
               opaque: false,
               onHover: (event) {
-                if (!controller.isHover.value) {
+                if (!controller.isHoverHome.value) {
                   print("On HOver implemented");
-                  controller.isHover.value = true;
+                  controller.isHoverHome.value = true;
                   controller.kColorHome.value = kBlue;
                 }
               },
               onExit: (event) {
-                if (controller.isHover.value) {
+                if (controller.isHoverHome.value) {
                   print(" onExit implemented");
-                  controller.isHover.value = false;
+                  controller.isHoverHome.value = false;
                   controller.kColorHome.value = kTransparent;
                 }
               },
@@ -79,6 +79,7 @@ class HomeDesktop extends GetView<GetManagerController> {
               ),
             ),
           ),
+          SizedBox(width: SizeConfig.blockX! * 2.5),
           MouseRegion(
             opaque: false,
             onHover: (event) {
@@ -107,6 +108,7 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                 )),
           ),
+          SizedBox(width: SizeConfig.blockX! * 2.5),
           MouseRegion(
             opaque: false,
             onHover: (event) {
@@ -135,6 +137,7 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                 )),
           ),
+          SizedBox(width: SizeConfig.blockX! * 2.5),
           MouseRegion(
             opaque: false,
             onHover: (event) {
@@ -163,25 +166,8 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                 )),
           ),
+          SizedBox(width: SizeConfig.blockX! * 15)
         ],
-        // myNav
-        //     .map((NavigatorItem item) => Container(
-        //           decoration: BoxDecoration(
-        //             color: kTransparent,
-        //             borderRadius: BorderRadius.circular(
-        //               kBorderRadius,
-        //             ),
-        //           ),
-        //           margin: EdgeInsets.only(right: SizeConfig.blockX! * 1.94),
-        //           child: TextButton(
-        //               onPressed: item.onPressed,
-        //               child: Text(
-        //                 item.kText,
-        // style: TextStyle(
-        //     fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
-        //               )),
-        //         ))
-        //     .toList(),
       ),
       body: Container(
         decoration: BoxDecoration(

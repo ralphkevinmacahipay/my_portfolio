@@ -18,3 +18,31 @@ MouseRegion hoverWidget(
     child: myWidget,
   );
 }
+
+void isTap({
+  required GetManagerController controller,
+  required bool isHomeTap,
+  required bool isServiceTap,
+  required bool isWorksTap,
+  required bool isContactTap,
+  required Color kColorHome,
+  required Color kColorServices,
+  required Color kColorWorks,
+  required Color kColorContact,
+  required bool isHoverHome,
+  required bool isHoverServices,
+}) {
+  // is Tapped
+  controller.isHomeTap.value = isHomeTap;
+  controller.isServiceTap.value = isServiceTap;
+  controller.isWorksTap.value = isWorksTap;
+  controller.isContactTap.value = isContactTap;
+  // color
+  controller.kColorHome.value = kColorHome;
+  controller.kColorServices.value = kColorServices;
+  controller.kColorWorks.value = kColorWorks;
+  controller.kColorContact.value = kColorContact;
+  // hover
+  controller.isHoverHome.value = isHoverHome;
+  controller.isHoverServices.value = isHoverServices;
+}
