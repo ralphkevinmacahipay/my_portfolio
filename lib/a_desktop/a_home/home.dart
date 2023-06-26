@@ -61,6 +61,8 @@ class HomeDesktop extends GetView<GetManagerController> {
                 }
               },
               child: Container(
+                height: SizeConfig.blockY! * 1.95,
+                width: SizeConfig.blockX! * 7,
                 margin: EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kBorderRadius),
@@ -90,6 +92,8 @@ class HomeDesktop extends GetView<GetManagerController> {
               controller.kColorServices.value = kTransparent;
             },
             child: Obx(() => Container(
+                  height: SizeConfig.blockY! * 1.95,
+                  width: SizeConfig.blockX! * 7,
                   margin:
                       EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
                   decoration: BoxDecoration(
@@ -119,6 +123,8 @@ class HomeDesktop extends GetView<GetManagerController> {
               controller.kColorWorks.value = kTransparent;
             },
             child: Obx(() => Container(
+                  height: SizeConfig.blockY! * 1.95,
+                  width: SizeConfig.blockX! * 7,
                   margin:
                       EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
                   decoration: BoxDecoration(
@@ -148,6 +154,8 @@ class HomeDesktop extends GetView<GetManagerController> {
               controller.kColorContact.value = kTransparent;
             },
             child: Obx(() => Container(
+                  height: SizeConfig.blockY! * 1.95,
+                  width: SizeConfig.blockX! * 7,
                   margin:
                       EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
                   decoration: BoxDecoration(
@@ -166,7 +174,7 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                 )),
           ),
-          SizedBox(width: SizeConfig.blockX! * 15)
+          SizedBox(width: SizeConfig.blockX! * 10)
         ],
       ),
       body: Container(
