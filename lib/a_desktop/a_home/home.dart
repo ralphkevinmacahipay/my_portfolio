@@ -54,10 +54,12 @@ class HomeDesktop extends GetView<GetManagerController> {
                 }
               },
               onExit: (event) {
-                if (controller.isHoverHome.value) {
-                  print(" onExit implemented");
-                  controller.isHoverHome.value = false;
-                  controller.kColorHome.value = kTransparent;
+                if (!controller.isHomeTap.value) {
+                  if (controller.isHoverHome.value) {
+                    print(" onExit implemented");
+                    controller.isHoverHome.value = false;
+                    controller.kColorHome.value = kTransparent;
+                  }
                 }
               },
               child: Container(
@@ -70,6 +72,16 @@ class HomeDesktop extends GetView<GetManagerController> {
                 ),
                 child: TextButton(
                   onPressed: () {
+                    controller.isHomeTap.value = true;
+                    controller.isServiceTap.value = false;
+                    controller.isWorksTap.value = false;
+                    controller.isContactTap.value = false;
+
+                    controller.kColorHome.value = kBlue;
+                    controller.kColorServices.value = kTransparent;
+                    controller.kColorWorks.value = kTransparent;
+                    controller.kColorContact.value = kTransparent;
+
                     scrollToPosition(0);
                   },
                   child: Text(
@@ -85,11 +97,17 @@ class HomeDesktop extends GetView<GetManagerController> {
           MouseRegion(
             opaque: false,
             onHover: (event) {
-              print("On HOver");
-              controller.kColorServices.value = kBlue;
+              if (!controller.isHoverServices.value) {
+                print("onHover Services");
+                controller.kColorServices.value = kBlue;
+                controller.isHoverServices.value = true;
+              }
             },
             onExit: (event) {
-              controller.kColorServices.value = kTransparent;
+              if (!controller.isServiceTap.value) {
+                controller.isHoverServices.value = false;
+                controller.kColorServices.value = kTransparent;
+              }
             },
             child: Obx(() => Container(
                   height: SizeConfig.blockY! * 1.95,
@@ -102,6 +120,16 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                   child: TextButton(
                     onPressed: () {
+                      controller.isHomeTap.value = false;
+                      controller.isServiceTap.value = true;
+                      controller.isWorksTap.value = false;
+                      controller.isContactTap.value = false;
+
+                      controller.kColorHome.value = kTransparent;
+                      controller.kColorServices.value = kBlue;
+                      controller.kColorWorks.value = kTransparent;
+                      controller.kColorContact.value = kTransparent;
+
                       scrollToPosition(SizeConfig.blockY! * 100);
                     },
                     child: Text(
@@ -116,11 +144,18 @@ class HomeDesktop extends GetView<GetManagerController> {
           MouseRegion(
             opaque: false,
             onHover: (event) {
-              print("On HOver");
-              controller.kColorWorks.value = kBlue;
+              if (!controller.isHoverHome.value) {
+                print("onHover Work");
+                controller.isHoverHome.value = true;
+                controller.kColorWorks.value = kBlue;
+              }
             },
             onExit: (event) {
-              controller.kColorWorks.value = kTransparent;
+              if (!controller.isWorksTap.value) {
+                print("onExit Work");
+                controller.isHoverHome.value = false;
+                controller.kColorWorks.value = kTransparent;
+              }
             },
             child: Obx(() => Container(
                   height: SizeConfig.blockY! * 1.95,
@@ -133,6 +168,16 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                   child: TextButton(
                     onPressed: () {
+                      controller.isHomeTap.value = false;
+                      controller.isServiceTap.value = false;
+                      controller.isWorksTap.value = true;
+                      controller.isContactTap.value = false;
+
+                      controller.kColorHome.value = kTransparent;
+                      controller.kColorServices.value = kTransparent;
+                      controller.kColorWorks.value = kBlue;
+                      controller.kColorContact.value = kTransparent;
+
                       scrollToPosition(SizeConfig.blockY! * 100 * 2);
                     },
                     child: Text(
@@ -147,11 +192,18 @@ class HomeDesktop extends GetView<GetManagerController> {
           MouseRegion(
             opaque: false,
             onHover: (event) {
-              print("On HOver");
-              controller.kColorContact.value = kBlue;
+              if (!controller.isHoverContact.value) {
+                controller.isHoverContact.value = true;
+                print("onHover Contact");
+                controller.kColorContact.value = kBlue;
+              }
             },
             onExit: (event) {
-              controller.kColorContact.value = kTransparent;
+              if (!controller.isContactTap.value) {
+                print("onExit Contact");
+                controller.isHoverContact.value = false;
+                controller.kColorContact.value = kTransparent;
+              }
             },
             child: Obx(() => Container(
                   height: SizeConfig.blockY! * 1.95,
@@ -164,6 +216,15 @@ class HomeDesktop extends GetView<GetManagerController> {
                   ),
                   child: TextButton(
                     onPressed: () {
+                      controller.isHomeTap.value = false;
+                      controller.isServiceTap.value = false;
+                      controller.isWorksTap.value = false;
+                      controller.isContactTap.value = true;
+
+                      controller.kColorHome.value = kTransparent;
+                      controller.kColorServices.value = kTransparent;
+                      controller.kColorWorks.value = kTransparent;
+                      controller.kColorContact.value = kBlue;
                       scrollToPosition(SizeConfig.blockY! * 100 * 3);
                     },
                     child: Text(

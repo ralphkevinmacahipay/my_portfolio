@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
 
+import 'package:my_profile/configuration/constant.dart';
+
 class GetManagerController extends GetxController {
   RxBool isHoverHome = false.obs,
       isHoverServices = false.obs,
       isHoverWorks = false.obs,
       isHoverContact = false.obs,
-      isHomeTap = false.obs,
+      isHomeTap = true.obs,
       isServiceTap = false.obs,
       isWorksTap = false.obs,
       isContactTap = false.obs;
 
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
-      kColorHome = Colors.transparent.obs,
+      kColorHome = kBlue.obs,
       kColorServices = Colors.transparent.obs,
       kColorWorks = Colors.transparent.obs,
       kColorContact = Colors.transparent.obs;
