@@ -47,7 +47,8 @@ class HomeDesktop extends GetView<GetManagerController> {
             () => MouseRegion(
               opaque: false,
               onHover: (event) {
-                if (!controller.isHoverHome.value) {
+                if (!controller.isHoverHome.value &&
+                    !controller.isHomeTap.value) {
                   print("On HOver implemented");
                   controller.isHoverHome.value = true;
                   controller.kColorHome.value = kBlue;
@@ -97,7 +98,8 @@ class HomeDesktop extends GetView<GetManagerController> {
           MouseRegion(
             opaque: false,
             onHover: (event) {
-              if (!controller.isHoverServices.value) {
+              if (!controller.isHoverServices.value &&
+                  !controller.isServiceTap.value) {
                 print("onHover Services");
                 controller.kColorServices.value = kBlue;
                 controller.isHoverServices.value = true;

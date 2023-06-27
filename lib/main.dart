@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/home.dart';
 import 'b_mobile/mobile.dart';
 import 'state_management/state_management.dart';
 
 void main() {
+  setPathUrlStrategy();
   Get.put(GetManagerController());
   Get.put(FloatingAvatarController());
+
   runApp(const MyApp());
 }
 
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ResponsiveWidget(), //HomePage
+      home:
+          ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
     );
   }
 }
