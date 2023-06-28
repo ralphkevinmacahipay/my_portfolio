@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:developer' as devtools show log;
-
-import 'package:my_profile/configuration/constant.dart';
 
 class GetManagerController extends GetxController {
   RxBool isHoverHome = false.obs,
@@ -15,7 +12,7 @@ class GetManagerController extends GetxController {
       isContactTap = false.obs;
 
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
-      kColorHome = kBlue.obs,
+      kColorHome = Colors.transparent.obs,
       kColorServices = Colors.transparent.obs,
       kColorWorks = Colors.transparent.obs,
       kColorContact = Colors.transparent.obs;
@@ -39,13 +36,11 @@ class FloatingAvatarController extends GetxController
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
     _kAnimation = Tween<double>(begin: 0, end: 50).animate(kController);
-    devtools.log("GOT PRINTED");
   }
 
   @override
   void onClose() {
     kController.dispose();
     super.onClose();
-    devtools.log("GOT PRINTED 2");
   }
 }
