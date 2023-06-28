@@ -95,148 +95,151 @@ class HomeDesktop extends GetView<GetManagerController> {
             ),
           ),
           SizedBox(width: SizeConfig.blockX! * 2.5),
-          MouseRegion(
-            opaque: false,
-            onHover: (event) {
-              if (!controller.isHoverServices.value &&
-                  !controller.isServiceTap.value) {
-                print("onHover Services");
-                controller.kColorServices.value = kBlue;
-                controller.isHoverServices.value = true;
-              }
-            },
-            onExit: (event) {
-              if (!controller.isServiceTap.value) {
-                controller.isHoverServices.value = false;
-                controller.kColorServices.value = kTransparent;
-              }
-            },
-            child: Obx(() => Container(
-                  height: SizeConfig.blockY! * 1.95,
-                  width: SizeConfig.blockX! * 7,
-                  margin:
-                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
-                    color: controller.kColorServices.value,
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      controller.isHomeTap.value = false;
-                      controller.isServiceTap.value = true;
-                      controller.isWorksTap.value = false;
-                      controller.isContactTap.value = false;
+          Obx(() => MouseRegion(
+                opaque: false,
+                onHover: (event) {
+                  if (!controller.isHoverServices.value &&
+                      !controller.isServiceTap.value) {
+                    print("onHover Services");
+                    controller.kColorServices.value = kBlue;
+                    controller.isHoverServices.value = true;
+                  }
+                },
+                onExit: (event) {
+                  if (!controller.isServiceTap.value) {
+                    controller.isHoverServices.value = false;
+                    controller.kColorServices.value = kTransparent;
+                  }
+                },
+                child: Obx(() => Container(
+                      height: SizeConfig.blockY! * 1.95,
+                      width: SizeConfig.blockX! * 7,
+                      margin: EdgeInsets.symmetric(
+                          vertical: SizeConfig.blockX! * .9),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        color: controller.kColorServices.value,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          controller.isHomeTap.value = false;
+                          controller.isServiceTap.value = true;
+                          controller.isWorksTap.value = false;
+                          controller.isContactTap.value = false;
 
-                      controller.kColorHome.value = kTransparent;
-                      controller.kColorServices.value = kBlue;
-                      controller.kColorWorks.value = kTransparent;
-                      controller.kColorContact.value = kTransparent;
+                          controller.kColorHome.value = kTransparent;
+                          controller.kColorServices.value = kBlue;
+                          controller.kColorWorks.value = kTransparent;
+                          controller.kColorContact.value = kTransparent;
 
-                      scrollToPosition(SizeConfig.blockY! * 100);
-                    },
-                    child: Text(
-                      "Services",
-                      style: TextStyle(
-                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
-                    ),
-                  ),
-                )),
-          ),
+                          scrollToPosition(SizeConfig.blockY! * 100);
+                        },
+                        child: Text(
+                          "Services",
+                          style: TextStyle(
+                              fontSize: SizeConfig.blockX! * 1.38,
+                              color: kWhite),
+                        ),
+                      ),
+                    )),
+              )),
           SizedBox(width: SizeConfig.blockX! * 2.5),
-          MouseRegion(
-            opaque: false,
-            onHover: (event) {
-              if (!controller.isHoverHome.value) {
-                print("onHover Work");
-                controller.isHoverHome.value = true;
-                controller.kColorWorks.value = kBlue;
-              }
-            },
-            onExit: (event) {
-              if (!controller.isWorksTap.value) {
-                print("onExit Work");
-                controller.isHoverHome.value = false;
-                controller.kColorWorks.value = kTransparent;
-              }
-            },
-            child: Obx(() => Container(
-                  height: SizeConfig.blockY! * 1.95,
-                  width: SizeConfig.blockX! * 7,
-                  margin:
-                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
-                    color: controller.kColorWorks.value,
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      controller.isHomeTap.value = false;
-                      controller.isServiceTap.value = false;
-                      controller.isWorksTap.value = true;
-                      controller.isContactTap.value = false;
+          Obx(() => MouseRegion(
+                opaque: false,
+                onHover: (event) {
+                  if (!controller.isHoverHome.value) {
+                    print("onHover Work");
+                    controller.isHoverHome.value = true;
+                    controller.kColorWorks.value = kBlue;
+                  }
+                },
+                onExit: (event) {
+                  if (!controller.isWorksTap.value) {
+                    print("onExit Work");
+                    controller.isHoverHome.value = false;
+                    controller.kColorWorks.value = kTransparent;
+                  }
+                },
+                child: Obx(() => Container(
+                      height: SizeConfig.blockY! * 1.95,
+                      width: SizeConfig.blockX! * 7,
+                      margin: EdgeInsets.symmetric(
+                          vertical: SizeConfig.blockX! * .9),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        color: controller.kColorWorks.value,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          controller.isHomeTap.value = false;
+                          controller.isServiceTap.value = false;
+                          controller.isWorksTap.value = true;
+                          controller.isContactTap.value = false;
 
-                      controller.kColorHome.value = kTransparent;
-                      controller.kColorServices.value = kTransparent;
-                      controller.kColorWorks.value = kBlue;
-                      controller.kColorContact.value = kTransparent;
+                          controller.kColorHome.value = kTransparent;
+                          controller.kColorServices.value = kTransparent;
+                          controller.kColorWorks.value = kBlue;
+                          controller.kColorContact.value = kTransparent;
 
-                      scrollToPosition(SizeConfig.blockY! * 100 * 2);
-                    },
-                    child: Text(
-                      "Work",
-                      style: TextStyle(
-                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
-                    ),
-                  ),
-                )),
-          ),
+                          scrollToPosition(SizeConfig.blockY! * 100 * 2);
+                        },
+                        child: Text(
+                          "Work",
+                          style: TextStyle(
+                              fontSize: SizeConfig.blockX! * 1.38,
+                              color: kWhite),
+                        ),
+                      ),
+                    )),
+              )),
           SizedBox(width: SizeConfig.blockX! * 2.5),
-          MouseRegion(
-            opaque: false,
-            onHover: (event) {
-              if (!controller.isHoverContact.value) {
-                controller.isHoverContact.value = true;
-                print("onHover Contact");
-                controller.kColorContact.value = kBlue;
-              }
-            },
-            onExit: (event) {
-              if (!controller.isContactTap.value) {
-                print("onExit Contact");
-                controller.isHoverContact.value = false;
-                controller.kColorContact.value = kTransparent;
-              }
-            },
-            child: Obx(() => Container(
-                  height: SizeConfig.blockY! * 1.95,
-                  width: SizeConfig.blockX! * 7,
-                  margin:
-                      EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
-                    color: controller.kColorContact.value,
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      controller.isHomeTap.value = false;
-                      controller.isServiceTap.value = false;
-                      controller.isWorksTap.value = false;
-                      controller.isContactTap.value = true;
+          Obx(() => MouseRegion(
+                opaque: false,
+                onHover: (event) {
+                  if (!controller.isHoverContact.value) {
+                    controller.isHoverContact.value = true;
+                    print("onHover Contact");
+                    controller.kColorContact.value = kBlue;
+                  }
+                },
+                onExit: (event) {
+                  if (!controller.isContactTap.value) {
+                    print("onExit Contact");
+                    controller.isHoverContact.value = false;
+                    controller.kColorContact.value = kTransparent;
+                  }
+                },
+                child: Obx(() => Container(
+                      height: SizeConfig.blockY! * 1.95,
+                      width: SizeConfig.blockX! * 7,
+                      margin: EdgeInsets.symmetric(
+                          vertical: SizeConfig.blockX! * .9),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        color: controller.kColorContact.value,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          controller.isHomeTap.value = false;
+                          controller.isServiceTap.value = false;
+                          controller.isWorksTap.value = false;
+                          controller.isContactTap.value = true;
 
-                      controller.kColorHome.value = kTransparent;
-                      controller.kColorServices.value = kTransparent;
-                      controller.kColorWorks.value = kTransparent;
-                      controller.kColorContact.value = kBlue;
-                      scrollToPosition(SizeConfig.blockY! * 100 * 3);
-                    },
-                    child: Text(
-                      "Contact",
-                      style: TextStyle(
-                          fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
-                    ),
-                  ),
-                )),
-          ),
+                          controller.kColorHome.value = kTransparent;
+                          controller.kColorServices.value = kTransparent;
+                          controller.kColorWorks.value = kTransparent;
+                          controller.kColorContact.value = kBlue;
+                          scrollToPosition(SizeConfig.blockY! * 100 * 3);
+                        },
+                        child: Text(
+                          "Contact",
+                          style: TextStyle(
+                              fontSize: SizeConfig.blockX! * 1.38,
+                              color: kWhite),
+                        ),
+                      ),
+                    )),
+              )),
           SizedBox(width: SizeConfig.blockX! * 10)
         ],
       ),
