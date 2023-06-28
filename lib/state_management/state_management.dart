@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GetManagerController extends GetxController {
+  Rx<Color> kGlobalColor = Colors.transparent.obs;
+  RxBool isHovered = false.obs;
+  RxBool isTapped = false.obs;
+
   RxBool isHoverHome = false.obs,
       isHoverServices = false.obs,
       isHoverWorks = false.obs,
