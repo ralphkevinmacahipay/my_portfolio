@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_profile/configuration/constant.dart';
 
 class GetManagerController extends GetxController {
   Rx<Color> kGlobalColor = Colors.transparent.obs;
@@ -16,7 +17,7 @@ class GetManagerController extends GetxController {
       isContactTap = false.obs;
 
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
-      kColorHome = Colors.transparent.obs,
+      kColorHome = kBlue.obs,
       kColorServices = Colors.transparent.obs,
       kColorWorks = Colors.transparent.obs,
       kColorContact = Colors.transparent.obs;
