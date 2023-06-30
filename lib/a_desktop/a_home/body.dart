@@ -6,7 +6,7 @@ import '../../functions/functions_widget.dart';
 import '../../state_management/state_management.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
 import 'package:my_profile/a_desktop/c_works/works.dart';
-import 'package:my_profile/a_desktop/navigator.dart';
+import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../d_contact/contact.dart';
