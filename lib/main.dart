@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      title: "Ralph.dart",
       debugShowCheckedModeBanner: false,
       home:
           ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
