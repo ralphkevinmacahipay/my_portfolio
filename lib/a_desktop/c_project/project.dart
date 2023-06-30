@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:my_profile/configuration/constant.dart';
+import 'package:my_profile/my_widget/my_widget.dart';
 
 import '../../configuration/style.dart';
 
@@ -14,14 +16,19 @@ class Works extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
+    return SizedBox(
       height: SizeConfig.blockY! * 100,
       width: SizeConfig.blockX! * 100,
-      decoration: const BoxDecoration(color: Colors.blue),
-      child: AnimatedTextKit(
-        animatedTexts: items,
-        isRepeatingAnimation: true,
-      ),
+      child: Stack(children: [
+        TextWidget(
+          kTextStyle: kPoppinSemiBold,
+          ktext: kProjectTextTitle,
+          kAlign: Alignment.topCenter,
+          kTextColor: kWhite,
+          kFontSize: SizeConfig.blockX! * 3.51,
+        ),
+        SubTitleWidget(kTitle: kProjectSubTitle),
+      ]),
     );
   }
 }

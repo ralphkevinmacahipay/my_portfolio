@@ -8,7 +8,7 @@ String getNavNmae(NavItemEnum item) {
       return 'Services';
 
     case NavItemEnum.works:
-      return 'Works';
+      return 'Project';
 
     case NavItemEnum.contact:
       return 'Contacts';

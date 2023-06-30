@@ -64,7 +64,7 @@ class NavItem extends StatelessWidget {
         },
         child: Text(
           getNavNmae(navItem),
-          style: TextStyle(fontSize: SizeConfig.blockX! * 1.38, color: kWhite),
+          style: TextStyle(fontSize: SizeConfig.blockX! * 1.3, color: kWhite),
         ),
       ),
     );

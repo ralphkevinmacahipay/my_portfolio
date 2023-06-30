@@ -4,7 +4,7 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 import '../../state_management/state_management.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
-import 'package:my_profile/a_desktop/c_works/works.dart';
+import 'package:my_profile/a_desktop/c_project/project.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
