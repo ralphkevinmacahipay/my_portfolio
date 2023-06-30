@@ -12,11 +12,19 @@ String kFlutterImage = "assets/flutter_image.png";
 String kUiImage = "assets/ui_image.png";
 String kProjectOne = "assets/project_one.png";
 String kIOSImage = "assets/ios_image.png";
+String kFaceBook = "assets/facebook_image.png";
+String kGmail = "assets/gmail_image.png";
+String kInstagram = "assets/instagram_image.png";
+String kLinkedIn = "assets/linkedin_image.png";
+String kGitHub = "assets/github_image.png";
 
 Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
+Color kLighDark = const Color(0xff1F1F2D);
+
 Color kTransparent = Colors.transparent;
 Color kBlue = Colors.blue;
+Color kBackGround = const Color(0xff1275B1);
 
 Color kLightGrey = const Color(0xffAAAAAA);
 Color kLighBlue = const Color(0xff132139);
@@ -42,7 +50,9 @@ String text_14 = "IOS App Development";
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =
     "Throughout my career as a designer and developer, I have crafted digital products catering to both commercial and individual needs.";
-
+String kContactTitle = "Stay Connected";
+String kContactSubTitle =
+    "Let’s transform your idea into reality, if you have any needs when it comes to programming or UI/UX design, please contact me.";
 const double kBorderRadius = 10;
 final kPoppinBold = GoogleFonts.poppins(fontWeight: FontWeight.bold);
 final kPoppinExtraBold = GoogleFonts.poppins(fontWeight: FontWeight.w700);

@@ -64,10 +64,14 @@ class TextWidgetOne extends StatelessWidget {
 }
 
 class SubTitleWidget extends StatelessWidget {
+  final double? kFointSize;
+  final Color? kColor;
   final String kTitle; // text_4
   const SubTitleWidget({
     super.key,
     required this.kTitle,
+    this.kColor,
+    this.kFointSize,
   });
 
   @override
@@ -80,8 +84,8 @@ class SubTitleWidget extends StatelessWidget {
         kTextStyle: kPoppinSemiBold,
         ktext: kTitle,
         kAlign: Alignment.topCenter,
-        kTextColor: kLightGrey,
-        kFontSize: SizeConfig.blockX! * 1.5,
+        kTextColor: kColor ?? kLightGrey,
+        kFontSize: kFointSize ?? SizeConfig.blockX! * 1.5,
       ),
     );
   }

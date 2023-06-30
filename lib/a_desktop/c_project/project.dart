@@ -28,6 +28,14 @@ class Works extends StatelessWidget {
           kFontSize: SizeConfig.blockX! * 3.51,
         ),
         SubTitleWidget(kTitle: kProjectSubTitle),
+        Align(
+          alignment: Alignment.center,
+          child: Image.asset(
+            kProjectOne,
+            width: SizeConfig.blockX! * 37.36,
+            height: SizeConfig.blockY! * 35.58,
+          ),
+        ),
       ]),
     );
   }
