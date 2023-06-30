@@ -16,7 +16,10 @@ String kTextAnimated_2 = "Web App Developer";
 String kTextAnimated_3 = "Website Developer";
 String text_1 = 'Hi, Welcome to my space\n';
 String text_2 = 'I’m Ralph Kevin Rynard \nMacahipay\n';
-
+String text_3 = " What can I do?";
+String text_4 =
+    " As a freelance designer and developer, I've collaborated with startups to create digital products for businesses and consumers alike. My services span brand design and programming, offering comprehensive solutions for diverse needs. With a passion for innovation and a commitment to excellence.";
+String text_5 = "Ralph.dart";
 const double kBorderRadius = 10;
 final kPoppinBold = GoogleFonts.poppins(fontWeight: FontWeight.bold);
 final kPoppinExtraBold = GoogleFonts.poppins(fontWeight: FontWeight.w700);

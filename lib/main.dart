@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'a_desktop/a_home/home.dart';
+import 'a_desktop/a_home/a_home.dart';
+
 import 'b_mobile/mobile.dart';
 import 'state_management/state_management.dart';
 

@@ -36,13 +36,13 @@ class HomeDesktop extends GetView<GetManagerController> {
         title: Padding(
           padding: EdgeInsets.only(left: SizeConfig.blockX! * 10.90),
           child: Text(
-            "Ralph.dart",
+            text_5,
             style: TextStyle(fontSize: SizeConfig.blockX! * 1.77),
           ),
         ),
         backgroundColor: kDarkBlue,
         actions: [
-          // TODO: clean this code
+          // TODO: implement Hover effect using inkWell
           Obx(
             () => NavItem(
               navItem: NavItemEnum.home,

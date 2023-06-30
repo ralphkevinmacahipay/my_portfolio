@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
-import '../../functions/functions_widget.dart';
 import '../../state_management/state_management.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
 import 'package:my_profile/a_desktop/c_works/works.dart';
@@ -112,32 +111,35 @@ class BodyHome extends StatelessWidget {
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: hoverWidget(
-                        getService: controller,
-                        myWidget: InkWell(
-                          onTap: () {},
-                          child: Obx(
-                            () => Container(
-                              decoration: BoxDecoration(
-                                color: controller.kColorDownloadCV.value,
-                                borderRadius:
-                                    BorderRadius.circular(kBorderRadius),
-                                border: Border.all(color: Colors.white),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 12,
-                                horizontal: 24,
-                              ),
-                              child: Text(
-                                "DOWNLOAD CV",
-                                style: kPoppinSemiBold.copyWith(
-                                  fontSize: SizeConfig.blockX! * 1.5,
-                                  color: kWhite,
-                                ),
-                              ),
+                    child: Obx(
+                      () => InkWell(
+                        hoverColor: kBlue,
+                        onHover: (value) {
+                          controller.isHovered.value = value;
+                        },
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: controller.isHovered.value
+                                ? kBlue
+                                : kTransparent,
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            border: Border.all(color: Colors.white),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 24,
+                          ),
+                          child: Text(
+                            "DOWNLOAD CV",
+                            style: kPoppinSemiBold.copyWith(
+                              fontSize: SizeConfig.blockX! * 1.5,
+                              color: kWhite,
                             ),
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const FloatingAvatar(),
