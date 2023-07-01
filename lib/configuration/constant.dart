@@ -11,7 +11,7 @@ String kFlatIconImage = "assets/flaticon_image.png";
 String kFlutterImage = "assets/flutter_image.png";
 String kUiImage = "assets/ui_image.png";
 String kProjectOne = "assets/project_one.png";
-String kIOSImage = "assets/ios_image.png";
+String kWebImage = "assets/web_image.png";
 String kFaceBook = "assets/facebook_image.png";
 String kGmail = "assets/gmail_image.png";
 String kInstagram = "assets/instagram_image.png";
@@ -46,7 +46,9 @@ String text_11 =
     "Transforming ideas into intuitive interfaces with a human touch.";
 String text_12 = "Figma";
 String text_13 = "Flaticon";
-String text_14 = "IOS App Development";
+String text_14 = "Web App Development";
+String text_15 = "Let’s turn your idea into a working web application.";
+
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =
     "Throughout my career as a designer and developer, I have crafted digital products catering to both commercial and individual needs.";

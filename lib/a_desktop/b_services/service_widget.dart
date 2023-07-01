@@ -18,11 +18,15 @@ class RowWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          kImage,
-          width: SizeConfig.blockX! * 3.17,
-          height: SizeConfig.blockY! * 3.80,
+        CircleAvatar(
+          backgroundColor: kTransparent,
+          radius: SizeConfig.blockX! * .8,
+          child: Image.asset(
+            kImage,
+            fit: BoxFit.cover,
+          ),
         ),
+        SizedBox(width: SizeConfig.blockX! * .5),
         TextWidgetOne(
           kText: kText,
           kTextStyle: kPoppinSemiBold,
@@ -39,6 +43,8 @@ class ColumnWidget extends StatelessWidget {
   final double? kPaddingT; // SizeConfig.blockY! * 25
   final double? kPaddingR;
   final double? kPaddingB;
+  final String? kImageExtra;
+  final String? kTextExtra;
 
   final String kImageOne; // kAndroidImage
   final String kTextOne; // text_6
@@ -62,6 +68,8 @@ class ColumnWidget extends StatelessWidget {
     required this.kTextFour,
     this.kPaddingR,
     this.kPaddingB,
+    this.kImageExtra,
+    this.kTextExtra,
   });
 
   @override
@@ -75,7 +83,7 @@ class ColumnWidget extends StatelessWidget {
       child: Align(
         alignment: kAlignment,
         child: Container(
-          height: SizeConfig.blockY! * 44.23,
+          height: SizeConfig.blockY! * 54.23,
           width: SizeConfig.blockX! * 18.40,
           decoration: BoxDecoration(
             color: kLighBlue,
@@ -112,12 +120,19 @@ class ColumnWidget extends StatelessWidget {
                     kImage: kImageTwo,
                     kText: kTextThree,
                   ),
+                  SizedBox(width: SizeConfig.blockX! * .5),
                   RowWidget(
                     kImage: kImageThree,
                     kText: kTextFour,
                   ),
                 ],
-              )
+              ),
+              (kImageExtra != null && kTextExtra != null)
+                  ? RowWidget(
+                      kImage: kImageThree,
+                      kText: kTextFour,
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),

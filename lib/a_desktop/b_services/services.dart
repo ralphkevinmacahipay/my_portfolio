@@ -51,9 +51,9 @@ class ServicesScreen extends StatelessWidget {
           ColumnWidget(
               kAlignment: Alignment.center,
               kPaddingT: SizeConfig.blockY! * 25,
-              kImageOne: kIOSImage,
+              kImageOne: kWebImage,
               kTextOne: text_14,
-              kTextTwo: text_7,
+              kTextTwo: text_15,
               kImageTwo: kFlutterImage,
               kTextThree: text_8,
               kImageThree: kFirebaseImage,
