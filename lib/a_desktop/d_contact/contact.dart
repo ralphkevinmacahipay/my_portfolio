@@ -61,17 +61,21 @@ class Contact extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: SizeConfig.blockY! * 7),
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // TODO: FIXED THE SIZE
-                          IconWidgetContact(kIcon: kFaceBook),
-                          IconWidgetContact(kIcon: kGmail),
-                          IconWidgetContact(kIcon: kLinkedIn),
-                          IconWidgetContact(kIcon: kGitHub),
-                          IconWidgetContact(kIcon: kInstagram),
-                        ],
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.blockX! * 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // TODO: FIXED THE SIZE
+                            IconWidgetContact(kIcon: kInstagram),
+                            IconWidgetContact(kIcon: kFaceBook),
+                            IconWidgetContact(kImage: kGmail),
+                            IconWidgetContact(kIcon: kLinkedIn),
+                            IconWidgetContact(kIcon: kGitHub),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -114,21 +118,27 @@ class Contact extends StatelessWidget {
 }
 
 class IconWidgetContact extends StatelessWidget {
-  final double? kSize;
-  final String kIcon;
+  final String? kImage;
+  final String? kIcon;
   const IconWidgetContact({
     super.key,
-    required this.kIcon,
-    this.kSize,
+    this.kIcon,
+    this.kImage,
   });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      iconSize: kSize ?? SizeConfig.blockX! * 2.5,
+      iconSize: SizeConfig.blockX! * 2.5,
       onPressed: () {},
-      icon: CircleAvatar(
-          backgroundColor: kTransparent, backgroundImage: AssetImage(kIcon)),
+      icon: kImage != null
+          ? Image.asset(
+              kImage!,
+              fit: BoxFit.cover,
+            )
+          : CircleAvatar(
+              backgroundColor: kTransparent,
+              backgroundImage: AssetImage(kIcon!)),
     );
   }
 }
