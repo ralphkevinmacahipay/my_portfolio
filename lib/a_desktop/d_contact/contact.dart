@@ -70,7 +70,29 @@ class Contact extends StatelessWidget {
                           children: [
                             IconWidgetContact(kIcon: kInstagram),
                             IconWidgetContact(kIcon: kFaceBook),
-                            IconWidgetContact(kImage: kGmail),
+                            IconWidgetContact(
+                              kImage: kGmail,
+                              kOnpress: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('My Dialog'),
+                                      content:
+                                          const Text('This is a dialog box.'),
+                                      actions: [
+                                        TextButton(
+                                          child: const Text('Close'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                             IconWidgetContact(kIcon: kLinkedIn),
                             IconWidgetContact(kIcon: kGitHub),
                           ],
@@ -120,19 +142,21 @@ class Contact extends StatelessWidget {
 }
 
 class IconWidgetContact extends StatelessWidget {
+  final VoidCallback? kOnpress;
   final String? kImage;
   final String? kIcon;
   const IconWidgetContact({
     super.key,
     this.kIcon,
     this.kImage,
+    this.kOnpress,
   });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: SizeConfig.blockX! * 2.5,
-      onPressed: () {},
+      onPressed: kOnpress,
       icon: kImage != null
           ? Image.asset(
               kImage!,

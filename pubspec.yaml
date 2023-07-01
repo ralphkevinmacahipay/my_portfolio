@@ -18,6 +18,8 @@ dependencies:
   google_fonts: ^5.1.0
   animated_text_kit: ^4.2.2
   url_strategy: ^0.2.0
+  flutter_email_sender: ^6.0.1
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
