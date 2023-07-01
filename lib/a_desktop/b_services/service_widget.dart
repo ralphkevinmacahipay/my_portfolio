@@ -6,10 +6,12 @@ import '../../my_widget/my_widget.dart';
 class RowWidget extends StatelessWidget {
   final String kImage;
   final String kText;
+  final double? kSize;
   const RowWidget({
     super.key,
     required this.kImage,
     required this.kText,
+    this.kSize,
   });
 
   @override
@@ -30,7 +32,7 @@ class RowWidget extends StatelessWidget {
         TextWidgetOne(
           kText: kText,
           kTextStyle: kPoppinSemiBold,
-          kFontSize: SizeConfig.blockX! * 1.3,
+          kFontSize: kSize ?? SizeConfig.blockX! * 1.3,
         )
       ],
     );
@@ -129,8 +131,9 @@ class ColumnWidget extends StatelessWidget {
               ),
               (kImageExtra != null && kTextExtra != null)
                   ? RowWidget(
-                      kImage: kImageThree,
-                      kText: kTextFour,
+                      kSize: SizeConfig.blockX! * 1,
+                      kImage: kImageExtra!,
+                      kText: kTextExtra!,
                     )
                   : const SizedBox.shrink(),
             ],

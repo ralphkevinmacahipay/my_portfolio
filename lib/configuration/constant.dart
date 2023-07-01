@@ -17,6 +17,7 @@ String kGmail = "assets/gmail_image.png";
 String kInstagram = "assets/instagram_image.png";
 String kLinkedIn = "assets/linkedin_image.png";
 String kGitHub = "assets/github_image.png";
+String kGoogleCP = "assets/google_cloud_platform.png";
 
 Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
@@ -30,7 +31,7 @@ Color kLightGrey = const Color(0xffAAAAAA);
 Color kLighBlue = const Color(0xff132139);
 String kTextAnimated_1 = "Mobile App Developer";
 String kTextAnimated_2 = "Web App Developer";
-String kTextAnimated_3 = "Website Developer";
+String kTextAnimated_3 = "UI/UX Designer";
 String text_1 = 'Hi, Welcome to my space\n';
 String text_2 = 'I’m Ralph Kevin Rynard \nMacahipay\n';
 String text_3 = " What can I do?";
@@ -48,6 +49,7 @@ String text_12 = "Figma";
 String text_13 = "Flaticon";
 String text_14 = "Web App Development";
 String text_15 = "Let’s turn your idea into a working web application.";
+String text_16 = "Google Cloud Platform";
 
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =

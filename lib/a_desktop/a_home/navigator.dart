@@ -34,7 +34,7 @@ class NavItem extends StatelessWidget {
     return Container(
       height: SizeConfig.blockY! * 1.95,
       width: SizeConfig.blockX! * 7,
-      margin: EdgeInsets.symmetric(vertical: SizeConfig.blockX! * .9),
+      margin: EdgeInsets.symmetric(vertical: SizeConfig.blockY! * 1.7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kBorderRadius),
         color: kColor,

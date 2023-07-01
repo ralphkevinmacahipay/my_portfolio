@@ -30,6 +30,10 @@ class HomeDesktop extends GetView<GetManagerController> {
           textStyle: kPoppinBold.copyWith(
               fontSize: SizeConfig.blockX! * 2, color: kWhite),
           speed: const Duration(milliseconds: 100)),
+      TyperAnimatedText(kTextAnimated_3,
+          textStyle: kPoppinBold.copyWith(
+              fontSize: SizeConfig.blockX! * 2, color: kWhite),
+          speed: const Duration(milliseconds: 100)),
     ];
     return Scaffold(
       appBar: AppBar(

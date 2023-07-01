@@ -27,6 +27,8 @@ class ServicesScreen extends StatelessWidget {
           ),
           SubTitleWidget(kTitle: text_4),
           ColumnWidget(
+              kImageExtra: kGoogleCP,
+              kTextExtra: text_16,
               kAlignment: Alignment.centerLeft,
               kPaddingL: SizeConfig.blockX! * 20,
               kPaddingT: SizeConfig.blockY! * 25,
@@ -49,6 +51,8 @@ class ServicesScreen extends StatelessWidget {
               kImageThree: kFlatIconImage,
               kTextFour: text_13),
           ColumnWidget(
+              kImageExtra: kGoogleCP,
+              kTextExtra: text_16,
               kAlignment: Alignment.center,
               kPaddingT: SizeConfig.blockY! * 25,
               kImageOne: kWebImage,
