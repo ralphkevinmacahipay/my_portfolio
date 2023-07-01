@@ -183,6 +183,7 @@ class ChatButton extends StatelessWidget {
                     child: const Text('Send'),
                     onPressed: () {
                       sendEmail();
+                      // TODO: ACTIVATED WHEN ITS DONE
 
                       Navigator.of(context).pop();
                     },
