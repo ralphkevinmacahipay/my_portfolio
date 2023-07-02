@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_profile/functions/functions_widget.dart';
 import '../../configuration/constant.dart';
 import '../../configuration/style.dart';
 import '../../my_widget/my_widget.dart';
@@ -68,33 +68,29 @@ class Contact extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            IconWidgetContact(kIcon: kInstagram),
-                            IconWidgetContact(kIcon: kFaceBook),
+                            IconWidgetContact(
+                              kIcon: kInstagram,
+                              kOnpress: () =>
+                                  openURL(uri: parseURL(url: kMyInstagram)),
+                            ),
+                            IconWidgetContact(
+                              kIcon: kFaceBook,
+                              kOnpress: () =>
+                                  openURL(uri: parseURL(url: kMyFaceBook)),
+                            ),
                             IconWidgetContact(
                               kImage: kGmail,
-                              kOnpress: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text('My Dialog'),
-                                      content:
-                                          const Text('This is a dialog box.'),
-                                      actions: [
-                                        TextButton(
-                                          child: const Text('Close'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
                             ),
-                            IconWidgetContact(kIcon: kLinkedIn),
-                            IconWidgetContact(kIcon: kGitHub),
+                            IconWidgetContact(
+                              kIcon: kLinkedIn,
+                              kOnpress: () =>
+                                  openURL(uri: parseURL(url: kMyLinkedIn)),
+                            ),
+                            IconWidgetContact(
+                              kIcon: kGitHub,
+                              kOnpress: () =>
+                                  openURL(uri: parseURL(url: kMyGitHub)),
+                            ),
                           ],
                         ),
                       ),

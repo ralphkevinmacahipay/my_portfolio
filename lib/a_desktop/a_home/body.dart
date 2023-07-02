@@ -148,7 +148,7 @@ class BodyHome extends StatelessWidget {
           ),
           const ServicesScreen(),
           Works(items: items),
-          const Contact(),
+          Contact(),
         ],
       ),
     );

@@ -50,7 +50,11 @@ String text_13 = "Flaticon";
 String text_14 = "Web App Development";
 String text_15 = "Let’s turn your idea into a working web application.";
 String text_16 = "Google Cloud Platform";
-
+String kMyFaceBook = "https://www.facebook.com/kevin.macahipay.7/";
+String kMyInstagram = "https://www.instagram.com/siralphpalato/";
+String kMyGitHub = "https://github.com/ralphkevinmacahipay";
+String kMyLinkedIn =
+    "https://www.linkedin.com/in/ralph-kevin-macahipay-7a12a7257/";
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =
     "Throughout my career as a designer and developer, I have crafted digital products catering to both commercial and individual needs.";
