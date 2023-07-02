@@ -18,6 +18,7 @@ String kInstagram = "assets/instagram_image.png";
 String kLinkedIn = "assets/linkedin_image.png";
 String kGitHub = "assets/github_image.png";
 String kGoogleCP = "assets/google_cloud_platform.png";
+String kChatImage = "assets/chat_image.riv";
 
 Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
