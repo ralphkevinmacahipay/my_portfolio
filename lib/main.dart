@@ -10,7 +10,7 @@ import 'state_management/state_management.dart';
 void main() {
   setPathUrlStrategy();
   Get.put(GetManagerController());
-  Get.put(FloatingAvatarController());
+  Get.put(ServiceOfGetValue());
 
   runApp(const MyApp());
 }

@@ -26,15 +26,28 @@ class GetManagerController extends GetxController {
   late Animation<double> kAnimation;
 }
 
-class FloatingAvatarController extends GetxController
+class ServiceOfGetValue extends GetxController
     with GetSingleTickerProviderStateMixin {
+  Rx<TextEditingController> senderNameController = TextEditingController().obs;
+  Rx<TextEditingController> senderEmailController = TextEditingController().obs;
+
+  Rx<TextEditingController> subjectController = TextEditingController().obs;
+  Rx<TextEditingController> contentController = TextEditingController().obs;
   late AnimationController kController;
   late Animation<double> _kAnimation;
 
   Animation<double> get getAnimation => _kAnimation;
 
+  void clearFields() {
+    senderNameController.value.clear();
+    senderEmailController.value.clear();
+    subjectController.value.clear();
+    contentController.value.clear();
+  }
+
   @override
   void onInit() {
+    debugPrint("this is onInit");
     super.onInit();
     kController = AnimationController(
       vsync: this,
@@ -45,6 +58,12 @@ class FloatingAvatarController extends GetxController
 
   @override
   void onClose() {
+    debugPrint("this is onClose");
+    senderNameController.value.dispose();
+    senderEmailController.value.dispose();
+    subjectController.value.dispose();
+    contentController.value.dispose();
+
     kController.dispose();
     super.onClose();
   }

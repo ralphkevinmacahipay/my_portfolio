@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart' show CustomSnackBar;
+import 'package:top_snackbar_flutter/top_snack_bar.dart' show showTopSnackBar;
 import '../../state_management/state_management.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:rive/rive.dart';
-import '../enum.dart';
+import '../../configuration/enum.dart';
 import 'body.dart';
 
 class HomeDesktop extends GetView<GetManagerController> {
@@ -90,7 +92,7 @@ class HomeDesktop extends GetView<GetManagerController> {
   }
 }
 
-class ChatButton extends StatelessWidget {
+class ChatButton extends GetView<ServiceOfGetValue> {
   const ChatButton({
     super.key,
   });
@@ -104,14 +106,6 @@ class ChatButton extends StatelessWidget {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            TextEditingController senderNameController =
-                TextEditingController();
-            TextEditingController senderEmailController =
-                TextEditingController();
-
-            TextEditingController subjectController = TextEditingController();
-            TextEditingController contentController = TextEditingController();
-
             Future sendEmail() async {
               final url =
                   Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
@@ -129,10 +123,10 @@ class ChatButton extends StatelessWidget {
                     "template_id": templateId,
                     "user_id": userID,
                     "template_params": {
-                      "name": senderNameController.text,
-                      "subject": subjectController.text,
-                      "message": contentController.text,
-                      "user_email": senderEmailController.text,
+                      "name": controller.senderNameController.value.text,
+                      "subject": controller.subjectController.value.text,
+                      "message": controller.contentController.value.text,
+                      "user_email": controller.senderEmailController.value.text,
                     }
                   },
                 ),
@@ -147,33 +141,36 @@ class ChatButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // TODO: USE TEXTFORMFIELD INSTEAD OF TEXTFIELD
-                  TextField(
-                    onSubmitted: (value) {
-                      senderNameController.text = value;
-                    },
-                    controller: senderNameController,
-                    decoration: const InputDecoration(labelText: 'Sender Name'),
+                  Obx(
+                    () => TextField(
+                      onSubmitted: (value) {
+                        controller.senderNameController.value.text = value;
+                      },
+                      controller: controller.senderNameController.value,
+                      decoration:
+                          const InputDecoration(labelText: 'Sender Name'),
+                    ),
                   ),
                   TextField(
                     onSubmitted: (value) {
-                      senderEmailController.text = value;
+                      controller.senderEmailController.value.text = value;
                     },
-                    controller: senderEmailController,
+                    controller: controller.senderEmailController.value,
                     decoration:
                         const InputDecoration(labelText: 'Sender Email'),
                   ),
                   TextField(
                     onSubmitted: (value) {
-                      subjectController.text = value;
+                      controller.subjectController.value.text = value;
                     },
-                    controller: subjectController,
+                    controller: controller.subjectController.value,
                     decoration: const InputDecoration(labelText: 'Subject'),
                   ),
                   TextField(
                     onSubmitted: (value) {
-                      contentController.text = value;
+                      controller.contentController.value.text = value;
                     },
-                    controller: contentController,
+                    controller: controller.contentController.value,
                     decoration: const InputDecoration(labelText: 'Content'),
                   ),
                 ],
@@ -184,8 +181,23 @@ class ChatButton extends StatelessWidget {
                   onPressed: () {
                     // TODO: ACTIVATED WHEN ITS DONE
                     // sendEmail();
+                    controller.clearFields();
 
                     Navigator.of(context).pop();
+                    showTopSnackBar(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.blockX! * 30,
+                          vertical: SizeConfig.blockY! * 5),
+                      displayDuration: const Duration(milliseconds: 3),
+                      Overlay.of(context),
+                      SizedBox(
+                        height: SizeConfig.blockY! * 8,
+                        child: CustomSnackBar.success(
+                          icon: Icon(Icons.check_circle, color: kTransparent),
+                          message: "Message sent",
+                        ),
+                      ),
+                    );
                   },
                 ),
                 TextButton(

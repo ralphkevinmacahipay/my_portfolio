@@ -14,3 +14,5 @@ String getNavNmae(NavItemEnum item) {
       return 'Contacts';
   }
 }
+
+enum ControllerTextEnum { name, email, subject, content }

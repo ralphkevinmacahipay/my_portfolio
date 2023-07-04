@@ -90,3 +90,33 @@ class SubTitleWidget extends StatelessWidget {
     );
   }
 }
+
+// icon widget contact
+
+class IconWidgetContact extends StatelessWidget {
+  final VoidCallback? kOnpress;
+  final String? kImage;
+  final String? kIcon;
+  const IconWidgetContact({
+    super.key,
+    this.kIcon,
+    this.kImage,
+    this.kOnpress,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      iconSize: SizeConfig.blockX! * 2.5,
+      onPressed: kOnpress,
+      icon: kImage != null
+          ? Image.asset(
+              kImage!,
+              fit: BoxFit.cover,
+            )
+          : CircleAvatar(
+              backgroundColor: kTransparent,
+              backgroundImage: AssetImage(kIcon!)),
+    );
+  }
+}

@@ -4,7 +4,7 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 import '../../state_management/state_management.dart';
 
-import '../enum.dart';
+import '../../configuration/enum.dart';
 
 // scroll animation
 final ScrollController scrollController = ScrollController();

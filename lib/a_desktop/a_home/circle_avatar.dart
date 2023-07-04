@@ -4,7 +4,7 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 import '../../state_management/state_management.dart';
 
-class FloatingAvatar extends GetView<FloatingAvatarController> {
+class FloatingAvatar extends GetView<ServiceOfGetValue> {
   const FloatingAvatar({Key? key}) : super(key: key);
 
   @override
