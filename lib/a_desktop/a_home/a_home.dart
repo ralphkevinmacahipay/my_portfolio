@@ -7,6 +7,7 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart' show CustomSnackBar;
 import 'package:top_snackbar_flutter/top_snack_bar.dart' show showTopSnackBar;
+import '../../my_widget/my_widget.dart';
 import '../../state_management/state_management.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:rive/rive.dart';
@@ -136,19 +137,52 @@ class ChatButton extends GetView<ServiceOfGetValue> {
             }
 
             return AlertDialog(
-              title: const Text('Compose Email'),
+              backgroundColor: kLighBlue,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Let’s Connect',
+                    style: kPoppinBold.copyWith(
+                        fontSize: SizeConfig.blockX! * 1.5, color: kWhite),
+                  ),
+                  IconWidgetContact(
+                    kIcon: kExitImage,
+                    kOnpress: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // TODO: USE TEXTFORMFIELD INSTEAD OF TEXTFIELD
+                  // TODO: Implement TextFormField make it dynamic
+
                   Obx(
-                    () => TextField(
-                      onSubmitted: (value) {
+                    () => TextFormField(
+                      onFieldSubmitted: (value) {
                         controller.senderNameController.value.text = value;
                       },
                       controller: controller.senderNameController.value,
-                      decoration:
-                          const InputDecoration(labelText: 'Sender Name'),
+                      style: kPoppinRegular.copyWith(color: kWhite),
+                      decoration: InputDecoration(
+                        labelText: 'Sender Name',
+                        labelStyle: TextStyle(color: kWhite),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kWhite), // Set the border color
+                          borderRadius: BorderRadius.circular(
+                              kBorderRadius), // Set the border radius
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Colors
+                                  .blue), // Set the border color when the TextField is focused
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Set the border radius
+                        ),
+                      ),
                     ),
                   ),
                   TextField(
@@ -198,12 +232,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                         ),
                       ),
                     );
-                  },
-                ),
-                TextButton(
-                  child: const Text('Close'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
                   },
                 ),
               ],

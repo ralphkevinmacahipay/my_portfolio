@@ -6,13 +6,9 @@ String getNavNmae(NavItemEnum item) {
       return 'Home';
     case NavItemEnum.services:
       return 'Services';
-
     case NavItemEnum.works:
       return 'Project';
-
     case NavItemEnum.contact:
       return 'Contacts';
   }
 }
-
-enum ControllerTextEnum { name, email, subject, content }
