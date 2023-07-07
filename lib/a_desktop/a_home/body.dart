@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
+import '../../functions/functions_widget.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
@@ -104,6 +105,7 @@ class BodyHome extends StatelessWidget {
                     ),
                   ),
                 ),
+                const FloatingAvatar(),
                 Padding(
                   padding: EdgeInsets.only(
                     left: SizeConfig.blockX! * 10.90,
@@ -113,10 +115,7 @@ class BodyHome extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Obx(
                       () => InkWellWIdget(
-                        kOnTap: () {
-                          debugPrint("Print send");
-                          Navigator.of(context).pop();
-                        },
+                        kOnTap: () => openURL(uri: parseURL(url: kCV)),
                         kPadding: const EdgeInsets.symmetric(
                           vertical: 12,
                           horizontal: 24,
@@ -131,7 +130,6 @@ class BodyHome extends StatelessWidget {
                     ),
                   ),
                 ),
-                const FloatingAvatar(),
               ],
             ),
           ),
