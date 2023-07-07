@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 
 class GetManagerController extends GetxController {
+  // init
   Rx<Color> kGlobalColor = Colors.transparent.obs;
-  RxBool isHovered = false.obs;
+  final RxBool _isHoveredDLCV = false.obs;
+  final RxBool _isHoveredSend = false.obs;
+
   RxBool isTapped = false.obs;
 
   RxBool isHoverHome = false.obs,
@@ -24,6 +27,24 @@ class GetManagerController extends GetxController {
 
   late AnimationController kController;
   late Animation<double> kAnimation;
+
+// getter
+
+  bool get getIsHoverDLCB => _isHoveredDLCV.value;
+  bool get getIsHoverSend => _isHoveredSend.value;
+
+// setter
+  void setIsHoverDLCB(bool isHoverDLCB) {
+    _isHoveredDLCV.value = isHoverDLCB;
+    debugPrint("Code is here");
+    update();
+  }
+
+  void setIsHoverSend(bool isHover) {
+    _isHoveredSend.value = isHover;
+    debugPrint("Code is send");
+    update();
+  }
 }
 
 class ServiceOfGetValue extends GetxController

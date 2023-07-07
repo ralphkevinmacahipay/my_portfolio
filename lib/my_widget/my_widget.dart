@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../configuration/constant.dart';
 import '../configuration/style.dart';
+import '../state_management/state_management.dart';
 
 class TextWidget extends StatelessWidget {
   final TextAlign? kTextAlign;
@@ -117,6 +118,93 @@ class IconWidgetContact extends StatelessWidget {
           : CircleAvatar(
               backgroundColor: kTransparent,
               backgroundImage: AssetImage(kIcon!)),
+    );
+  }
+}
+
+// InkWellWIdget
+class InkWellWIdget extends StatelessWidget {
+  final EdgeInsetsGeometry kPadding;
+
+  final void Function(bool) onHover;
+  final String kText;
+  final Color kColor;
+  final bool kIsHover;
+
+  const InkWellWIdget({
+    super.key,
+    required this.controller,
+    required this.kColor,
+    required this.kIsHover,
+    required this.kText,
+    required this.onHover,
+    required this.kPadding,
+  });
+
+  final GetManagerController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onHover: onHover,
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          color: kIsHover ? kColor : kTransparent,
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          border: Border.all(color: Colors.white),
+        ),
+        padding: kPadding,
+        child: Text(
+          kText,
+          style: kPoppinSemiBold.copyWith(
+            fontSize: SizeConfig.blockX! * 1.5,
+            color: kWhite,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//TextFormFieldWidget
+
+class TextFormFieldWidget extends StatelessWidget {
+  final String kText;
+  final TextEditingController textEditingController;
+
+  const TextFormFieldWidget({
+    super.key,
+    required this.controller,
+    required this.kText,
+    required this.textEditingController,
+  });
+
+  final ServiceOfGetValue controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onFieldSubmitted: (value) {
+        controller.senderNameController.value.text = value;
+      },
+      controller: textEditingController,
+      style: kPoppinRegular.copyWith(color: kWhite),
+      decoration: InputDecoration(
+        labelText: kText,
+        labelStyle: TextStyle(color: kWhite),
+        contentPadding: const EdgeInsets.symmetric(
+            vertical: 10, horizontal: 20), // Adjust the padding as needed
+        enabledBorder: OutlineInputBorder(
+          gapPadding: 2,
+          borderSide: BorderSide(color: kWhite),
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.blue),
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+      ),
     );
   }
 }

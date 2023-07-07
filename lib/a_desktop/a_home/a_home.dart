@@ -5,9 +5,8 @@ import 'package:get/get.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart' show CustomSnackBar;
-import 'package:top_snackbar_flutter/top_snack_bar.dart' show showTopSnackBar;
 import '../../my_widget/my_widget.dart';
+import '../../state_management/put_get.dart';
 import '../../state_management/state_management.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:rive/rive.dart';
@@ -154,6 +153,7 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                 ],
               ),
               content: Column(
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // TODO: Implement TextFormField make it dynamic
@@ -186,29 +186,19 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                 ],
               ),
               actions: [
-                TextButton(
-                  child: const Text('Send'),
-                  onPressed: () {
-                    // TODO: ACTIVATED WHEN ITS DONE
-                    sendEmail();
-                    controller.clearFields();
-
-                    Navigator.of(context).pop();
-                    showTopSnackBar(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.blockX! * 30,
-                          vertical: SizeConfig.blockY! * 5),
-                      displayDuration: const Duration(milliseconds: 3),
-                      Overlay.of(context),
-                      SizedBox(
-                        height: SizeConfig.blockY! * 8,
-                        child: CustomSnackBar.success(
-                          icon: Icon(Icons.check_circle, color: kTransparent),
-                          message: "Message sent",
-                        ),
-                      ),
-                    );
-                  },
+                Obx(
+                  () => InkWellWIdget(
+                    kPadding: EdgeInsets.symmetric(
+                      vertical: SizeConfig.blockY! * 1,
+                      horizontal: SizeConfig.blockX! * 2,
+                    ),
+                    onHover: (value) =>
+                        controllerGetManager.setIsHoverSend(value),
+                    controller: controllerGetManager,
+                    kText: "Send",
+                    kColor: kBlue,
+                    kIsHover: controllerGetManager.getIsHoverSend,
+                  ),
                 ),
               ],
             );
@@ -218,46 +208,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
       child: RiveAnimation.asset(
         fit: BoxFit.cover,
         kChatImage,
-      ),
-    );
-  }
-}
-
-class TextFormFieldWidget extends StatelessWidget {
-  final String kText;
-  final TextEditingController textEditingController;
-
-  const TextFormFieldWidget({
-    super.key,
-    required this.controller,
-    required this.kText,
-    required this.textEditingController,
-  });
-
-  final ServiceOfGetValue controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      onFieldSubmitted: (value) {
-        controller.senderNameController.value.text = value;
-      },
-      controller: textEditingController,
-      style: kPoppinRegular.copyWith(color: kWhite),
-      decoration: InputDecoration(
-        labelText: kText,
-        labelStyle: TextStyle(color: kWhite),
-        contentPadding: const EdgeInsets.symmetric(
-            vertical: 10, horizontal: 20), // Adjust the padding as needed
-        enabledBorder: OutlineInputBorder(
-          gapPadding: 2,
-          borderSide: BorderSide(color: kWhite),
-          borderRadius: BorderRadius.circular(kBorderRadius),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.blue),
-          borderRadius: BorderRadius.circular(kBorderRadius),
-        ),
       ),
     );
   }
