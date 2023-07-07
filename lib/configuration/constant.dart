@@ -58,6 +58,9 @@ String kMyInstagram = "https://www.instagram.com/siralphpalato/";
 String kMyGitHub = "https://github.com/ralphkevinmacahipay";
 String kMyLinkedIn =
     "https://www.linkedin.com/in/ralph-kevin-macahipay-7a12a7257/";
+String pdfUrl =
+    'https://drive.google.com/file/d/1IYxWp2cl261lEeWn21K5IzfSQl52jV4Y/view?usp=sharing';
+
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =
     "Throughout my career as a designer and developer, I have crafted digital products catering to both commercial and individual needs.";
