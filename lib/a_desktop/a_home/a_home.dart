@@ -87,7 +87,7 @@ class HomeDesktop extends GetView<GetManagerController> {
           SizedBox(width: SizeConfig.blockX! * 10)
         ],
       ),
-      body: BodyHome(items: items, controller: controller),
+      body: BodyHome(items: items),
     );
   }
 }
@@ -142,65 +142,91 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                   Text(
                     'Let’s Connect',
                     style: kPoppinBold.copyWith(
-                        fontSize: SizeConfig.blockX! * 1.5, color: kWhite),
+                      fontSize: SizeConfig.blockX! * 1.5,
+                      color: kWhite,
+                    ),
                   ),
                   IconWidgetContact(
                     kIcon: kExitImage,
                     kOnpress: () {
                       Navigator.of(context).pop();
                     },
-                  )
-                ],
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // TODO: Implement TextFormField make it dynamic
-
-                  Obx(() => TextFormFieldWidget(
-                        controller: controller,
-                        kText: 'Sender Name',
-                        textEditingController:
-                            controller.senderNameController.value,
-                      )),
-
-                  Obx(() => TextFormFieldWidget(
-                        controller: controller,
-                        kText: 'Sender Email',
-                        textEditingController:
-                            controller.senderEmailController.value,
-                      )),
-                  Obx(() => TextFormFieldWidget(
-                        controller: controller,
-                        kText: 'Subject',
-                        textEditingController:
-                            controller.subjectController.value,
-                      )),
-                  Obx(() => TextFormFieldWidget(
-                        controller: controller,
-                        kText: 'Content',
-                        textEditingController:
-                            controller.contentController.value,
-                      )),
-                ],
-              ),
-              actions: [
-                Obx(
-                  () => InkWellWIdget(
-                    kPadding: EdgeInsets.symmetric(
-                      vertical: SizeConfig.blockY! * 1,
-                      horizontal: SizeConfig.blockX! * 2,
-                    ),
-                    onHover: (value) =>
-                        controllerGetManager.setIsHoverSend(value),
-                    controller: controllerGetManager,
-                    kText: "Send",
-                    kColor: kBlue,
-                    kIsHover: controllerGetManager.getIsHoverSend,
                   ),
-                ),
-              ],
+                ],
+              ),
+              content: Builder(
+                builder: (context) {
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: SizeConfig.blockX! * 20,
+                      maxHeight: SizeConfig.blockY! * 50,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // TODO: Implement TextFormField make it dynamic
+                          Obx(() => TextFormFieldWidget(
+                                controller: controller,
+                                kText: 'Sender Name',
+                                textEditingController:
+                                    controller.senderNameController.value,
+                              )),
+                          SizedBox(height: SizeConfig.blockY! * 1),
+                          Obx(() => TextFormFieldWidget(
+                                controller: controller,
+                                kText: 'Sender Email',
+                                textEditingController:
+                                    controller.senderEmailController.value,
+                              )),
+                          SizedBox(height: SizeConfig.blockY! * 1),
+
+                          Obx(() => TextFormFieldWidget(
+                                controller: controller,
+                                kText: 'Subject',
+                                textEditingController:
+                                    controller.subjectController.value,
+                              )),
+                          SizedBox(height: SizeConfig.blockY! * 1),
+
+                          Obx(() => TextFormFieldWidget(
+                                controller: controller,
+                                kText: 'Content',
+                                textEditingController:
+                                    controller.contentController.value,
+                              )),
+                          SizedBox(height: SizeConfig.blockY! * 1),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Obx(
+                                () => InkWellWIdget(
+                                  kOnTap: () {
+                                    debugPrint("Print send");
+                                    Navigator.of(context).pop();
+                                  },
+                                  kPadding: EdgeInsets.symmetric(
+                                    vertical: SizeConfig.blockY! * .5,
+                                    horizontal: SizeConfig.blockX! * 1,
+                                  ),
+                                  onHover: (value) => controllerGetManager
+                                      .setIsHoverSend(value),
+                                  controller: controllerGetManager,
+                                  kText: "Send",
+                                  kColor: kBlue,
+                                  kIsHover: controllerGetManager.getIsHoverSend,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             );
           },
         );

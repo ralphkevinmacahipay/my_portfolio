@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 import '../../my_widget/my_widget.dart';
-import '../../state_management/state_management.dart';
+import '../../state_management/put_get.dart';
 import 'package:my_profile/a_desktop/b_services/services.dart';
 import 'package:my_profile/a_desktop/c_project/project.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
@@ -16,11 +16,10 @@ class BodyHome extends StatelessWidget {
   const BodyHome({
     super.key,
     required this.items,
-    required this.controller,
   });
 
   final List<TyperAnimatedText> items;
-  final GetManagerController controller;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -114,15 +113,20 @@ class BodyHome extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Obx(
                       () => InkWellWIdget(
+                        kOnTap: () {
+                          debugPrint("Print send");
+                          Navigator.of(context).pop();
+                        },
                         kPadding: const EdgeInsets.symmetric(
                           vertical: 12,
                           horizontal: 24,
                         ),
-                        onHover: (value) => controller.setIsHoverDLCB(value),
-                        controller: controller,
+                        onHover: (value) =>
+                            controllerGetManager.setIsHoverDLCB(value),
+                        controller: controllerGetManager,
                         kText: "DOWNLOAD CV",
                         kColor: kBlue,
-                        kIsHover: controller.getIsHoverDLCB,
+                        kIsHover: controllerGetManager.getIsHoverDLCB,
                       ),
                     ),
                   ),

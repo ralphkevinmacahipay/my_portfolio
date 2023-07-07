@@ -125,8 +125,8 @@ class IconWidgetContact extends StatelessWidget {
 // InkWellWIdget
 class InkWellWIdget extends StatelessWidget {
   final EdgeInsetsGeometry kPadding;
-
-  final void Function(bool) onHover;
+  final void Function()? kOnTap;
+  final void Function(bool)? onHover;
   final String kText;
   final Color kColor;
   final bool kIsHover;
@@ -137,8 +137,9 @@ class InkWellWIdget extends StatelessWidget {
     required this.kColor,
     required this.kIsHover,
     required this.kText,
-    required this.onHover,
+    this.onHover,
     required this.kPadding,
+    this.kOnTap,
   });
 
   final GetManagerController controller;
@@ -147,7 +148,7 @@ class InkWellWIdget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onHover: onHover,
-      onTap: () {},
+      onTap: kOnTap,
       child: Container(
         decoration: BoxDecoration(
           color: kIsHover ? kColor : kTransparent,
