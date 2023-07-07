@@ -112,7 +112,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                   Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
               const serviceId = "service_e1jtrn2";
               const templateId = "template_jqm56ps";
-
               const userID = "Kuyvp1B40YV1mN9WA";
 
               final response = await http.post(
@@ -155,58 +154,35 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                 ],
               ),
               content: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // TODO: Implement TextFormField make it dynamic
 
-                  Obx(
-                    () => TextFormField(
-                      onFieldSubmitted: (value) {
-                        controller.senderNameController.value.text = value;
-                      },
-                      controller: controller.senderNameController.value,
-                      style: kPoppinRegular.copyWith(color: kWhite),
-                      decoration: InputDecoration(
-                        labelText: 'Sender Name',
-                        labelStyle: TextStyle(color: kWhite),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: kWhite), // Set the border color
-                          borderRadius: BorderRadius.circular(
-                              kBorderRadius), // Set the border radius
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                              color: Colors
-                                  .blue), // Set the border color when the TextField is focused
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Set the border radius
-                        ),
-                      ),
-                    ),
-                  ),
-                  TextField(
-                    onSubmitted: (value) {
-                      controller.senderEmailController.value.text = value;
-                    },
-                    controller: controller.senderEmailController.value,
-                    decoration:
-                        const InputDecoration(labelText: 'Sender Email'),
-                  ),
-                  TextField(
-                    onSubmitted: (value) {
-                      controller.subjectController.value.text = value;
-                    },
-                    controller: controller.subjectController.value,
-                    decoration: const InputDecoration(labelText: 'Subject'),
-                  ),
-                  TextField(
-                    onSubmitted: (value) {
-                      controller.contentController.value.text = value;
-                    },
-                    controller: controller.contentController.value,
-                    decoration: const InputDecoration(labelText: 'Content'),
-                  ),
+                  Obx(() => TextFormFieldWidget(
+                        controller: controller,
+                        kText: 'Sender Name',
+                        textEditingController:
+                            controller.senderNameController.value,
+                      )),
+
+                  Obx(() => TextFormFieldWidget(
+                        controller: controller,
+                        kText: 'Sender Email',
+                        textEditingController:
+                            controller.senderEmailController.value,
+                      )),
+                  Obx(() => TextFormFieldWidget(
+                        controller: controller,
+                        kText: 'Subject',
+                        textEditingController:
+                            controller.subjectController.value,
+                      )),
+                  Obx(() => TextFormFieldWidget(
+                        controller: controller,
+                        kText: 'Content',
+                        textEditingController:
+                            controller.contentController.value,
+                      )),
                 ],
               ),
               actions: [
@@ -214,7 +190,7 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                   child: const Text('Send'),
                   onPressed: () {
                     // TODO: ACTIVATED WHEN ITS DONE
-                    // sendEmail();
+                    sendEmail();
                     controller.clearFields();
 
                     Navigator.of(context).pop();
@@ -242,6 +218,46 @@ class ChatButton extends GetView<ServiceOfGetValue> {
       child: RiveAnimation.asset(
         fit: BoxFit.cover,
         kChatImage,
+      ),
+    );
+  }
+}
+
+class TextFormFieldWidget extends StatelessWidget {
+  final String kText;
+  final TextEditingController textEditingController;
+
+  const TextFormFieldWidget({
+    super.key,
+    required this.controller,
+    required this.kText,
+    required this.textEditingController,
+  });
+
+  final ServiceOfGetValue controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onFieldSubmitted: (value) {
+        controller.senderNameController.value.text = value;
+      },
+      controller: textEditingController,
+      style: kPoppinRegular.copyWith(color: kWhite),
+      decoration: InputDecoration(
+        labelText: kText,
+        labelStyle: TextStyle(color: kWhite),
+        contentPadding: const EdgeInsets.symmetric(
+            vertical: 10, horizontal: 20), // Adjust the padding as needed
+        enabledBorder: OutlineInputBorder(
+          gapPadding: 2,
+          borderSide: BorderSide(color: kWhite),
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.blue),
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
       ),
     );
   }
