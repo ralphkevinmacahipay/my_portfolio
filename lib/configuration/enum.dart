@@ -12,3 +12,9 @@ String getNavNmae(NavItemEnum item) {
       return 'Contacts';
   }
 }
+
+enum ColumnType {
+  one,
+  two,
+  three,
+}

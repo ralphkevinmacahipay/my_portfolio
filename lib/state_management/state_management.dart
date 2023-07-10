@@ -8,8 +8,6 @@ class GetManagerController extends GetxController {
   final RxBool _isHoveredDLCV = false.obs;
   final RxBool _isHoveredSend = false.obs;
 
-  RxBool isTapped = false.obs;
-
   RxBool isHoverHome = false.obs,
       isHoverServices = false.obs,
       isHoverWorks = false.obs,
@@ -17,7 +15,10 @@ class GetManagerController extends GetxController {
       isHomeTap = true.obs,
       isServiceTap = false.obs,
       isWorksTap = false.obs,
-      isContactTap = false.obs;
+      isContactTap = false.obs,
+      isHoverColumnOne = false.obs,
+      isHoverColumnTwo = false.obs,
+      isHoverColumnThree = false.obs;
 
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
       kColorHome = kBlue.obs,

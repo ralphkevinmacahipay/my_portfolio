@@ -25,6 +25,7 @@ Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
 Color kLighDark = const Color(0xff1F1F2D);
 Color kSkyBlue = const Color(0xff1ABCFE);
+Color kHoverColor = const Color(0xff143F88);
 
 Color kTransparent = Colors.transparent;
 Color kBlue = Colors.blue;

@@ -23,6 +23,7 @@ dependencies:
   url_launcher: ^6.1.11
   rive: ^0.7.16
   top_snackbar_flutter: ^3.1.0
+  hovering: ^1.0.4
 
 dev_dependencies:
   flutter_test:

@@ -166,7 +166,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // TODO: Implement TextFormField make it dynamic
                           Obx(() => TextFormFieldWidget(
                                 controller: controller,
                                 kText: 'Sender Name',
@@ -181,7 +180,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                     controller.senderEmailController.value,
                               )),
                           SizedBox(height: SizeConfig.blockY! * 1),
-
                           Obx(() => TextFormFieldWidget(
                                 controller: controller,
                                 kText: 'Subject',
@@ -189,7 +187,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                     controller.subjectController.value,
                               )),
                           SizedBox(height: SizeConfig.blockY! * 1),
-
                           Obx(() => TextFormFieldWidget(
                                 controller: controller,
                                 kText: 'Content',
@@ -197,7 +194,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                     controller.contentController.value,
                               )),
                           SizedBox(height: SizeConfig.blockY! * 1),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
