@@ -18,7 +18,8 @@ class GetManagerController extends GetxController {
       isContactTap = false.obs,
       isHoverColumnOne = false.obs,
       isHoverColumnTwo = false.obs,
-      isHoverColumnThree = false.obs;
+      isHoverColumnThree = false.obs,
+      isHoverProjectOne = false.obs;
 
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
       kColorHome = kBlue.obs,

@@ -106,21 +106,13 @@ class ColumnWidget extends StatelessWidget {
               switch (kType) {
                 case ColumnType.one:
                   controllerGetManager.isHoverColumnOne.value = true;
-                  debugPrint("is hover column one");
-                  debugPrint(
-                      "is hover ${controllerGetManager.isHoverColumnOne.value}");
+
                   break;
                 case ColumnType.two:
-                  debugPrint("is hover column one");
-                  debugPrint(
-                      "is hover ${controllerGetManager.isHoverColumnOne.value}");
                   controllerGetManager.isHoverColumnTwo.value = true;
                   break;
 
                 case ColumnType.three:
-                  debugPrint("is hover column Three");
-                  debugPrint(
-                      "is hover ${controllerGetManager.isHoverColumnThree.value}");
                   controllerGetManager.isHoverColumnThree.value = true;
                   break;
               }
@@ -129,9 +121,6 @@ class ColumnWidget extends StatelessWidget {
               switch (kType) {
                 case ColumnType.one:
                   controllerGetManager.isHoverColumnOne.value = false;
-                  debugPrint("is hover column two");
-                  debugPrint(
-                      "is hover ${controllerGetManager.isHoverColumnTwo.value}");
                   break;
                 case ColumnType.two:
                   controllerGetManager.isHoverColumnTwo.value = false;
@@ -140,9 +129,6 @@ class ColumnWidget extends StatelessWidget {
                   controllerGetManager.isHoverColumnThree.value = false;
                   break;
               }
-
-              debugPrint(
-                  "is hover ${controllerGetManager.isHoverColumnOne.value}");
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
