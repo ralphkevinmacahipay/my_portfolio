@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "my-first-project-ff01a"
-  }
+    "default": "my-portfolio-28db9",
+    "portfolio": "my-portfolio-28db9"
+  },
+  "targets": {},
+  "etags": {}
 }
