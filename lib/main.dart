@@ -5,6 +5,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
 
 import 'b_mobile/mobile.dart';
+import 'configuration/constant.dart';
 import 'state_management/state_management.dart';
 
 void main() {
@@ -20,11 +21,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: "Ralph.dart",
+    return MaterialApp(
+      title: kRalph,
       debugShowCheckedModeBanner: false,
       home:
-          ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
+          const ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
     );
   }
 }
@@ -44,7 +45,7 @@ class ResponsiveWidget extends StatelessWidget {
           return const TabletLayout();
         } else {
           // Medium devices (breakpoint: 768)
-          return const MobileLayout();
+          return MobileLayout();
         }
       },
     );
