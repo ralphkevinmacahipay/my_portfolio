@@ -123,7 +123,7 @@ class BodyHome extends StatelessWidget {
                         onHover: (value) =>
                             controllerGetManager.setIsHoverDLCB(value),
                         controller: controllerGetManager,
-                        kText: "DOWNLOAD CV",
+                        kText: kDownloadCV,
                         kColor: kBlue,
                         kIsHover: controllerGetManager.getIsHoverDLCB,
                       ),

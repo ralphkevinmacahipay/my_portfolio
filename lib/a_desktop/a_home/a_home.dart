@@ -74,7 +74,7 @@ class HomeDesktop extends GetView<GetManagerController> {
             () => NavItem(
               controller: controller,
               kColor: controller.kColorWorks.value,
-              navItem: NavItemEnum.works,
+              navItem: NavItemEnum.project,
             ),
           ),
           SizedBox(width: SizeConfig.blockX! * 2.5),

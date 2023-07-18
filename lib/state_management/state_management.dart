@@ -7,6 +7,7 @@ class GetManagerController extends GetxController {
   Rx<Color> kGlobalColor = Colors.transparent.obs;
   final RxBool _isHoveredDLCV = false.obs;
   final RxBool _isHoveredSend = false.obs;
+  final RxString kTitle = "Home".obs;
 
   RxBool isHoverHome = false.obs,
       isHoverServices = false.obs,

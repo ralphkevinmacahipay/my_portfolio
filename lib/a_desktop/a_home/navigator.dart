@@ -63,7 +63,7 @@ class NavItem extends StatelessWidget {
               chageColor(controller: controller, kColorServices: kBlue);
               scrollToPosition(SizeConfig.blockY! * 100);
               break;
-            case NavItemEnum.works:
+            case NavItemEnum.project:
               chageColor(controller: controller, kColorWorks: kBlue);
 
               scrollToPosition(SizeConfig.blockY! * 100 * 2);

@@ -28,6 +28,7 @@ Color kWhite = const Color(0xffFFFFFF);
 Color kLighDark = const Color(0xff1F1F2D);
 Color kSkyBlue = const Color(0xff1ABCFE);
 Color kHoverColor = const Color(0xff143F88);
+Color kLightBlue = const Color(0xff47C5FB);
 
 Color kTransparent = Colors.transparent;
 Color kBlue = Colors.blue;
@@ -42,6 +43,7 @@ String kTextAnimated_3 = "UI/UX Designer";
 String text_1 = 'Hi, Welcome to my space\n';
 String text_2 = 'I’m Ralph Kevin Rynard \nMacahipay\n';
 String text_3 = " What can I do?";
+String kDownloadCV = "DOWNLOAD CV";
 String text_4 =
     " As a freelance designer and developer, I've collaborated with startups to create digital products for businesses and consumers alike. My services span brand design and programming, offering comprehensive solutions for diverse needs. With a passion for innovation and a commitment to excellence.";
 String text_5 = "Ralph.dart";
@@ -78,7 +80,7 @@ final kPoppinSemiBold = GoogleFonts.poppins(fontWeight: FontWeight.w500);
 final kPoppinRegular = GoogleFonts.poppins(fontWeight: FontWeight.w400);
 
 // navigator item
-final List<Map<String, dynamic>> myList = [
+final List<Map<String, dynamic>> kNavigator = [
   {
     "title": getNavNmae(NavItemEnum.home),
     "type": NavItemEnum.home,
@@ -90,8 +92,8 @@ final List<Map<String, dynamic>> myList = [
     "icon": Icon(Icons.work_history, color: kWhite),
   },
   {
-    "title": getNavNmae(NavItemEnum.works),
-    "type": NavItemEnum.works,
+    "title": getNavNmae(NavItemEnum.project),
+    "type": NavItemEnum.project,
     "icon": Icon(Icons.auto_awesome_motion_rounded, color: kWhite),
   },
   {
