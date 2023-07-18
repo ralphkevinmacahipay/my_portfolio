@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 
+import '../a_desktop/a_home/navigator.dart';
+import '../configuration/enum.dart';
 import '../configuration/style.dart';
+import '../state_management/state_management.dart';
 
 class MobileLayout extends StatelessWidget {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
@@ -10,6 +14,7 @@ class MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -28,9 +33,27 @@ class MobileLayout extends StatelessWidget {
           ),
         ),
         body: ListView(
-          children: const [
-            Center(
-              child: Text("Hello, World!"),
+          controller: scrollController,
+          children: [
+            Container(
+              decoration: BoxDecoration(color: kBlue),
+              height: SizeConfig.blockY! * 100,
+              width: SizeConfig.blockX! * 100,
+            ),
+            Container(
+              decoration: const BoxDecoration(color: Colors.red),
+              height: SizeConfig.blockY! * 100,
+              width: SizeConfig.blockX! * 100,
+            ),
+            Container(
+              decoration: const BoxDecoration(color: Colors.pinkAccent),
+              height: SizeConfig.blockY! * 100,
+              width: SizeConfig.blockX! * 100,
+            ),
+            Container(
+              decoration: const BoxDecoration(color: Colors.green),
+              height: SizeConfig.blockY! * 100,
+              width: SizeConfig.blockX! * 100,
             ),
           ],
         ),
@@ -40,7 +63,7 @@ class MobileLayout extends StatelessWidget {
   }
 }
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends GetView<GetManagerController> {
   const DrawerWidget({
     super.key,
   });
@@ -52,18 +75,20 @@ class DrawerWidget extends StatelessWidget {
       width: SizeConfig.blockX! * 80,
       backgroundColor: kDarkBlue,
       // TODO: FINISH THE DRAWER CONTENT
-      child: ListView(
-        children: [
-          ListTile(
+      child: ListView.builder(
+        itemCount: myList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
             onTap: () {
-              debugPrint("This isservices");
+              onPressedNav(context: context, enumVal: myList[index]['type']);
             },
-            leading: Text(
-              "Services",
+            title: Text(
+              myList[index]['title'],
               style: kPoppinSemiBold.copyWith(color: kWhite),
             ),
-          )
-        ],
+            leading: myList[index]['icon'],
+          );
+        },
       ),
     );
   }

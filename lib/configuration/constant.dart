@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'enum.dart';
+
 // asset image
 String kBackground = "assets/background.png";
 String kProfile = "assets/profile.png";
@@ -74,3 +76,27 @@ final kPoppinBold = GoogleFonts.poppins(fontWeight: FontWeight.bold);
 final kPoppinExtraBold = GoogleFonts.poppins(fontWeight: FontWeight.w700);
 final kPoppinSemiBold = GoogleFonts.poppins(fontWeight: FontWeight.w500);
 final kPoppinRegular = GoogleFonts.poppins(fontWeight: FontWeight.w400);
+
+// navigator item
+final List<Map<String, dynamic>> myList = [
+  {
+    "title": getNavNmae(NavItemEnum.home),
+    "type": NavItemEnum.home,
+    "icon": Icon(Icons.home_filled, color: kWhite),
+  },
+  {
+    "title": getNavNmae(NavItemEnum.services),
+    "type": NavItemEnum.services,
+    "icon": Icon(Icons.work_history, color: kWhite),
+  },
+  {
+    "title": getNavNmae(NavItemEnum.works),
+    "type": NavItemEnum.works,
+    "icon": Icon(Icons.auto_awesome_motion_rounded, color: kWhite),
+  },
+  {
+    "title": getNavNmae(NavItemEnum.contact),
+    "type": NavItemEnum.contact,
+    "icon": Icon(Icons.contact_phone_outlined, color: kWhite),
+  }
+];
