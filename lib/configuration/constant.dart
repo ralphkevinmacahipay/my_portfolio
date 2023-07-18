@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_profile/configuration/style.dart';
 
 import 'enum.dart';
 
@@ -41,9 +43,11 @@ String kRalph = "Ralph.dart";
 String kTextAnimated_2 = "Web App Developer";
 String kTextAnimated_3 = "UI/UX Designer";
 String text_1 = 'Hi, Welcome to my space\n';
-String text_2 = 'I’m Ralph Kevin Rynard \nMacahipay\n';
+String text_2 = 'I’m Ralph';
 String text_3 = " What can I do?";
 String kDownloadCV = "DOWNLOAD CV";
+String text_home =
+    "A freelancer that provides programming services and project implementation";
 String text_4 =
     " As a freelance designer and developer, I've collaborated with startups to create digital products for businesses and consumers alike. My services span brand design and programming, offering comprehensive solutions for diverse needs. With a passion for innovation and a commitment to excellence.";
 String text_5 = "Ralph.dart";
@@ -101,4 +105,19 @@ final List<Map<String, dynamic>> kNavigator = [
     "type": NavItemEnum.contact,
     "icon": Icon(Icons.contact_phone_outlined, color: kWhite),
   }
+];
+
+List<TyperAnimatedText> itemsAnimatedText = [
+  TyperAnimatedText(kTextAnimated_1,
+      textStyle:
+          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      speed: const Duration(milliseconds: 100)),
+  TyperAnimatedText(kTextAnimated_2,
+      textStyle:
+          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      speed: const Duration(milliseconds: 100)),
+  TyperAnimatedText(kTextAnimated_3,
+      textStyle:
+          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      speed: const Duration(milliseconds: 100)),
 ];

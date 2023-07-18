@@ -8,7 +8,7 @@ import '../configuration/style.dart';
 import '../functions/functions_widget.dart';
 import '../state_management/put_get.dart';
 import '../state_management/state_management.dart';
-import 'a_home/a_home.dart';
+import 'a_home_mobile/a_home_mobile.dart';
 
 class MobileLayout extends StatelessWidget {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
@@ -22,7 +22,8 @@ class MobileLayout extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: kDarkBlue,
-          title: Obx(() => Text(controllerGetManager.kTitle.value)),
+          title: Obx(() =>
+              Text(controllerGetManager.kTitle.value, style: kPoppinBold)),
           leading: Builder(
             builder: (context) {
               return IconButton(

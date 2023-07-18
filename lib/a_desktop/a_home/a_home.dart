@@ -20,24 +20,6 @@ class HomeDesktop extends GetView<GetManagerController> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    List<TyperAnimatedText> items = [
-      TyperAnimatedText(kTextAnimated_1,
-          textStyle: kPoppinBold.copyWith(
-              fontSize: SizeConfig.blockX! * 2, color: kWhite),
-          speed: const Duration(milliseconds: 100)),
-      TyperAnimatedText(kTextAnimated_2,
-          textStyle: kPoppinBold.copyWith(
-              fontSize: SizeConfig.blockX! * 2, color: kWhite),
-          speed: const Duration(milliseconds: 100)),
-      TyperAnimatedText(kTextAnimated_3,
-          textStyle: kPoppinBold.copyWith(
-              fontSize: SizeConfig.blockX! * 2, color: kWhite),
-          speed: const Duration(milliseconds: 100)),
-      TyperAnimatedText(kTextAnimated_3,
-          textStyle: kPoppinBold.copyWith(
-              fontSize: SizeConfig.blockX! * 2, color: kWhite),
-          speed: const Duration(milliseconds: 100)),
-    ];
     return Scaffold(
       floatingActionButton: const Padding(
         padding: EdgeInsets.only(right: 60, bottom: 60),
@@ -87,7 +69,7 @@ class HomeDesktop extends GetView<GetManagerController> {
           SizedBox(width: SizeConfig.blockX! * 10)
         ],
       ),
-      body: BodyHome(items: items),
+      body: BodyHome(items: itemsAnimatedText),
     );
   }
 }
