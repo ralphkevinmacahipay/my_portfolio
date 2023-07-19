@@ -8,7 +8,6 @@ import 'package:my_profile/configuration/style.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
 import '../../state_management/state_management.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:rive/rive.dart';
 import '../../configuration/enum.dart';
 import 'body.dart';

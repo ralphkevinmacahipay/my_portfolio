@@ -8,7 +8,8 @@ import '../configuration/style.dart';
 import '../functions/functions_widget.dart';
 import '../state_management/put_get.dart';
 import '../state_management/state_management.dart';
-import 'a_home_mobile/a_home_mobile.dart';
+import 'a_home_mobile/a_home.dart';
+import 'b_services_mobile/services.dart';
 
 class MobileLayout extends StatelessWidget {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
@@ -48,11 +49,8 @@ class MobileLayout extends StatelessWidget {
           child: ListView(
             controller: scrollController,
             children: [
-              const HomeWidgetClass(),
-              SizedBox(
-                height: SizeConfig.blockY! * 100,
-                width: SizeConfig.blockX! * 100,
-              ),
+              const HomeWidgetMobile(),
+              const ServicesWidgetMobile(),
               Container(
                 decoration: const BoxDecoration(color: Colors.pinkAccent),
                 height: SizeConfig.blockY! * 100,

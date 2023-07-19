@@ -23,6 +23,8 @@ dependencies:
   url_launcher: ^6.1.11
   rive: ^0.7.16
   top_snackbar_flutter: ^3.1.0
+  infinite_carousel: ^1.0.3
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

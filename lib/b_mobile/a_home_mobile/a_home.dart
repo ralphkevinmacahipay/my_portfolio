@@ -6,8 +6,8 @@ import 'package:my_profile/state_management/state_management.dart';
 import '../../configuration/constant.dart';
 import '../../configuration/style.dart';
 
-class HomeWidgetClass extends GetView<ServiceOfGetValue> {
-  const HomeWidgetClass({
+class HomeWidgetMobile extends GetView<ServiceOfGetValue> {
+  const HomeWidgetMobile({
     super.key,
   });
 
