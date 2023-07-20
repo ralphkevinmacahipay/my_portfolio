@@ -213,34 +213,38 @@ class TextFormFieldWidget extends StatelessWidget {
 }
 
 class CopyRightWidget extends StatelessWidget {
+  final AlignmentGeometry? kAlignment;
+  final double? kFontSize;
   const CopyRightWidget({
     super.key,
+    this.kFontSize,
+    this.kAlignment,
   });
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomCenter,
+      alignment: kAlignment ?? Alignment.bottomCenter,
       child: RichText(
         text: TextSpan(
           text: 'Developed by ',
           style: kPoppinRegular.copyWith(
             color: kWhite,
-            fontSize: SizeConfig.blockX! * 1,
+            fontSize: kFontSize ?? SizeConfig.blockX! * 1,
           ),
           children: [
             TextSpan(
               text: 'Ralph Kevin Rynard E. Macahipay',
               style: kPoppinBold.copyWith(
                 color: kWhite,
-                fontSize: SizeConfig.blockX! * 1,
+                fontSize: kFontSize ?? SizeConfig.blockX! * 1,
               ),
             ),
             TextSpan(
               text: ' © 2023',
               style: kPoppinRegular.copyWith(
                 color: kWhite,
-                fontSize: SizeConfig.blockX! * 1,
+                fontSize: kFontSize ?? SizeConfig.blockX! * 1,
               ),
             ),
           ],

@@ -75,7 +75,6 @@ class NavigatorDrawerWidget extends GetView<GetManagerController> {
     return Drawer(
       width: SizeConfig.blockX! * 80,
       backgroundColor: kDarkBlue,
-      // TODO: FINISH THE DRAWER CONTENT
       child: Column(
         children: [
           SizedBox(height: SizeConfig.blockY! * 2),

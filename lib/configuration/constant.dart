@@ -165,3 +165,11 @@ final List<Map<String, dynamic>> listItemCorouselServices = [
 final List<Map<String, dynamic>> listItemCorouselWork = [
   {"image": kProjectOneMobile}
 ];
+
+List<Map<String, dynamic>> myListIcon = [
+  {'icon': kInstagram},
+  {'icon': kFaceBook},
+  {'icon': kGitHub},
+  {'icon': kGmail},
+  {'icon': kLinkedIn},
+];
