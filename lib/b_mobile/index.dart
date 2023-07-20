@@ -11,6 +11,7 @@ import '../state_management/state_management.dart';
 import 'a_home_mobile/a_home.dart';
 import 'b_services_mobile/services.dart';
 import 'c_project_mobile/project.dart';
+import 'd_contact_mobile/contacts.dart';
 
 class MobileLayout extends StatelessWidget {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
@@ -49,15 +50,11 @@ class MobileLayout extends StatelessWidget {
           ),
           child: ListView(
             controller: scrollController,
-            children: [
-              const HomeWidgetMobile(),
-              const ServicesWidgetMobile(),
-              const WordsWidgetMobile(),
-              Container(
-                decoration: const BoxDecoration(color: Colors.green),
-                height: SizeConfig.blockY! * 100,
-                width: SizeConfig.blockX! * 100,
-              ),
+            children: const [
+              HomeWidgetMobile(),
+              ServicesWidgetMobile(),
+              WordsWidgetMobile(),
+              ContactWidgetMobile(),
             ],
           ),
         ),

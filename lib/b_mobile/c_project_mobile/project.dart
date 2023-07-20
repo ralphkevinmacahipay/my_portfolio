@@ -43,7 +43,7 @@ class WordsWidgetMobile extends StatelessWidget {
                         enlargeCenterPage: true,
                         viewportFraction: .8,
                         height: SizeConfig.blockY! * 39,
-                        autoPlay: false,
+                        autoPlay: true,
                       ),
                       items: listItemCorouselWork
                           .map((kItems) => Container(
