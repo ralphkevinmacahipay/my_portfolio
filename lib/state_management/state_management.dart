@@ -11,11 +11,11 @@ class GetManagerController extends GetxController {
 
   RxBool isHoverHome = false.obs,
       isHoverServices = false.obs,
-      isHoverWorks = false.obs,
+      isHoverProject = false.obs,
       isHoverContact = false.obs,
       isHomeTap = true.obs,
       isServiceTap = false.obs,
-      isWorksTap = false.obs,
+      isProjectTap = false.obs,
       isContactTap = false.obs,
       isHoverColumnOne = false.obs,
       isHoverColumnTwo = false.obs,
@@ -25,7 +25,7 @@ class GetManagerController extends GetxController {
   Rx<Color> kColorDownloadCV = Colors.transparent.obs,
       kColorHome = kBlue.obs,
       kColorServices = Colors.transparent.obs,
-      kColorWorks = Colors.transparent.obs,
+      kColorProject = Colors.transparent.obs,
       kColorContact = Colors.transparent.obs;
 
   late AnimationController kController;

@@ -10,6 +10,7 @@ import '../state_management/put_get.dart';
 import '../state_management/state_management.dart';
 import 'a_home_mobile/a_home.dart';
 import 'b_services_mobile/services.dart';
+import 'c_project_mobile/project.dart';
 
 class MobileLayout extends StatelessWidget {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
@@ -51,11 +52,7 @@ class MobileLayout extends StatelessWidget {
             children: [
               const HomeWidgetMobile(),
               const ServicesWidgetMobile(),
-              Container(
-                decoration: const BoxDecoration(color: Colors.pinkAccent),
-                height: SizeConfig.blockY! * 100,
-                width: SizeConfig.blockX! * 100,
-              ),
+              const WordsWidgetMobile(),
               Container(
                 decoration: const BoxDecoration(color: Colors.green),
                 height: SizeConfig.blockY! * 100,

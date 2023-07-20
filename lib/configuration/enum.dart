@@ -40,7 +40,7 @@ void onPressedNav(
       controllerGetManager.kTitle.value = getNavNmae(NavItemEnum.project);
       Navigator.of(context).pop();
       scrollToPosition(SizeConfig.blockY! * 100 * 2);
-      debugPrint("works");
+      debugPrint("Project");
       break;
     case NavItemEnum.contact:
       controllerGetManager.kTitle.value = getNavNmae(NavItemEnum.contact);

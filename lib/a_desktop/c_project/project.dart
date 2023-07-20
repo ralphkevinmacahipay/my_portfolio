@@ -6,8 +6,8 @@ import 'package:my_profile/my_widget/my_widget.dart';
 import '../../configuration/style.dart';
 import '../../state_management/put_get.dart';
 
-class Works extends StatelessWidget {
-  const Works({
+class Project extends StatelessWidget {
+  const Project({
     super.key,
   });
 

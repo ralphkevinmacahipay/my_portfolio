@@ -121,3 +121,45 @@ List<TyperAnimatedText> itemsAnimatedText = [
           kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
       speed: const Duration(milliseconds: 100)),
 ];
+
+final List<Map<String, dynamic>> listItemCorouselServices = [
+  {
+    'kMainImage': kAndroidImage,
+    "kTextTitle": text_6,
+    "kSubTitle": text_7,
+    "kTextOne": text_8,
+    "kTextTwo": text_9,
+    "kTextThree": text_16,
+    "kImageOne": kFirebaseImage,
+    "kImageTwo": kFlutterImage,
+    "kImageThree": kGoogleCP,
+  },
+  {
+    'kMainImage': kWebImage,
+    "kTextTitle": text_14,
+    "kSubTitle": text_15,
+    "kTextOne": text_8,
+    "kTextTwo": text_9,
+    "kTextThree": text_16,
+    "kImageOne": kFirebaseImage,
+    "kImageTwo": kFlutterImage,
+    "kImageThree": kGoogleCP,
+  },
+
+  {
+    'kMainImage': kUiImage,
+    "kTextTitle": text_10,
+    "kSubTitle": text_11,
+    "kTextOne": text_8,
+    "kTextTwo": text_13,
+    "kTextThree": text_16,
+    "kImageOne": kFigmaImage,
+    "kImageTwo": kFlatIconImage,
+  },
+
+  // Add more image URLs here
+];
+
+final List<Map<String, dynamic>> listItemCorouselWork = [
+  {"image": kProjectOne}
+];

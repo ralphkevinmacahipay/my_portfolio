@@ -11,46 +11,6 @@ class ServicesWidgetMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CarouselController controllerCarousel = CarouselController();
-
-    final List<Map<String, dynamic>> imageUrls = [
-      {
-        'kMainImage': kAndroidImage,
-        "kTextTitle": text_6,
-        "kSubTitle": text_7,
-        "kTextOne": text_8,
-        "kTextTwo": text_9,
-        "kTextThree": text_16,
-        "kImageOne": kFirebaseImage,
-        "kImageTwo": kFlutterImage,
-        "kImageThree": kGoogleCP,
-      },
-      {
-        'kMainImage': kWebImage,
-        "kTextTitle": text_14,
-        "kSubTitle": text_15,
-        "kTextOne": text_8,
-        "kTextTwo": text_9,
-        "kTextThree": text_16,
-        "kImageOne": kFirebaseImage,
-        "kImageTwo": kFlutterImage,
-        "kImageThree": kGoogleCP,
-      },
-
-      {
-        'kMainImage': kUiImage,
-        "kTextTitle": text_10,
-        "kSubTitle": text_11,
-        "kTextOne": text_8,
-        "kTextTwo": text_13,
-        "kTextThree": text_16,
-        "kImageOne": kFigmaImage,
-        "kImageTwo": kFlatIconImage,
-      },
-
-      // Add more image URLs here
-    ];
-
     return SizedBox(
       height: SizeConfig.blockY! * 100,
       width: SizeConfig.blockX! * 100,
@@ -86,7 +46,7 @@ class ServicesWidgetMobile extends StatelessWidget {
                   height: SizeConfig.blockY! * 48,
                   autoPlay: true,
                 ),
-                items: imageUrls
+                items: listItemCorouselServices
                     .map((kItems) => Container(
                           margin: EdgeInsets.all(SizeConfig.blockX! * 2),
                           width: SizeConfig.blockX! * 75,
@@ -211,7 +171,7 @@ class ServicesWidgetMobile extends StatelessWidget {
                     .toList(),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

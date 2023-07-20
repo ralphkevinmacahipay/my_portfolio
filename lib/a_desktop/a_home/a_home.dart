@@ -54,7 +54,7 @@ class HomeDesktop extends GetView<GetManagerController> {
           Obx(
             () => NavItem(
               controller: controller,
-              kColor: controller.kColorWorks.value,
+              kColor: controller.kColorProject.value,
               navItem: NavItemEnum.project,
             ),
           ),
