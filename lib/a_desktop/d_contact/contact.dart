@@ -102,34 +102,7 @@ class Contact extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(bottom: SizeConfig.blockY! * 1),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: RichText(
-                text: TextSpan(
-                  text: 'Developed by ',
-                  style: kPoppinRegular.copyWith(
-                    color: kWhite,
-                    fontSize: SizeConfig.blockX! * 1,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: 'Ralph Kevin Rynard E. Macahipay',
-                      style: kPoppinBold.copyWith(
-                        color: kWhite,
-                        fontSize: SizeConfig.blockX! * 1,
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' © 2023',
-                      style: kPoppinRegular.copyWith(
-                        color: kWhite,
-                        fontSize: SizeConfig.blockX! * 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: const CopyRightWidget(),
           ),
         ],
       ),

@@ -15,7 +15,7 @@ String kFlatIconImage = "assets/flaticon_image.png";
 String kFlutterImage = "assets/flutter_image.png";
 String kUiImage = "assets/ui_image.png";
 String kProjectOne = "assets/project_one.png";
-String kProjectOneMobile = "assets/project_one_mobile.png";
+String kProjectOneMobile = "assets/project_one.png";
 
 String kWebImage = "assets/web_image.png";
 String kFaceBook = "assets/facebook_image.png";

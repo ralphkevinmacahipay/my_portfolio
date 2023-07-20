@@ -60,24 +60,28 @@ class ProjectWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: kAlignment,
-      child: MouseRegion(
-        onEnter: (event) {
-          controllerGetManager.isHoverProjectOne.value = true;
-          debugPrint("Code is here");
-        },
-        onExit: (event) {
-          controllerGetManager.isHoverProjectOne.value = false;
-        },
-        child: ColorFiltered(
-          colorFilter: controllerGetManager.isHoverProjectOne.value
-              ? ColorFilter.mode(kColor, BlendMode.srcATop)
-              : const ColorFilter.mode(Colors.transparent, BlendMode.srcATop),
-          child: SizedBox(
-            width: kWidth,
-            height: kHeight,
-            child: Image.asset(
-              kProjectOne,
-              fit: BoxFit.fill,
+      child: Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(kBorderRadius)),
+        child: MouseRegion(
+          onEnter: (event) {
+            controllerGetManager.isHoverProjectOne.value = true;
+            debugPrint("Code is here");
+          },
+          onExit: (event) {
+            controllerGetManager.isHoverProjectOne.value = false;
+          },
+          child: ColorFiltered(
+            colorFilter: controllerGetManager.isHoverProjectOne.value
+                ? ColorFilter.mode(kColor, BlendMode.srcATop)
+                : const ColorFilter.mode(Colors.transparent, BlendMode.srcATop),
+            child: SizedBox(
+              width: kWidth,
+              height: kHeight,
+              child: Image.asset(
+                kProjectOneMobile,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),

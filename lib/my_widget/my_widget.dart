@@ -95,6 +95,7 @@ class SubTitleWidget extends StatelessWidget {
 // icon widget contact
 
 class IconWidgetContact extends StatelessWidget {
+  final double? kIconSize;
   final VoidCallback? kOnpress;
   final String? kImage;
   final String? kIcon;
@@ -103,12 +104,13 @@ class IconWidgetContact extends StatelessWidget {
     this.kIcon,
     this.kImage,
     this.kOnpress,
+    this.kIconSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      iconSize: SizeConfig.blockX! * 2.5,
+      iconSize: kIconSize ?? SizeConfig.blockX! * 2.5,
       onPressed: kOnpress,
       icon: kImage != null
           ? Image.asset(
@@ -204,6 +206,44 @@ class TextFormFieldWidget extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.blue),
           borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+      ),
+    );
+  }
+}
+
+class CopyRightWidget extends StatelessWidget {
+  const CopyRightWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: RichText(
+        text: TextSpan(
+          text: 'Developed by ',
+          style: kPoppinRegular.copyWith(
+            color: kWhite,
+            fontSize: SizeConfig.blockX! * 1,
+          ),
+          children: [
+            TextSpan(
+              text: 'Ralph Kevin Rynard E. Macahipay',
+              style: kPoppinBold.copyWith(
+                color: kWhite,
+                fontSize: SizeConfig.blockX! * 1,
+              ),
+            ),
+            TextSpan(
+              text: ' © 2023',
+              style: kPoppinRegular.copyWith(
+                color: kWhite,
+                fontSize: SizeConfig.blockX! * 1,
+              ),
+            ),
+          ],
         ),
       ),
     );
