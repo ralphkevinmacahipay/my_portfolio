@@ -74,9 +74,14 @@ class HomeDesktop extends GetView<GetManagerController> {
 }
 
 class ChatButton extends GetView<ServiceOfGetValue> {
+  final EdgeInsetsGeometry? kPaddingResponsive;
   final Color? kColor;
   final double? kFontSize;
+  final double? kFontSizeTitle;
+
   const ChatButton({
+    this.kPaddingResponsive,
+    this.kFontSizeTitle,
     this.kColor,
     this.kFontSize,
     super.key,
@@ -86,7 +91,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: kTransparent,
-      splashColor: Colors.amber,
       onPressed: () {
         showDialog(
           context: context,
@@ -127,7 +131,7 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                   Text(
                     'Let’s Connect',
                     style: kPoppinBold.copyWith(
-                      fontSize: SizeConfig.blockX! * 1.5,
+                      fontSize: kFontSizeTitle ?? SizeConfig.blockX! * 1.5,
                       color: kWhite,
                     ),
                   ),
@@ -184,9 +188,11 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                             children: [
                               Obx(
                                 () => InkWellWIdget(
+                                  kPaddingResponsive: kPaddingResponsive,
                                   kFontSize: kFontSize,
                                   kOnTap: () {
                                     debugPrint("Print send");
+                                    sendEmail();
                                     Navigator.of(context).pop();
                                   },
                                   kPadding: EdgeInsets.symmetric(

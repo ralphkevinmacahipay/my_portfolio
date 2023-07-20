@@ -24,7 +24,16 @@ class MobileLayout extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: ChatButton(kFontSize: SizeConfig.blockX! * 5),
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+              bottom: SizeConfig.blockY! * 3, right: SizeConfig.blockX! * 3),
+          child: ChatButton(
+              kFontSizeTitle: SizeConfig.blockX! * 5,
+              kFontSize: SizeConfig.blockX! * 5,
+              kPaddingResponsive: EdgeInsets.symmetric(
+                  vertical: SizeConfig.blockX! * 1,
+                  horizontal: SizeConfig.blockX! * 5)),
+        ),
         appBar: AppBar(
           backgroundColor: kDarkBlue,
           title: Obx(() =>

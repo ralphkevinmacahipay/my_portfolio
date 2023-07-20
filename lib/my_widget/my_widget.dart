@@ -128,7 +128,8 @@ class IconWidgetContact extends StatelessWidget {
 
 // InkWellWIdget
 class InkWellWIdget extends StatelessWidget {
-  final bool? isMobile;
+  final EdgeInsetsGeometry? kPaddingResponsive;
+
   final double? kFontSize;
   final EdgeInsetsGeometry kPadding;
   final void Function()? kOnTap;
@@ -147,7 +148,7 @@ class InkWellWIdget extends StatelessWidget {
     required this.kPadding,
     this.kOnTap,
     this.kFontSize,
-    this.isMobile,
+    this.kPaddingResponsive,
   });
 
   final GetManagerController controller;
@@ -166,7 +167,7 @@ class InkWellWIdget extends StatelessWidget {
             borderRadius: BorderRadius.circular(kBorderRadius),
             border: Border.all(color: Colors.white),
           ),
-          padding: kPadding,
+          padding: kPaddingResponsive ?? kPadding,
           child: Text(
             kText,
             style: kPoppinSemiBold.copyWith(
