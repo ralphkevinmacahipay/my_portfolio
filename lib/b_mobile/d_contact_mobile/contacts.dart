@@ -14,12 +14,10 @@ class ContactWidgetMobile extends StatelessWidget {
       height: SizeConfig.blockY! * 85,
       width: SizeConfig.blockX! * 100,
       child: Stack(
-        fit: StackFit.loose,
         alignment: Alignment.center,
         children: [
           Column(
             children: [
-              SizedBox(height: SizeConfig.blockY! * 2),
               // Title
               Text(
                 kContactTitle,
