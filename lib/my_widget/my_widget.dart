@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_profile/state_management/put_get.dart';
 
 import '../configuration/constant.dart';
 import '../configuration/style.dart';
@@ -126,6 +128,8 @@ class IconWidgetContact extends StatelessWidget {
 
 // InkWellWIdget
 class InkWellWIdget extends StatelessWidget {
+  final bool? isMobile;
+  final double? kFontSize;
   final EdgeInsetsGeometry kPadding;
   final void Function()? kOnTap;
   final void Function(bool)? onHover;
@@ -142,6 +146,8 @@ class InkWellWIdget extends StatelessWidget {
     this.onHover,
     required this.kPadding,
     this.kOnTap,
+    this.kFontSize,
+    this.isMobile,
   });
 
   final GetManagerController controller;
@@ -151,18 +157,22 @@ class InkWellWIdget extends StatelessWidget {
     return InkWell(
       onHover: onHover,
       onTap: kOnTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: kIsHover ? kColor : kTransparent,
-          borderRadius: BorderRadius.circular(kBorderRadius),
-          border: Border.all(color: Colors.white),
-        ),
-        padding: kPadding,
-        child: Text(
-          kText,
-          style: kPoppinSemiBold.copyWith(
-            fontSize: SizeConfig.blockX! * 1.5,
-            color: kWhite,
+      child: Obx(
+        () => Container(
+          decoration: BoxDecoration(
+            color: kIsHover || controllerGetManager.isMobile.value
+                ? kColor
+                : kTransparent,
+            borderRadius: BorderRadius.circular(kBorderRadius),
+            border: Border.all(color: Colors.white),
+          ),
+          padding: kPadding,
+          child: Text(
+            kText,
+            style: kPoppinSemiBold.copyWith(
+              fontSize: kFontSize ?? SizeConfig.blockX! * 1.5,
+              color: kWhite,
+            ),
           ),
         ),
       ),

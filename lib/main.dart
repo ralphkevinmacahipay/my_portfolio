@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
+import 'package:my_profile/state_management/put_get.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
 
@@ -45,6 +46,7 @@ class ResponsiveWidget extends StatelessWidget {
           return const TabletLayout();
         } else {
           // Medium devices (breakpoint: 768)
+          controllerGetManager.isMobile.value = true;
           return MobileLayout();
         }
       },

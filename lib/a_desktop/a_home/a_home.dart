@@ -74,7 +74,11 @@ class HomeDesktop extends GetView<GetManagerController> {
 }
 
 class ChatButton extends GetView<ServiceOfGetValue> {
+  final Color? kColor;
+  final double? kFontSize;
   const ChatButton({
+    this.kColor,
+    this.kFontSize,
     super.key,
   });
 
@@ -180,6 +184,7 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                             children: [
                               Obx(
                                 () => InkWellWIdget(
+                                  kFontSize: kFontSize,
                                   kOnTap: () {
                                     debugPrint("Print send");
                                     Navigator.of(context).pop();

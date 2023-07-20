@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 
+import '../a_desktop/a_home/a_home.dart';
 import '../a_desktop/a_home/navigator.dart';
 import '../configuration/enum.dart';
 import '../configuration/style.dart';
@@ -23,6 +24,7 @@ class MobileLayout extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: ChatButton(kFontSize: SizeConfig.blockX! * 5),
         appBar: AppBar(
           backgroundColor: kDarkBlue,
           title: Obx(() =>
