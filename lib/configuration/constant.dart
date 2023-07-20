@@ -167,9 +167,20 @@ final List<Map<String, dynamic>> listItemCorouselWork = [
 ];
 
 List<Map<String, dynamic>> myListIcon = [
-  {'icon': kInstagram},
-  {'icon': kFaceBook},
-  {'icon': kGitHub},
-  {'icon': kGmail},
-  {'icon': kLinkedIn},
+  {
+    'icon': kInstagram,
+    'onTap': ContactEnum.instagram,
+  },
+  {
+    'icon': kFaceBook,
+    'onTap': ContactEnum.facebook,
+  },
+  {
+    'icon': kGitHub,
+    'onTap': ContactEnum.gihub,
+  },
+  {
+    'icon': kLinkedIn,
+    'onTap': ContactEnum.linkedin,
+  },
 ];

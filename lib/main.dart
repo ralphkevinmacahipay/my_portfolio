@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
 
-import 'b_mobile/index.dart';
+import 'b_mobile/index_drawer.dart';
 import 'configuration/constant.dart';
 import 'state_management/state_management.dart';
 

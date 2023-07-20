@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
 
 import '../a_desktop/a_home/navigator.dart';
+import '../functions/functions_widget.dart';
 import '../state_management/put_get.dart';
 
 enum NavItemEnum { home, services, project, contact }
@@ -55,4 +57,34 @@ enum ColumnType {
   one,
   two,
   three,
+}
+
+enum ContactEnum {
+  instagram,
+  facebook,
+  gihub,
+
+  linkedin,
+}
+
+void onPressContact({required ContactEnum contactEnum}) {
+  switch (contactEnum) {
+    case ContactEnum.instagram:
+      openURL(uri: parseURL(url: kMyInstagram));
+      break;
+    case ContactEnum.facebook:
+      openURL(uri: parseURL(url: kMyFaceBook));
+
+      break;
+
+    case ContactEnum.gihub:
+      openURL(uri: parseURL(url: kMyGitHub));
+
+      break;
+
+    case ContactEnum.linkedin:
+      openURL(uri: parseURL(url: kMyLinkedIn));
+
+      break;
+  }
 }

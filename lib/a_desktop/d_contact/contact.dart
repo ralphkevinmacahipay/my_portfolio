@@ -79,9 +79,6 @@ class Contact extends StatelessWidget {
                                   openURL(uri: parseURL(url: kMyFaceBook)),
                             ),
                             IconWidgetContact(
-                              kImage: kGmail,
-                            ),
-                            IconWidgetContact(
                               kIcon: kLinkedIn,
                               kOnpress: () =>
                                   openURL(uri: parseURL(url: kMyLinkedIn)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../configuration/constant.dart';
+import '../../configuration/enum.dart';
 import '../../configuration/style.dart';
 
 class ContactWidgetMobile extends StatelessWidget {
@@ -45,7 +46,11 @@ class ContactWidgetMobile extends StatelessWidget {
                       children: [
                         IconButton(
                             iconSize: SizeConfig.blockX! * 21,
-                            onPressed: () {},
+                            onPressed: () {
+                              debugPrint("Cool");
+                              onPressContact(
+                                  contactEnum: myListIcon[index]['onTap']);
+                            },
                             icon: Container(
                               decoration: BoxDecoration(
                                 color: kLightBlue.withOpacity(.8),
@@ -65,7 +70,7 @@ class ContactWidgetMobile extends StatelessWidget {
                                         ))),
                               ),
                             )),
-                        SizedBox(height: SizeConfig.blockY! * .1),
+                        SizedBox(height: SizeConfig.blockY! * 4),
                       ],
                     );
                   },
