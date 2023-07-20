@@ -42,152 +42,21 @@ class WordsWidgetMobile extends StatelessWidget {
                       options: CarouselOptions(
                         enlargeCenterPage: true,
                         viewportFraction: .8,
-                        height: SizeConfig.blockY! * 48,
-                        autoPlay: true,
+                        height: SizeConfig.blockY! * 39,
+                        autoPlay: false,
                       ),
-                      items: listItemCorouselServices
+                      items: listItemCorouselWork
                           .map((kItems) => Container(
-                                margin: EdgeInsets.all(SizeConfig.blockX! * 2),
-                                width: SizeConfig.blockX! * 75,
+                                padding: EdgeInsets.all(SizeConfig.blockX! * 2),
+                                width: SizeConfig.blockX! * 80,
                                 decoration: BoxDecoration(
-                                    color: kLighBlue,
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                          kItems['image'],
+                                        )),
                                     borderRadius:
                                         BorderRadius.circular(kBorderRadius)),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SizedBox(
-                                      height: SizeConfig.blockY! * 15,
-                                      width: SizeConfig.blockX! * 30,
-                                      child: Image.asset(kItems['kMainImage'],
-                                          fit: BoxFit.fill),
-                                    ),
-                                    Text(
-                                      kItems["kTextTitle"],
-                                      style: kPoppinBold.copyWith(
-                                        color: kWhite,
-                                        fontSize: SizeConfig.blockX! * 5,
-                                      ),
-                                    ),
-                                    Text(
-                                      kItems["kSubTitle"],
-                                      textAlign: TextAlign.center,
-                                      style: kPoppinSemiBold.copyWith(
-                                        color: kWhite,
-                                        fontSize: SizeConfig.blockX! * 3.5,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        SizedBox(
-                                          height: SizeConfig.blockY! * 5,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    Image.asset(
-                                                      kItems['kImageOne'],
-                                                      height:
-                                                          SizeConfig.blockY! *
-                                                              8,
-                                                      width:
-                                                          SizeConfig.blockX! *
-                                                              8,
-                                                    ),
-                                                    // SizedBox(
-                                                    //   width: SizeConfig.blockX! * 2,
-                                                    // ),
-                                                    Text(
-                                                      kItems['kTextTwo'],
-                                                      style: kPoppinSemiBold
-                                                          .copyWith(
-                                                        color: kWhite,
-                                                        fontSize:
-                                                            SizeConfig.blockX! *
-                                                                4,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    Image.asset(
-                                                      kItems['kImageTwo'],
-                                                      height:
-                                                          SizeConfig.blockY! *
-                                                              6,
-                                                      width:
-                                                          SizeConfig.blockX! *
-                                                              6,
-                                                    ),
-                                                    Text(
-                                                      kItems['kTextOne'],
-                                                      style: kPoppinSemiBold
-                                                          .copyWith(
-                                                        color: kWhite,
-                                                        fontSize:
-                                                            SizeConfig.blockX! *
-                                                                4,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        kItems["kImageThree"] != null
-                                            ? SizedBox(
-                                                height: SizeConfig.blockY! * 5,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    Image.asset(
-                                                      kItems['kImageThree'],
-                                                      height:
-                                                          SizeConfig.blockY! *
-                                                              8,
-                                                      width:
-                                                          SizeConfig.blockX! *
-                                                              8,
-                                                    ),
-                                                    // SizedBox(
-                                                    //   width: SizeConfig.blockX! * 2,
-                                                    // ),
-                                                    Text(
-                                                      kItems['kTextThree'],
-                                                      style: kPoppinSemiBold
-                                                          .copyWith(
-                                                        color: kWhite,
-                                                        fontSize:
-                                                            SizeConfig.blockX! *
-                                                                4,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            : const SizedBox.shrink(),
-                                      ],
-                                    ),
-                                  ],
-                                ),
                               ))
                           .toList(),
                     ),
