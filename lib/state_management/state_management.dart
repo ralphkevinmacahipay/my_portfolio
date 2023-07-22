@@ -60,6 +60,7 @@ class GetManagerController extends GetxController {
 
 class ServiceOfMessage extends GetxController
     with GetSingleTickerProviderStateMixin {
+  late BuildContext _buildContext;
   Rx<PlatFormEnumType> kPlatform = PlatFormEnumType.mobile.obs;
   Rx<bool> kIsTap = false.obs;
   Rx<TextEditingController> senderNameController = TextEditingController().obs;
@@ -69,8 +70,14 @@ class ServiceOfMessage extends GetxController
   Rx<TextEditingController> contentController = TextEditingController().obs;
   late AnimationController kController;
   late Animation<double> _kAnimation;
-
+  BuildContext get getContext => _buildContext;
   Animation<double> get getAnimation => _kAnimation;
+
+  // initialize
+  setBuildContext({required BuildContext context}) {
+    _buildContext = context;
+    update();
+  }
 
   void clearFields() {
     senderNameController.value.clear();

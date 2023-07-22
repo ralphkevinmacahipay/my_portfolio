@@ -47,20 +47,22 @@ void kValidatorFunction({required String? value, required Rx<Color> kColor}) {
 void sendMessage(
     {required ServiceOfMessage controller,
     required BuildContext context}) async {
-  if (await sendEmail(controller: controller) != 200) {
-    await Future.delayed(const Duration(seconds: 3));
-    Navigator.of(context).pop();
-    showTopSnackBar(
-      displayDuration: const Duration(seconds: 1),
-      Overlay.of(context),
-      CustomSnackBar.success(
-        icon: Icon(
-          Icons.sentiment_very_satisfied,
-          color: kTransparent,
-        ),
-        message: "Message was successfully sent.",
-      ),
-    );
+  controller.setBuildContext(context: context);
+  if (await sendEmail(controller: controller) == 200) {
+    await Future.delayed(const Duration(seconds: 1));
+    popAndSnackBar();
+    // Navigator.of(context).pop();
+    // showTopSnackBar(
+    //   displayDuration: const Duration(seconds: 1),
+    //   Overlay.of(context),
+    //   CustomSnackBar.success(
+    //     icon: Icon(
+    //       Icons.sentiment_very_satisfied,
+    //       color: kTransparent,
+    //     ),
+    //     message: "Message was successfully sent.",
+    //   ),
+    // );
     debugPrint("coe herererer");
     controller.kIsTap.value = false;
   }
@@ -69,7 +71,7 @@ void sendMessage(
 
 Future sendEmail({required ServiceOfMessage controller}) async {
   final url =
-      Uri.parse("https://api.emailjs.com/api/v1.0/email/sendr"); //remove r
+      Uri.parse("https://api.emailjs.com/api/v1.0/email/send"); //remove r
   const serviceId = "service_e1jtrn2";
   const templateId = "template_jqm56ps";
   const userID = "Kuyvp1B40YV1mN9WA";
@@ -96,4 +98,17 @@ Future sendEmail({required ServiceOfMessage controller}) async {
   return response.statusCode;
 }
 
-void popAndSnackBar() {}
+void popAndSnackBar() {
+  Navigator.of(controllerServiceOfGetValue.getContext).pop();
+  showTopSnackBar(
+    displayDuration: const Duration(seconds: 1),
+    Overlay.of(controllerServiceOfGetValue.getContext),
+    CustomSnackBar.success(
+      icon: Icon(
+        Icons.sentiment_very_satisfied,
+        color: kTransparent,
+      ),
+      message: "Message was successfully sent.",
+    ),
+  );
+}
