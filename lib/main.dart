@@ -7,12 +7,13 @@ import 'a_desktop/a_home/a_home.dart';
 
 import 'b_mobile/index_drawer.dart';
 import 'configuration/constant.dart';
+import 'configuration/enum.dart';
 import 'state_management/state_management.dart';
 
 void main() {
   setPathUrlStrategy();
   Get.put(GetManagerController());
-  Get.put(ServiceOfGetValue());
+  Get.put(ServiceOfMessage());
 
   runApp(const MyApp());
 }
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ResponsiveWidget extends StatelessWidget {
+class ResponsiveWidget extends GetView<ServiceOfMessage> {
   const ResponsiveWidget({super.key});
 
   @override
@@ -39,14 +40,19 @@ class ResponsiveWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1024) {
+          controller.kPlatform.value = PlatFormEnumType.desktop;
+
           // Extra large devices (breakpoint: 1024)
           return const HomeDesktop();
         } else if (constraints.maxWidth >= 768) {
+          controller.kPlatform.value = PlatFormEnumType.tablet;
+
           // Large devices (breakpoint: 992)
           return const TabletLayout();
         } else {
           // Medium devices (breakpoint: 768)
           controllerGetManager.isMobile.value = true;
+          controller.kPlatform.value = PlatFormEnumType.mobile;
           return MobileLayout();
         }
       },

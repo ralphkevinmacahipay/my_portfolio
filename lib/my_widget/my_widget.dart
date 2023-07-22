@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_profile/state_management/put_get.dart';
 
 import '../configuration/constant.dart';
@@ -160,22 +159,20 @@ class InkWellWIdget extends StatelessWidget {
     return InkWell(
       onHover: onHover,
       onTap: kOnTap,
-      child: Obx(
-        () => Container(
-          decoration: BoxDecoration(
-            color: kIsHover || controllerGetManager.isMobile.value
-                ? kColor
-                : kTransparent,
-            borderRadius: BorderRadius.circular(kBorderRadius),
-            border: Border.all(color: Colors.white),
-          ),
-          padding: kPaddingResponsive ?? kPadding,
-          child: Text(
-            kText,
-            style: kPoppinSemiBold.copyWith(
-              fontSize: kFontSize ?? SizeConfig.blockX! * 1.5,
-              color: kWhite,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: kIsHover || controllerGetManager.isMobile.value
+              ? kColor
+              : kTransparent,
+          borderRadius: BorderRadius.circular(kBorderRadius),
+          border: Border.all(color: Colors.white),
+        ),
+        padding: kPaddingResponsive ?? kPadding,
+        child: Text(
+          kText,
+          style: kPoppinSemiBold.copyWith(
+            fontSize: kFontSize ?? SizeConfig.blockX! * 1.5,
+            color: kWhite,
           ),
         ),
       ),
@@ -200,7 +197,7 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.kColor,
   });
 
-  final ServiceOfGetValue controller;
+  final ServiceOfMessage controller;
 
   @override
   Widget build(BuildContext context) {

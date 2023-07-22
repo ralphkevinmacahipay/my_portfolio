@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../configuration/constant.dart';
@@ -21,7 +23,7 @@ Uri parseURL({required String url}) {
   return uri;
 }
 
-bool isAllFieldsNotEmpty(ServiceOfGetValue controller) {
+bool isAllFieldsNotEmpty(ServiceOfMessage controller) {
   if (controller.senderNameController.value.text == '' ||
       controller.senderEmailController.value.text == '' ||
       controller.subjectController.value.text == '' ||
@@ -42,12 +44,30 @@ void kValidatorFunction({required String? value, required Rx<Color> kColor}) {
   }
 }
 
-void sendMessage() async {
-  await sendEmail();
+void sendMessage(
+    {required ServiceOfMessage controller,
+    required BuildContext context}) async {
+  if (await sendEmail(controller: controller) != 200) {
+    await Future.delayed(const Duration(seconds: 3));
+    Navigator.of(context).pop();
+    showTopSnackBar(
+      displayDuration: const Duration(seconds: 1),
+      Overlay.of(context),
+      CustomSnackBar.success(
+        icon: Icon(
+          Icons.sentiment_very_satisfied,
+          color: kTransparent,
+        ),
+        message: "Message was successfully sent.",
+      ),
+    );
+    debugPrint("coe herererer");
+    controller.kIsTap.value = false;
+  }
   controllerServiceOfGetValue.clearFields();
 }
 
-Future sendEmail() async {
+Future sendEmail({required ServiceOfMessage controller}) async {
   final url =
       Uri.parse("https://api.emailjs.com/api/v1.0/email/sendr"); //remove r
   const serviceId = "service_e1jtrn2";
@@ -63,18 +83,17 @@ Future sendEmail() async {
         "template_id": templateId,
         "user_id": userID,
         "template_params": {
-          "name": controllerServiceOfGetValue.senderNameController.value.text,
-          "subject": controllerServiceOfGetValue.subjectController.value.text,
-          "message": controllerServiceOfGetValue.contentController.value.text,
-          "user_email":
-              controllerServiceOfGetValue.senderEmailController.value.text,
+          "name": controller.senderNameController.value.text,
+          "subject": controller.subjectController.value.text,
+          "message": controller.contentController.value.text,
+          "user_email": controller.senderEmailController.value.text,
         }
       },
     ),
   );
-  if (response.statusCode != 200) {
-    controllerGetManager.kIsTap.value = false;
-  }
+  if (response.statusCode != 200) {}
   debugPrint("response.statusCode: ${response.body}");
   return response.statusCode;
 }
+
+void popAndSnackBar() {}

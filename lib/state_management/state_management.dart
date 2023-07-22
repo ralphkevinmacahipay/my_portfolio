@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 
+import '../configuration/enum.dart';
+
 class GetManagerController extends GetxController {
-  Rx<bool> kIsTap = false.obs;
   // init
   Rx<Color> kGlobalColor = Colors.transparent.obs;
   final RxBool _isHoveredDLCV = false.obs;
@@ -57,8 +58,10 @@ class GetManagerController extends GetxController {
   }
 }
 
-class ServiceOfGetValue extends GetxController
+class ServiceOfMessage extends GetxController
     with GetSingleTickerProviderStateMixin {
+  Rx<PlatFormEnumType> kPlatform = PlatFormEnumType.mobile.obs;
+  Rx<bool> kIsTap = false.obs;
   Rx<TextEditingController> senderNameController = TextEditingController().obs;
   Rx<TextEditingController> senderEmailController = TextEditingController().obs;
 

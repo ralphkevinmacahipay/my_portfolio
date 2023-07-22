@@ -14,7 +14,7 @@ enum ContactEnum { instagram, facebook, gihub, linkedin }
 
 enum TextFormFieldEnum { name, email, subject, content }
 
-enum PlatFormEnum { mobile, tablet, web }
+enum PlatFormEnumType { mobile, tablet, desktop }
 
 enum SizeTypeEnum { height, width }
 
@@ -87,18 +87,18 @@ void onPressContact({required ContactEnum contactEnum}) {
 
 double getSize({
   required SizeTypeEnum sizeType,
-  required PlatFormEnum kPlatform,
+  required PlatFormEnumType kPlatform,
 }) {
   late double size;
   switch (sizeType) {
     case SizeTypeEnum.width:
       switch (kPlatform) {
-        case PlatFormEnum.mobile:
+        case PlatFormEnumType.mobile:
           size = SizeConfig.blockX! * 7;
           break;
-        case PlatFormEnum.tablet:
+        case PlatFormEnumType.tablet:
           break;
-        case PlatFormEnum.web:
+        case PlatFormEnumType.desktop:
           size = SizeConfig.blockX! * 2;
 
           break;
@@ -106,12 +106,12 @@ double getSize({
       break;
     case SizeTypeEnum.height:
       switch (kPlatform) {
-        case PlatFormEnum.mobile:
+        case PlatFormEnumType.mobile:
           size = SizeConfig.blockX! * 7;
           break;
-        case PlatFormEnum.tablet:
+        case PlatFormEnumType.tablet:
           break;
-        case PlatFormEnum.web:
+        case PlatFormEnumType.desktop:
           size = SizeConfig.blockX! * 2;
 
           break;
