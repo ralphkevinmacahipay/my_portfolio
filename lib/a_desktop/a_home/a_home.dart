@@ -157,115 +157,143 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                     child: Form(
                       key: formKey,
                       child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Obx(() => TextFormFieldWidget(
-                                  kColor: controllerGetManager.kColorName.value,
-                                  kTextFormFieldEnum: TextFormFieldEnum.name,
-                                  controller: controller,
-                                  kText: 'Sender Name',
-                                  textEditingController:
-                                      controller.senderNameController.value,
-                                )),
-                            SizedBox(height: SizeConfig.blockY! * 1),
-                            Obx(() => TextFormFieldWidget(
-                                  kColor:
-                                      controllerGetManager.kColorEmail.value,
-                                  kTextFormFieldEnum: TextFormFieldEnum.email,
-                                  controller: controller,
-                                  kText: 'Sender Email',
-                                  textEditingController:
-                                      controller.senderEmailController.value,
-                                )),
-                            SizedBox(height: SizeConfig.blockY! * 1),
-                            Obx(() => TextFormFieldWidget(
-                                  kColor:
-                                      controllerGetManager.kColorSubject.value,
-                                  kTextFormFieldEnum: TextFormFieldEnum.subject,
-                                  controller: controller,
-                                  kText: 'Subject',
-                                  textEditingController:
-                                      controller.subjectController.value,
-                                )),
-                            SizedBox(height: SizeConfig.blockY! * 1),
-                            Obx(() => TextFormFieldWidget(
-                                  kColor:
-                                      controllerGetManager.kColorContent.value,
-                                  kTextFormFieldEnum: TextFormFieldEnum.content,
-                                  controller: controller,
-                                  kText: 'Content',
-                                  textEditingController:
-                                      controller.contentController.value,
-                                )),
-                            SizedBox(height: SizeConfig.blockY! * 1),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Obx(
-                                  () => InkWellWIdget(
-                                    kPaddingResponsive: kPaddingResponsive,
-                                    kFontSize: kFontSize,
-                                    kOnTap: () {
-                                      debugPrint(
-                                          "controller.senderNameController.value: ${controller.senderNameController.value.text.toString()}");
+                        child: Obx(
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Obx(() => TextFormFieldWidget(
+                                    kColor:
+                                        controllerGetManager.kColorName.value,
+                                    kTextFormFieldEnum: TextFormFieldEnum.name,
+                                    controller: controller,
+                                    kText: 'Sender Name',
+                                    textEditingController:
+                                        controller.senderNameController.value,
+                                  )),
+                              SizedBox(height: SizeConfig.blockY! * 1),
+                              Obx(() => TextFormFieldWidget(
+                                    kColor:
+                                        controllerGetManager.kColorEmail.value,
+                                    kTextFormFieldEnum: TextFormFieldEnum.email,
+                                    controller: controller,
+                                    kText: 'Sender Email',
+                                    textEditingController:
+                                        controller.senderEmailController.value,
+                                  )),
+                              SizedBox(height: SizeConfig.blockY! * 1),
+                              Obx(() => TextFormFieldWidget(
+                                    kColor: controllerGetManager
+                                        .kColorSubject.value,
+                                    kTextFormFieldEnum:
+                                        TextFormFieldEnum.subject,
+                                    controller: controller,
+                                    kText: 'Subject',
+                                    textEditingController:
+                                        controller.subjectController.value,
+                                  )),
+                              SizedBox(height: SizeConfig.blockY! * 1),
+                              Obx(() => TextFormFieldWidget(
+                                    kColor: controllerGetManager
+                                        .kColorContent.value,
+                                    kTextFormFieldEnum:
+                                        TextFormFieldEnum.content,
+                                    controller: controller,
+                                    kText: 'Content',
+                                    textEditingController:
+                                        controller.contentController.value,
+                                  )),
+                              SizedBox(height: SizeConfig.blockY! * 1),
+                              controllerGetManager.kIsTap.value
+                                  ? Container(
+                                      margin: EdgeInsets.only(
+                                        top: SizeConfig.blockY! * 2,
+                                      ),
+                                      height: SizeConfig.blockX! * 2,
+                                      width: SizeConfig.blockX! * 2,
+                                      child: const CircularProgressIndicator())
+                                  : Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Obx(
+                                          () => InkWellWIdget(
+                                            kPaddingResponsive:
+                                                kPaddingResponsive,
+                                            kFontSize: kFontSize,
+                                            kOnTap: () {
+                                              controllerGetManager
+                                                      .kIsTap.value =
+                                                  !controllerGetManager
+                                                      .kIsTap.value;
+                                              debugPrint(
+                                                  "controller.senderNameController.value: ${controller.senderNameController.value.text.toString()}");
 
-                                      debugPrint(
-                                          "controller.senderEmailController.value: ${controller.senderEmailController.value.text.toString()}");
+                                              debugPrint(
+                                                  "controller.senderEmailController.value: ${controller.senderEmailController.value.text.toString()}");
 
-                                      debugPrint(
-                                          "controller.subjectController.value: ${controller.subjectController.value.text.toString()}");
+                                              debugPrint(
+                                                  "controller.subjectController.value: ${controller.subjectController.value.text.toString()}");
 
-                                      debugPrint(
-                                          "controller.contentController.value: ${controller.contentController.value.text.toString()}");
+                                              debugPrint(
+                                                  "controller.contentController.value: ${controller.contentController.value.text.toString()}");
 
-                                      if (formKey.currentState!.validate() &&
-                                          isAllFieldsNotEmpty(controller)) {
-                                        debugPrint(
-                                            "isAllFieldsNotEmpty(controller): ${isAllFieldsNotEmpty(controller)}");
-                                        debugPrint("Print send");
-                                        //  sendEmail();
-                                        controller.senderNameController.value
-                                            .clear();
-                                        controller.senderEmailController.value
-                                            .clear();
-                                        controller.subjectController.value
-                                            .clear();
-                                        controller.contentController.value
-                                            .clear();
-                                        Navigator.of(context).pop();
-                                        showTopSnackBar(
-                                          displayDuration:
-                                              const Duration(seconds: 1),
-                                          Overlay.of(context),
-                                          CustomSnackBar.success(
-                                            icon: Icon(
-                                              Icons.sentiment_very_satisfied,
-                                              color: kTransparent,
+                                              if (formKey.currentState!
+                                                      .validate() &&
+                                                  isAllFieldsNotEmpty(
+                                                      controller)) {
+                                                debugPrint(
+                                                    "isAllFieldsNotEmpty(controller): ${isAllFieldsNotEmpty(controller)}");
+                                                debugPrint("Print send");
+                                                //  sendEmail();
+                                                controller
+                                                    .senderNameController.value
+                                                    .clear();
+                                                controller
+                                                    .senderEmailController.value
+                                                    .clear();
+                                                controller
+                                                    .subjectController.value
+                                                    .clear();
+                                                controller
+                                                    .contentController.value
+                                                    .clear();
+                                                Navigator.of(context).pop();
+                                                showTopSnackBar(
+                                                  displayDuration:
+                                                      const Duration(
+                                                          seconds: 1),
+                                                  Overlay.of(context),
+                                                  CustomSnackBar.success(
+                                                    icon: Icon(
+                                                      Icons
+                                                          .sentiment_very_satisfied,
+                                                      color: kTransparent,
+                                                    ),
+                                                    message:
+                                                        "Message was successfully sent.",
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            kPadding: EdgeInsets.symmetric(
+                                              vertical: SizeConfig.blockY! * .5,
+                                              horizontal:
+                                                  SizeConfig.blockX! * 1,
                                             ),
-                                            message:
-                                                "Message was successfully sent.",
+                                            onHover: (value) =>
+                                                controllerGetManager
+                                                    .setIsHoverSend(value),
+                                            controller: controllerGetManager,
+                                            kText: "Send",
+                                            kColor: kBlue,
+                                            kIsHover: controllerGetManager
+                                                .getIsHoverSend,
                                           ),
-                                        );
-                                      }
-                                    },
-                                    kPadding: EdgeInsets.symmetric(
-                                      vertical: SizeConfig.blockY! * .5,
-                                      horizontal: SizeConfig.blockX! * 1,
+                                        ),
+                                      ],
                                     ),
-                                    onHover: (value) => controllerGetManager
-                                        .setIsHoverSend(value),
-                                    controller: controllerGetManager,
-                                    kText: "Send",
-                                    kColor: kBlue,
-                                    kIsHover:
-                                        controllerGetManager.getIsHoverSend,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 
 class GetManagerController extends GetxController {
+  Rx<bool> kIsTap = false.obs;
   // init
   Rx<Color> kGlobalColor = Colors.transparent.obs;
   final RxBool _isHoveredDLCV = false.obs;
