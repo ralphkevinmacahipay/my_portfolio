@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../functions/functions_widget.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
@@ -171,21 +173,8 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                         controller.contentController.value,
                                   )),
                               SizedBox(height: SizeConfig.blockY! * 1),
-                              controller.kIsTap.value
-                                  ? Container(
-                                      margin: EdgeInsets.only(
-                                        top: SizeConfig.blockY! * 2,
-                                      ),
-                                      // height: SizeConfig.blockX! * 2,
-                                      height: getSize(
-                                          kPlatform: controllerGetManager
-                                              .kPlatformEnum.value,
-                                          sizeType: SizeTypeEnum.height),
-                                      width: getSize(
-                                          kPlatform: controllerGetManager
-                                              .kPlatformEnum.value,
-                                          sizeType: SizeTypeEnum.width),
-                                      child: const CircularProgressIndicator())
+                              controllerGetManager.kIsTap.value
+                                  ? const CircularProgressIndicator()
                                   : Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -196,18 +185,44 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                             kFontSize: kFontSize,
                                             kOnTap: () {
                                               controllerGetManager
-                                                  .setBuildContext(
-                                                      context: context);
+                                                  .kIsTap.value = true;
+                                              debugPrint(
+                                                  "controller.senderNameController.value: ${controller.senderNameController.value.text.toString()}");
+
+                                              debugPrint(
+                                                  "controller.senderEmailController.value: ${controller.senderEmailController.value.text.toString()}");
+
+                                              debugPrint(
+                                                  "controller.subjectController.value: ${controller.subjectController.value.text.toString()}");
+
+                                              debugPrint(
+                                                  "controller.contentController.value: ${controller.contentController.value.text.toString()}");
+
                                               if (formKey.currentState!
                                                       .validate() &&
                                                   isAllFieldsNotEmpty(
                                                       controller)) {
-                                                controller.kIsTap.value =
-                                                    !controller.kIsTap.value;
-                                                sendEmail(
-                                                    context: context,
-                                                    controller:
-                                                        controllerServiceOfGetValue);
+                                                debugPrint(
+                                                    "isAllFieldsNotEmpty(controller): ${isAllFieldsNotEmpty(controller)}");
+                                                debugPrint("Print send");
+                                                sendMessage();
+
+                                                Navigator.of(context).pop();
+                                                showTopSnackBar(
+                                                  displayDuration:
+                                                      const Duration(
+                                                          seconds: 1),
+                                                  Overlay.of(context),
+                                                  CustomSnackBar.success(
+                                                    icon: Icon(
+                                                      Icons
+                                                          .sentiment_very_satisfied,
+                                                      color: kTransparent,
+                                                    ),
+                                                    message:
+                                                        "Message was successfully sent.",
+                                                  ),
+                                                );
                                               }
                                             },
                                             kPadding: EdgeInsets.symmetric(
