@@ -162,6 +162,8 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Obx(() => TextFormFieldWidget(
+                                  kColor: controllerGetManager.kColorName.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.name,
                                   controller: controller,
                                   kText: 'Sender Name',
                                   textEditingController:
@@ -169,6 +171,9 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                 )),
                             SizedBox(height: SizeConfig.blockY! * 1),
                             Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorEmail.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.email,
                                   controller: controller,
                                   kText: 'Sender Email',
                                   textEditingController:
@@ -176,6 +181,9 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                 )),
                             SizedBox(height: SizeConfig.blockY! * 1),
                             Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorSubject.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.subject,
                                   controller: controller,
                                   kText: 'Subject',
                                   textEditingController:
@@ -183,6 +191,9 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                 )),
                             SizedBox(height: SizeConfig.blockY! * 1),
                             Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorContent.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.content,
                                   controller: controller,
                                   kText: 'Content',
                                   textEditingController:

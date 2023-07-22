@@ -27,6 +27,7 @@ String kGoogleCP = "assets/google_cloud_platform.png";
 String kChatImage = "assets/chat_image.riv";
 String kExitImage = "assets/exit_image.png";
 
+Color kValidatorColor = Colors.red;
 Color kDarkBlue = const Color(0xff0D0D15);
 Color kWhite = const Color(0xffFFFFFF);
 Color kLighDark = const Color(0xff1F1F2D);

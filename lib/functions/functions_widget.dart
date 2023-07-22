@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../configuration/constant.dart';
 import '../state_management/state_management.dart';
 
 Future<void> openURL({required Uri uri}) async {
@@ -23,4 +25,15 @@ bool isAllFieldsNotEmpty(ServiceOfGetValue controller) {
     return false;
   }
   return true;
+}
+
+void kValidatorFunction({required String? value, required Rx<Color> kColor}) {
+  if (value == null || value.isEmpty) {
+    // TODO: set up the TextFormFieldEnum switch case
+    //test it first before commit
+    kColor.value = kValidatorColor;
+    return;
+  } else {
+    kColor.value = kWhite;
+  }
 }

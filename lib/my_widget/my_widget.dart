@@ -5,6 +5,7 @@ import 'package:my_profile/state_management/put_get.dart';
 import '../configuration/constant.dart';
 import '../configuration/enum.dart';
 import '../configuration/style.dart';
+import '../functions/functions_widget.dart';
 import '../state_management/state_management.dart';
 
 class TextWidget extends StatelessWidget {
@@ -185,6 +186,7 @@ class InkWellWIdget extends StatelessWidget {
 //TextFormFieldWidget
 
 class TextFormFieldWidget extends StatelessWidget {
+  final Color kColor;
   final TextFormFieldEnum kTextFormFieldEnum;
   final String kText;
   final TextEditingController textEditingController;
@@ -195,6 +197,7 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.kText,
     required this.textEditingController,
     required this.kTextFormFieldEnum,
+    required this.kColor,
   });
 
   final ServiceOfGetValue controller;
@@ -203,11 +206,40 @@ class TextFormFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          // TODO: set up the TextFormFieldEnum switch case test it first before commit
-          debugPrint("validator");
-          return null;
+        switch (kTextFormFieldEnum) {
+          case TextFormFieldEnum.name:
+            kValidatorFunction(
+                value: value, kColor: controllerGetManager.kColorName);
+            // if (value == null || value.isEmpty) {
+            //   // TODO: set up the TextFormFieldEnum switch case
+            //   //test it first before commit
+            //   controllerGetManager.kColorName.value = kValidatorColor;
+
+            //   return null;
+            // } else {
+            //   controllerGetManager.kColorName.value = kWhite;
+            // }
+
+            break;
+          case TextFormFieldEnum.email:
+            kValidatorFunction(
+                value: value, kColor: controllerGetManager.kColorEmail);
+
+            break;
+
+          case TextFormFieldEnum.subject:
+            kValidatorFunction(
+                value: value, kColor: controllerGetManager.kColorSubject);
+
+            break;
+
+          case TextFormFieldEnum.content:
+            kValidatorFunction(
+                value: value, kColor: controllerGetManager.kColorContent);
+
+            break;
         }
+
         return null;
       },
       onFieldSubmitted: (value) {
@@ -222,7 +254,7 @@ class TextFormFieldWidget extends StatelessWidget {
             vertical: 10, horizontal: 20), // Adjust the padding as needed
         enabledBorder: OutlineInputBorder(
           gapPadding: 2,
-          borderSide: BorderSide(color: kWhite),
+          borderSide: BorderSide(color: kColor),
           borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         focusedBorder: OutlineInputBorder(

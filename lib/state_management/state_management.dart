@@ -28,7 +28,11 @@ class GetManagerController extends GetxController {
       kColorHome = kBlue.obs,
       kColorServices = Colors.transparent.obs,
       kColorProject = Colors.transparent.obs,
-      kColorContact = Colors.transparent.obs;
+      kColorContact = Colors.transparent.obs,
+      kColorName = kWhite.obs,
+      kColorEmail = kWhite.obs,
+      kColorSubject = kWhite.obs,
+      kColorContent = kWhite.obs;
 
   late AnimationController kController;
   late Animation<double> kAnimation;
