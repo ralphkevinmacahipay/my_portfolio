@@ -14,6 +14,10 @@ enum ContactEnum { instagram, facebook, gihub, linkedin }
 
 enum TextFormFieldEnum { name, email, subject, content }
 
+enum PlatFormEnum { mobile, tablet, web }
+
+enum SizeTypeEnum { height, width }
+
 String getNavNmae(NavItemEnum item) {
   switch (item) {
     case NavItemEnum.home:
@@ -79,4 +83,40 @@ void onPressContact({required ContactEnum contactEnum}) {
 
       break;
   }
+}
+
+double getSize({
+  required SizeTypeEnum sizeType,
+  required PlatFormEnum kPlatform,
+}) {
+  late double size;
+  switch (sizeType) {
+    case SizeTypeEnum.width:
+      switch (kPlatform) {
+        case PlatFormEnum.mobile:
+          size = SizeConfig.blockX! * 7;
+          break;
+        case PlatFormEnum.tablet:
+          break;
+        case PlatFormEnum.web:
+          size = SizeConfig.blockX! * 2;
+
+          break;
+      }
+      break;
+    case SizeTypeEnum.height:
+      switch (kPlatform) {
+        case PlatFormEnum.mobile:
+          size = SizeConfig.blockX! * 7;
+          break;
+        case PlatFormEnum.tablet:
+          break;
+        case PlatFormEnum.web:
+          size = SizeConfig.blockX! * 2;
+
+          break;
+      }
+      break;
+  }
+  return size;
 }

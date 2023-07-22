@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../functions/functions_widget.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
@@ -98,35 +94,6 @@ class ChatButton extends GetView<ServiceOfGetValue> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            Future sendEmail() async {
-              final url =
-                  Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-              const serviceId = "service_e1jtrn2";
-              const templateId = "template_jqm56ps";
-              const userID = "Kuyvp1B40YV1mN9WA";
-
-              final response = await http.post(
-                url,
-                headers: {'Content-Type': 'application/json'},
-                body: json.encode(
-                  {
-                    "service_id": serviceId,
-                    "template_id": templateId,
-                    "user_id": userID,
-                    "template_params": {
-                      "name": controller.senderNameController.value.text,
-                      "subject": controller.subjectController.value.text,
-                      "message": controller.contentController.value.text,
-                      "user_email": controller.senderEmailController.value.text,
-                    }
-                  },
-                ),
-              );
-
-              debugPrint("response.statusCode: ${response.body}");
-              return response.statusCode;
-            }
-
             return AlertDialog(
               backgroundColor: kLighBlue,
               title: Row(
@@ -204,13 +171,20 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                         controller.contentController.value,
                                   )),
                               SizedBox(height: SizeConfig.blockY! * 1),
-                              controllerGetManager.kIsTap.value
+                              controller.kIsTap.value
                                   ? Container(
                                       margin: EdgeInsets.only(
                                         top: SizeConfig.blockY! * 2,
                                       ),
-                                      height: SizeConfig.blockX! * 2,
-                                      width: SizeConfig.blockX! * 2,
+                                      // height: SizeConfig.blockX! * 2,
+                                      height: getSize(
+                                          kPlatform: controllerGetManager
+                                              .kPlatformEnum.value,
+                                          sizeType: SizeTypeEnum.height),
+                                      width: getSize(
+                                          kPlatform: controllerGetManager
+                                              .kPlatformEnum.value,
+                                          sizeType: SizeTypeEnum.width),
                                       child: const CircularProgressIndicator())
                                   : Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
@@ -222,57 +196,18 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                                             kFontSize: kFontSize,
                                             kOnTap: () {
                                               controllerGetManager
-                                                      .kIsTap.value =
-                                                  !controllerGetManager
-                                                      .kIsTap.value;
-                                              debugPrint(
-                                                  "controller.senderNameController.value: ${controller.senderNameController.value.text.toString()}");
-
-                                              debugPrint(
-                                                  "controller.senderEmailController.value: ${controller.senderEmailController.value.text.toString()}");
-
-                                              debugPrint(
-                                                  "controller.subjectController.value: ${controller.subjectController.value.text.toString()}");
-
-                                              debugPrint(
-                                                  "controller.contentController.value: ${controller.contentController.value.text.toString()}");
-
+                                                  .setBuildContext(
+                                                      context: context);
                                               if (formKey.currentState!
                                                       .validate() &&
                                                   isAllFieldsNotEmpty(
                                                       controller)) {
-                                                debugPrint(
-                                                    "isAllFieldsNotEmpty(controller): ${isAllFieldsNotEmpty(controller)}");
-                                                debugPrint("Print send");
-                                                //  sendEmail();
-                                                controller
-                                                    .senderNameController.value
-                                                    .clear();
-                                                controller
-                                                    .senderEmailController.value
-                                                    .clear();
-                                                controller
-                                                    .subjectController.value
-                                                    .clear();
-                                                controller
-                                                    .contentController.value
-                                                    .clear();
-                                                Navigator.of(context).pop();
-                                                showTopSnackBar(
-                                                  displayDuration:
-                                                      const Duration(
-                                                          seconds: 1),
-                                                  Overlay.of(context),
-                                                  CustomSnackBar.success(
-                                                    icon: Icon(
-                                                      Icons
-                                                          .sentiment_very_satisfied,
-                                                      color: kTransparent,
-                                                    ),
-                                                    message:
-                                                        "Message was successfully sent.",
-                                                  ),
-                                                );
+                                                controller.kIsTap.value =
+                                                    !controller.kIsTap.value;
+                                                sendEmail(
+                                                    context: context,
+                                                    controller:
+                                                        controllerServiceOfGetValue);
                                               }
                                             },
                                             kPadding: EdgeInsets.symmetric(
