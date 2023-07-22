@@ -184,3 +184,5 @@ List<Map<String, dynamic>> myListIcon = [
     'onTap': ContactEnum.linkedin,
   },
 ];
+
+final formKey = GlobalKey<FormState>();

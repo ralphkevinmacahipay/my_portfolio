@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_profile/state_management/put_get.dart';
 
 import '../configuration/constant.dart';
+import '../configuration/enum.dart';
 import '../configuration/style.dart';
 import '../state_management/state_management.dart';
 
@@ -184,6 +185,7 @@ class InkWellWIdget extends StatelessWidget {
 //TextFormFieldWidget
 
 class TextFormFieldWidget extends StatelessWidget {
+  final TextFormFieldEnum kTextFormFieldEnum;
   final String kText;
   final TextEditingController textEditingController;
 
@@ -192,6 +194,7 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.controller,
     required this.kText,
     required this.textEditingController,
+    required this.kTextFormFieldEnum,
   });
 
   final ServiceOfGetValue controller;
@@ -199,6 +202,14 @@ class TextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          // TODO: set up the TextFormFieldEnum switch case test it first before commit
+          debugPrint("validator");
+          return null;
+        }
+        return null;
+      },
       onFieldSubmitted: (value) {
         controller.senderNameController.value.text = value;
       },

@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import '../../functions/functions_widget.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
 import '../../state_management/state_management.dart';
@@ -119,6 +122,7 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                   },
                 ),
               );
+
               debugPrint("response.statusCode: ${response.body}");
               return response.statusCode;
             }
@@ -150,66 +154,108 @@ class ChatButton extends GetView<ServiceOfGetValue> {
                       minWidth: SizeConfig.blockX! * 20,
                       maxHeight: SizeConfig.blockY! * 50,
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Obx(() => TextFormFieldWidget(
-                                controller: controller,
-                                kText: 'Sender Name',
-                                textEditingController:
-                                    controller.senderNameController.value,
-                              )),
-                          SizedBox(height: SizeConfig.blockY! * 1),
-                          Obx(() => TextFormFieldWidget(
-                                controller: controller,
-                                kText: 'Sender Email',
-                                textEditingController:
-                                    controller.senderEmailController.value,
-                              )),
-                          SizedBox(height: SizeConfig.blockY! * 1),
-                          Obx(() => TextFormFieldWidget(
-                                controller: controller,
-                                kText: 'Subject',
-                                textEditingController:
-                                    controller.subjectController.value,
-                              )),
-                          SizedBox(height: SizeConfig.blockY! * 1),
-                          Obx(() => TextFormFieldWidget(
-                                controller: controller,
-                                kText: 'Content',
-                                textEditingController:
-                                    controller.contentController.value,
-                              )),
-                          SizedBox(height: SizeConfig.blockY! * 1),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Obx(
-                                () => InkWellWIdget(
-                                  kPaddingResponsive: kPaddingResponsive,
-                                  kFontSize: kFontSize,
-                                  kOnTap: () {
-                                    debugPrint("Print send");
-                                    sendEmail();
-                                    Navigator.of(context).pop();
-                                  },
-                                  kPadding: EdgeInsets.symmetric(
-                                    vertical: SizeConfig.blockY! * .5,
-                                    horizontal: SizeConfig.blockX! * 1,
+                    child: Form(
+                      key: formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Obx(() => TextFormFieldWidget(
+                                  controller: controller,
+                                  kText: 'Sender Name',
+                                  textEditingController:
+                                      controller.senderNameController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  controller: controller,
+                                  kText: 'Sender Email',
+                                  textEditingController:
+                                      controller.senderEmailController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  controller: controller,
+                                  kText: 'Subject',
+                                  textEditingController:
+                                      controller.subjectController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  controller: controller,
+                                  kText: 'Content',
+                                  textEditingController:
+                                      controller.contentController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Obx(
+                                  () => InkWellWIdget(
+                                    kPaddingResponsive: kPaddingResponsive,
+                                    kFontSize: kFontSize,
+                                    kOnTap: () {
+                                      debugPrint(
+                                          "controller.senderNameController.value: ${controller.senderNameController.value.text.toString()}");
+
+                                      debugPrint(
+                                          "controller.senderEmailController.value: ${controller.senderEmailController.value.text.toString()}");
+
+                                      debugPrint(
+                                          "controller.subjectController.value: ${controller.subjectController.value.text.toString()}");
+
+                                      debugPrint(
+                                          "controller.contentController.value: ${controller.contentController.value.text.toString()}");
+
+                                      if (formKey.currentState!.validate() &&
+                                          isAllFieldsNotEmpty(controller)) {
+                                        debugPrint(
+                                            "isAllFieldsNotEmpty(controller): ${isAllFieldsNotEmpty(controller)}");
+                                        debugPrint("Print send");
+                                        //  sendEmail();
+                                        controller.senderNameController.value
+                                            .clear();
+                                        controller.senderEmailController.value
+                                            .clear();
+                                        controller.subjectController.value
+                                            .clear();
+                                        controller.contentController.value
+                                            .clear();
+                                        Navigator.of(context).pop();
+                                        showTopSnackBar(
+                                          displayDuration:
+                                              const Duration(seconds: 1),
+                                          Overlay.of(context),
+                                          CustomSnackBar.success(
+                                            icon: Icon(
+                                              Icons.sentiment_very_satisfied,
+                                              color: kTransparent,
+                                            ),
+                                            message:
+                                                "Message was successfully sent.",
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    kPadding: EdgeInsets.symmetric(
+                                      vertical: SizeConfig.blockY! * .5,
+                                      horizontal: SizeConfig.blockX! * 1,
+                                    ),
+                                    onHover: (value) => controllerGetManager
+                                        .setIsHoverSend(value),
+                                    controller: controllerGetManager,
+                                    kText: "Send",
+                                    kColor: kBlue,
+                                    kIsHover:
+                                        controllerGetManager.getIsHoverSend,
                                   ),
-                                  onHover: (value) => controllerGetManager
-                                      .setIsHoverSend(value),
-                                  controller: controllerGetManager,
-                                  kText: "Send",
-                                  kColor: kBlue,
-                                  kIsHover: controllerGetManager.getIsHoverSend,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

@@ -8,6 +8,12 @@ import '../state_management/put_get.dart';
 
 enum NavItemEnum { home, services, project, contact }
 
+enum ColumnType { one, two, three }
+
+enum ContactEnum { instagram, facebook, gihub, linkedin }
+
+enum TextFormFieldEnum { name, email, subject, content }
+
 String getNavNmae(NavItemEnum item) {
   switch (item) {
     case NavItemEnum.home:
@@ -51,20 +57,6 @@ void onPressedNav(
       debugPrint("contact");
       break;
   }
-}
-
-enum ColumnType {
-  one,
-  two,
-  three,
-}
-
-enum ContactEnum {
-  instagram,
-  facebook,
-  gihub,
-
-  linkedin,
 }
 
 void onPressContact({required ContactEnum contactEnum}) {
