@@ -24,7 +24,7 @@ String kInstagram = "assets/instagram_image.png";
 String kLinkedIn = "assets/linkedin_image.png";
 String kGitHub = "assets/github_image.png";
 String kGoogleCP = "assets/google_cloud_platform.png";
-String kChatImage = "assets/chat_image.riv";
+String kChatImage = "messge.json";
 String kExitImage = "assets/exit_image.png";
 
 Color kValidatorColor = Colors.red;
@@ -49,7 +49,7 @@ String text_1 = 'Hi, Welcome to my space\n';
 String text_2 = 'I’m Ralph';
 String text_3 = " What can I do?";
 String kDownloadCV = "DOWNLOAD CV";
-String text_home =
+String textHome =
     "A freelancer that provides programming services and project implementation";
 String text_4 =
     " As a freelance designer and developer, I've collaborated with startups to create digital products for businesses and consumers alike. My services span brand design and programming, offering comprehensive solutions for diverse needs. With a passion for innovation and a commitment to excellence.";

@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../configuration/constant.dart';
+import '../../configuration/enum.dart';
 import '../../configuration/style.dart';
+import '../../state_management/state_management.dart';
 
-class ServicesWidgetMobile extends StatelessWidget {
+class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
   const ServicesWidgetMobile({
     super.key,
   });
@@ -30,20 +33,38 @@ class ServicesWidgetMobile extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: kPoppinRegular.copyWith(
                   color: kLightGrey,
-                  fontSize: SizeConfig.blockX! * 4,
+                  fontSize: getSizeDynamic(
+                      kPlatform: controller.kPlatform.value,
+                      sizeType: SizeTypeEnum.width,
+                      kWidthMobile: 4,
+                      kWidthTablet: 3.5,
+                      kWidthWeb: 4),
                 ),
               ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: SizeConfig.blockY! * 15),
+            padding: EdgeInsets.only(
+              top: getSizeDynamic(
+                  kPlatform: controller.kPlatform.value,
+                  sizeType: SizeTypeEnum.width,
+                  kWidthMobile: 15,
+                  kWidthTablet: 38,
+                  kWidthWeb: 15),
+            ),
             child: Align(
               alignment: Alignment.center,
               child: CarouselSlider(
                 options: CarouselOptions(
                   enlargeCenterPage: true,
                   viewportFraction: .8,
-                  height: SizeConfig.blockY! * 48,
+                  height: getSizeDynamic(
+                    kHeigthMobile: 48,
+                    kHeigthTablet: 47,
+                    kHeigtWeb: 48,
+                    kPlatform: controller.kPlatform.value,
+                    sizeType: SizeTypeEnum.height,
+                  ),
                   autoPlay: true,
                 ),
                 items: listItemCorouselServices

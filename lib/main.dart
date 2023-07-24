@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/c_tablet/tablet.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/state_management/put_get.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -8,6 +7,7 @@ import 'a_desktop/a_home/a_home.dart';
 import 'b_mobile/index_drawer.dart';
 import 'configuration/constant.dart';
 import 'configuration/enum.dart';
+import 'configuration/style.dart';
 import 'state_management/state_management.dart';
 
 void main() {
@@ -39,18 +39,18 @@ class ResponsiveWidget extends GetView<ServiceOfMessage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= 1024) {
+        SizeConfig().init(context);
+        double screenWidth = constraints.maxWidth;
+
+        if (screenWidth >= 1008) {
           controller.kPlatform.value = PlatFormEnumType.desktop;
 
-          // Extra large devices (breakpoint: 1024)
           return const HomeDesktop();
-        } else if (constraints.maxWidth >= 768) {
+        } else if (screenWidth >= 641 && screenWidth <= 1007) {
           controller.kPlatform.value = PlatFormEnumType.tablet;
 
-          // Large devices (breakpoint: 992)
-          return const TabletLayout();
+          return MobileLayout();
         } else {
-          // Medium devices (breakpoint: 768)
           controllerGetManager.isMobile.value = true;
           controller.kPlatform.value = PlatFormEnumType.mobile;
           return MobileLayout();

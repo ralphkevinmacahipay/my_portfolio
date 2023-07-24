@@ -97,6 +97,48 @@ double getSize({
           size = SizeConfig.blockX! * 7;
           break;
         case PlatFormEnumType.tablet:
+          size = SizeConfig.blockX! * 7;
+
+          break;
+        case PlatFormEnumType.desktop:
+          size = SizeConfig.blockX! * 2;
+
+          break;
+      }
+      break;
+    case SizeTypeEnum.height:
+      switch (kPlatform) {
+        case PlatFormEnumType.mobile:
+          size = SizeConfig.blockX! * 7;
+          break;
+        case PlatFormEnumType.tablet:
+          size = SizeConfig.blockX! * 7;
+
+          break;
+        case PlatFormEnumType.desktop:
+          size = SizeConfig.blockX! * 2;
+
+          break;
+      }
+      break;
+  }
+  return size;
+}
+
+double getFontSize({
+  required SizeTypeEnum sizeType,
+  required PlatFormEnumType kPlatform,
+}) {
+  late double size;
+  switch (sizeType) {
+    case SizeTypeEnum.width:
+      switch (kPlatform) {
+        case PlatFormEnumType.mobile:
+          size = SizeConfig.blockX! * 5;
+          break;
+        case PlatFormEnumType.tablet:
+          size = SizeConfig.blockX! * 2;
+
           break;
         case PlatFormEnumType.desktop:
           size = SizeConfig.blockX! * 2;
@@ -113,6 +155,52 @@ double getSize({
           break;
         case PlatFormEnumType.desktop:
           size = SizeConfig.blockX! * 2;
+
+          break;
+      }
+      break;
+  }
+  return size;
+}
+
+double getSizeDynamic({
+  required SizeTypeEnum sizeType,
+  required PlatFormEnumType kPlatform,
+  double? kHeigthMobile,
+  double? kHeigthTablet,
+  double? kHeigtWeb,
+  double? kWidthMobile,
+  double? kWidthTablet,
+  double? kWidthWeb,
+}) {
+  late double size;
+  switch (sizeType) {
+    case SizeTypeEnum.width:
+      switch (kPlatform) {
+        case PlatFormEnumType.mobile:
+          size = SizeConfig.blockX! * kWidthMobile!;
+          break;
+        case PlatFormEnumType.tablet:
+          size = SizeConfig.blockX! * kWidthTablet!;
+
+          break;
+        case PlatFormEnumType.desktop:
+          size = SizeConfig.blockX! * kWidthWeb!;
+
+          break;
+      }
+      break;
+    case SizeTypeEnum.height:
+      switch (kPlatform) {
+        case PlatFormEnumType.mobile:
+          size = SizeConfig.blockY! * kHeigthMobile!;
+          break;
+        case PlatFormEnumType.tablet:
+          size = SizeConfig.blockY! * kHeigthTablet!;
+
+          break;
+        case PlatFormEnumType.desktop:
+          size = SizeConfig.blockY! * kHeigtWeb!;
 
           break;
       }

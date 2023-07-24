@@ -11,7 +11,6 @@ class Contact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SizedBox(
       height: SizeConfig.blockY! * 50,
       width: SizeConfig.blockX! * 100,

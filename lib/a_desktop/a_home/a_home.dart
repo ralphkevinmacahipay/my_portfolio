@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
@@ -7,7 +8,6 @@ import '../../functions/functions_widget.dart';
 import '../../my_widget/my_widget.dart';
 import '../../state_management/put_get.dart';
 import '../../state_management/state_management.dart';
-import 'package:rive/rive.dart';
 import '../../configuration/enum.dart';
 import 'body.dart';
 
@@ -16,9 +16,8 @@ class HomeDesktop extends GetView<GetManagerController> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: const Padding(
         padding: EdgeInsets.only(right: 60, bottom: 60),
         child: ChatButton(),
@@ -33,7 +32,6 @@ class HomeDesktop extends GetView<GetManagerController> {
         ),
         backgroundColor: kDarkBlue,
         actions: [
-          // TODO: implement Hover effect using inkWell
           Obx(
             () => NavItem(
               navItem: NavItemEnum.home,
@@ -201,10 +199,6 @@ class ChatButton extends GetView<ServiceOfMessage> {
                                                 sendMessage(
                                                     context: context,
                                                     controller: controller);
-
-                                                if (!controller.kIsTap.value) {
-                                                  debugPrint("code here ***");
-                                                }
                                               }
                                             },
                                             kPadding: EdgeInsets.symmetric(
@@ -236,10 +230,7 @@ class ChatButton extends GetView<ServiceOfMessage> {
           },
         );
       },
-      child: RiveAnimation.asset(
-        fit: BoxFit.cover,
-        kChatImage,
-      ),
+      child: Lottie.asset(kChatImage, fit: BoxFit.cover),
     );
   }
 }

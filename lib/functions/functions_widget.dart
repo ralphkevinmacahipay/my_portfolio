@@ -51,18 +51,7 @@ void sendMessage(
   if (await sendEmail(controller: controller) == 200) {
     await Future.delayed(const Duration(seconds: 1));
     popAndSnackBar();
-    // Navigator.of(context).pop();
-    // showTopSnackBar(
-    //   displayDuration: const Duration(seconds: 1),
-    //   Overlay.of(context),
-    //   CustomSnackBar.success(
-    //     icon: Icon(
-    //       Icons.sentiment_very_satisfied,
-    //       color: kTransparent,
-    //     ),
-    //     message: "Message was successfully sent.",
-    //   ),
-    // );
+
     debugPrint("coe herererer");
     controller.kIsTap.value = false;
   }

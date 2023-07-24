@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_profile/state_management/state_management.dart';
 
 import '../../configuration/constant.dart';
+import '../../configuration/enum.dart';
 import '../../configuration/style.dart';
 
 class HomeWidgetMobile extends GetView<ServiceOfMessage> {
@@ -38,8 +39,18 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
-                width: SizeConfig.blockX! * 70,
-                height: SizeConfig.blockX! * 70,
+                width: getSizeDynamic(
+                    kPlatform: controller.kPlatform.value,
+                    sizeType: SizeTypeEnum.width,
+                    kWidthMobile: 70,
+                    kWidthTablet: 40,
+                    kWidthWeb: 70),
+                height: getSizeDynamic(
+                    kPlatform: controller.kPlatform.value,
+                    sizeType: SizeTypeEnum.width,
+                    kWidthMobile: 70,
+                    kWidthTablet: 40,
+                    kWidthWeb: 70),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
@@ -52,7 +63,6 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                 ),
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  radius: SizeConfig.blockX! * 70,
                   backgroundImage: AssetImage(kProfile),
                 ),
               ),
@@ -68,9 +78,12 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                     TextSpan(
                       text: text_1,
                       style: kPoppinSemiBold.copyWith(
-                        wordSpacing: SizeConfig.blockX! * 0.2,
-                        letterSpacing: SizeConfig.blockX! * 0.2,
-                        fontSize: SizeConfig.blockX! * 5,
+                        fontSize: getSizeDynamic(
+                            kPlatform: controller.kPlatform.value,
+                            sizeType: SizeTypeEnum.width,
+                            kWidthMobile: 5,
+                            kWidthTablet: 4,
+                            kWidthWeb: 5),
                         color: kWhite,
                       ),
                     ),
@@ -86,7 +99,12 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                         letterSpacing: SizeConfig.blockX! * 0.34,
                         height: 1.2,
                         color: kWhite,
-                        fontSize: SizeConfig.blockX! * 10,
+                        fontSize: getSizeDynamic(
+                            kPlatform: controller.kPlatform.value,
+                            sizeType: SizeTypeEnum.width,
+                            kWidthMobile: 10,
+                            kWidthTablet: 8,
+                            kWidthWeb: 10),
                       ),
                     ),
                     const TextSpan(
@@ -103,7 +121,12 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                               Text(
                                 "A",
                                 style: kPoppinSemiBold.copyWith(
-                                  fontSize: SizeConfig.blockX! * 5,
+                                  fontSize: getSizeDynamic(
+                                      kPlatform: controller.kPlatform.value,
+                                      sizeType: SizeTypeEnum.width,
+                                      kWidthMobile: 5,
+                                      kWidthTablet: 4,
+                                      kWidthWeb: 5),
                                   color: kWhite,
                                 ),
                               ),
@@ -131,10 +154,15 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                text_home,
+                textHome,
                 style: kPoppinRegular.copyWith(
                   color: kLightGrey,
-                  fontSize: SizeConfig.blockX! * 6,
+                  fontSize: getSizeDynamic(
+                      kPlatform: controller.kPlatform.value,
+                      sizeType: SizeTypeEnum.width,
+                      kWidthMobile: 6,
+                      kWidthTablet: 3,
+                      kWidthWeb: 6),
                 ),
               ),
             ),

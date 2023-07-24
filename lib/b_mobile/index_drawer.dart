@@ -14,14 +14,13 @@ import 'b_services_mobile/services.dart';
 import 'c_project_mobile/project.dart';
 import 'd_contact_mobile/contacts.dart';
 
-class MobileLayout extends StatelessWidget {
+class MobileLayout extends GetView<ServiceOfMessage> {
   final List<String> categories = ['Services', 'Projects', 'Contact'];
 
   MobileLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         floatingActionButton: Padding(
@@ -29,7 +28,9 @@ class MobileLayout extends StatelessWidget {
               bottom: SizeConfig.blockY! * 3, right: SizeConfig.blockX! * 3),
           child: ChatButton(
               kFontSizeTitle: SizeConfig.blockX! * 5,
-              kFontSize: SizeConfig.blockX! * 5,
+              kFontSize: getFontSize(
+                  kPlatform: controller.kPlatform.value,
+                  sizeType: SizeTypeEnum.width),
               kPaddingResponsive: EdgeInsets.symmetric(
                   vertical: SizeConfig.blockX! * 1,
                   horizontal: SizeConfig.blockX! * 5)),
@@ -82,7 +83,6 @@ class NavigatorDrawerWidget extends GetView<GetManagerController> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Drawer(
       width: SizeConfig.blockX! * 80,
       backgroundColor: kDarkBlue,

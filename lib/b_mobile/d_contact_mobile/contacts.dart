@@ -45,7 +45,8 @@ class ContactWidgetMobile extends StatelessWidget {
                     return Column(
                       children: [
                         IconButton(
-                            iconSize: SizeConfig.blockX! * 21,
+                            iconSize: SizeConfig.blockY! * 8 +
+                                SizeConfig.blockX! * 8 / 2,
                             onPressed: () {
                               debugPrint("Cool");
                               onPressContact(
@@ -70,7 +71,7 @@ class ContactWidgetMobile extends StatelessWidget {
                                         ))),
                               ),
                             )),
-                        SizedBox(height: SizeConfig.blockY! * 4),
+                        SizedBox(height: SizeConfig.blockY! * 2),
                       ],
                     );
                   },
