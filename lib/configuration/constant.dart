@@ -24,7 +24,7 @@ String kInstagram = "assets/instagram_image.png";
 String kLinkedIn = "assets/linkedin_image.png";
 String kGitHub = "assets/github_image.png";
 String kGoogleCP = "assets/google_cloud_platform.png";
-String kChatImage = "messge.json";
+String kChatImage = "assets/chat_image.riv";
 String kExitImage = "assets/exit_image.png";
 
 Color kValidatorColor = Colors.red;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:my_profile/a_desktop/a_home/navigator.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/configuration/style.dart';
@@ -10,6 +9,7 @@ import '../../state_management/put_get.dart';
 import '../../state_management/state_management.dart';
 import '../../configuration/enum.dart';
 import 'body.dart';
+import 'package:rive/rive.dart';
 
 class HomeDesktop extends GetView<GetManagerController> {
   const HomeDesktop({super.key});
@@ -230,7 +230,9 @@ class ChatButton extends GetView<ServiceOfMessage> {
           },
         );
       },
-      child: Lottie.asset(kChatImage, fit: BoxFit.cover),
+      child: RiveAnimation.asset(
+        kChatImage,
+      ),
     );
   }
 }
