@@ -60,7 +60,7 @@ String text_8 = "Flutter";
 String text_9 = "Firebase";
 String text_10 = "UI/UX Designer";
 String text_11 =
-    "Transforming ideas into intuitive interfaces with a human touch.";
+    "Transforming ideas into intuitive interfaces\nwith a human touch.";
 String text_12 = "Figma";
 String text_13 = "Flaticon";
 String text_14 = "Web App Development";

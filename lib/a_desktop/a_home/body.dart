@@ -23,6 +23,7 @@ class BodyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(

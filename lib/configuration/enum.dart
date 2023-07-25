@@ -164,6 +164,7 @@ double getFontSize({
 }
 
 double getSizeDynamic({
+  required BuildContext context,
   required SizeTypeEnum sizeType,
   required PlatFormEnumType kPlatform,
   double? kHeigthMobile,
@@ -173,6 +174,7 @@ double getSizeDynamic({
   double? kWidthTablet,
   double? kWidthWeb,
 }) {
+  SizeConfig().init(context);
   late double size;
   switch (sizeType) {
     case SizeTypeEnum.width:

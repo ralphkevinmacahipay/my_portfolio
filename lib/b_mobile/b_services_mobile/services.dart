@@ -14,6 +14,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SizedBox(
       height: SizeConfig.blockY! * 100,
       width: SizeConfig.blockX! * 100,
@@ -34,6 +35,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                 style: kPoppinRegular.copyWith(
                   color: kLightGrey,
                   fontSize: getSizeDynamic(
+                      context: context,
                       kPlatform: controller.kPlatform.value,
                       sizeType: SizeTypeEnum.width,
                       kWidthMobile: 4,
@@ -46,6 +48,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
           Padding(
             padding: EdgeInsets.only(
               top: getSizeDynamic(
+                  context: context,
                   kPlatform: controller.kPlatform.value,
                   sizeType: SizeTypeEnum.width,
                   kWidthMobile: 15,
@@ -59,6 +62,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                   enlargeCenterPage: true,
                   viewportFraction: .8,
                   height: getSizeDynamic(
+                    context: context,
                     kHeigthMobile: 48,
                     kHeigthTablet: 47,
                     kHeigtWeb: 48,
@@ -81,8 +85,20 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
-                                height: SizeConfig.blockY! * 15,
-                                width: SizeConfig.blockX! * 30,
+                                height: getSizeDynamic(
+                                    context: context,
+                                    kPlatform: controller.kPlatform.value,
+                                    sizeType: SizeTypeEnum.width,
+                                    kWidthMobile: 15,
+                                    kWidthTablet: 10,
+                                    kWidthWeb: 15),
+                                width: getSizeDynamic(
+                                    context: context,
+                                    kPlatform: controller.kPlatform.value,
+                                    sizeType: SizeTypeEnum.width,
+                                    kWidthMobile: 30,
+                                    kWidthTablet: 15,
+                                    kWidthWeb: 30),
                                 child: Image.asset(kItems['kMainImage'],
                                     fit: BoxFit.fill),
                               ),
@@ -90,7 +106,13 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                                 kItems["kTextTitle"],
                                 style: kPoppinBold.copyWith(
                                   color: kWhite,
-                                  fontSize: SizeConfig.blockX! * 5,
+                                  fontSize: getSizeDynamic(
+                                      context: context,
+                                      kPlatform: controller.kPlatform.value,
+                                      sizeType: SizeTypeEnum.width,
+                                      kWidthMobile: 5,
+                                      kWidthTablet: 4,
+                                      kWidthWeb: 5),
                                 ),
                               ),
                               Text(
@@ -98,7 +120,13 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                                 textAlign: TextAlign.center,
                                 style: kPoppinSemiBold.copyWith(
                                   color: kWhite,
-                                  fontSize: SizeConfig.blockX! * 3.5,
+                                  fontSize: getSizeDynamic(
+                                      context: context,
+                                      kPlatform: controller.kPlatform.value,
+                                      sizeType: SizeTypeEnum.width,
+                                      kWidthMobile: 3.5,
+                                      kWidthTablet: 3,
+                                      kWidthWeb: 3.5),
                                 ),
                               ),
                               Column(

@@ -14,6 +14,7 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     List<TyperAnimatedText> itemsAnimatedTextMobile = [
       TyperAnimatedText(kTextAnimated_1,
           textStyle: kPoppinBold.copyWith(
@@ -40,12 +41,14 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
               alignment: Alignment.topCenter,
               child: Container(
                 width: getSizeDynamic(
+                    context: context,
                     kPlatform: controller.kPlatform.value,
                     sizeType: SizeTypeEnum.width,
                     kWidthMobile: 70,
                     kWidthTablet: 40,
                     kWidthWeb: 70),
                 height: getSizeDynamic(
+                    context: context,
                     kPlatform: controller.kPlatform.value,
                     sizeType: SizeTypeEnum.width,
                     kWidthMobile: 70,
@@ -79,6 +82,7 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                       text: text_1,
                       style: kPoppinSemiBold.copyWith(
                         fontSize: getSizeDynamic(
+                            context: context,
                             kPlatform: controller.kPlatform.value,
                             sizeType: SizeTypeEnum.width,
                             kWidthMobile: 5,
@@ -100,6 +104,7 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                         height: 1.2,
                         color: kWhite,
                         fontSize: getSizeDynamic(
+                            context: context,
                             kPlatform: controller.kPlatform.value,
                             sizeType: SizeTypeEnum.width,
                             kWidthMobile: 10,
@@ -122,6 +127,7 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                                 "A",
                                 style: kPoppinSemiBold.copyWith(
                                   fontSize: getSizeDynamic(
+                                      context: context,
                                       kPlatform: controller.kPlatform.value,
                                       sizeType: SizeTypeEnum.width,
                                       kWidthMobile: 5,
@@ -158,6 +164,7 @@ class HomeWidgetMobile extends GetView<ServiceOfMessage> {
                 style: kPoppinRegular.copyWith(
                   color: kLightGrey,
                   fontSize: getSizeDynamic(
+                      context: context,
                       kPlatform: controller.kPlatform.value,
                       sizeType: SizeTypeEnum.width,
                       kWidthMobile: 6,

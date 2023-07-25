@@ -11,6 +11,7 @@ class WordsWidgetMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SizedBox(
       height: SizeConfig.blockY! * 100,
       width: SizeConfig.blockX! * 100,

@@ -67,15 +67,6 @@ class HomeDesktop extends GetView<GetManagerController> {
                   navItem: NavItemEnum.contact,
                 ),
               ),
-
-              // Obx(
-              //   () => NavItem(
-              //       controller: controller,
-              //       kColor: controller.kColorContact.value,
-              //       navItem: NavItemEnum.contact),
-
-              // ),
-
               SizedBox(width: SizeConfig.blockX! * 5),
             ],
           )
@@ -116,7 +107,7 @@ class ChatButton extends GetView<ServiceOfMessage> {
                   Text(
                     'Let’s Connect',
                     style: kPoppinBold.copyWith(
-                      fontSize: kFontSizeTitle ?? SizeConfig.blockX! * 1.5,
+                      fontSize: kFontSizeTitle ?? 25,
                       color: kWhite,
                     ),
                   ),
@@ -130,112 +121,105 @@ class ChatButton extends GetView<ServiceOfMessage> {
               ),
               content: Builder(
                 builder: (context) {
-                  return ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: SizeConfig.blockX! * 20,
-                      maxHeight: SizeConfig.blockY! * 50,
-                    ),
+                  return SizedBox(
+                    width: SizeConfig.blockX! * 20,
+                    height: SizeConfig.blockY! * 40,
                     child: Form(
                       key: formKey,
-                      child: SingleChildScrollView(
-                        child: Obx(
-                          () => Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Obx(() => TextFormFieldWidget(
-                                    kColor:
-                                        controllerGetManager.kColorName.value,
-                                    kTextFormFieldEnum: TextFormFieldEnum.name,
-                                    controller: controller,
-                                    kText: 'Sender Name',
-                                    textEditingController:
-                                        controller.senderNameController.value,
-                                  )),
-                              SizedBox(height: SizeConfig.blockY! * 1),
-                              Obx(() => TextFormFieldWidget(
-                                    kColor:
-                                        controllerGetManager.kColorEmail.value,
-                                    kTextFormFieldEnum: TextFormFieldEnum.email,
-                                    controller: controller,
-                                    kText: 'Sender Email',
-                                    textEditingController:
-                                        controller.senderEmailController.value,
-                                  )),
-                              SizedBox(height: SizeConfig.blockY! * 1),
-                              Obx(() => TextFormFieldWidget(
-                                    kColor: controllerGetManager
-                                        .kColorSubject.value,
-                                    kTextFormFieldEnum:
-                                        TextFormFieldEnum.subject,
-                                    controller: controller,
-                                    kText: 'Subject',
-                                    textEditingController:
-                                        controller.subjectController.value,
-                                  )),
-                              SizedBox(height: SizeConfig.blockY! * 1),
-                              Obx(() => TextFormFieldWidget(
-                                    kColor: controllerGetManager
-                                        .kColorContent.value,
-                                    kTextFormFieldEnum:
-                                        TextFormFieldEnum.content,
-                                    controller: controller,
-                                    kText: 'Content',
-                                    textEditingController:
-                                        controller.contentController.value,
-                                  )),
-                              SizedBox(height: SizeConfig.blockY! * 1),
-                              controller.kIsTap.value
-                                  ? SizedBox(
-                                      height: getSize(
-                                        sizeType: SizeTypeEnum.height,
-                                        kPlatform: controller.kPlatform.value,
-                                      ),
-                                      width: getSize(
-                                        sizeType: SizeTypeEnum.width,
-                                        kPlatform: controller.kPlatform.value,
-                                      ),
-                                      child: const CircularProgressIndicator())
-                                  : Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Obx(
-                                          () => InkWellWIdget(
-                                            kPaddingResponsive:
-                                                kPaddingResponsive,
-                                            kFontSize: kFontSize,
-                                            kOnTap: () {
-                                              if (formKey.currentState!
-                                                      .validate() &&
-                                                  isAllFieldsNotEmpty(
-                                                      controller)) {
-                                                controller.kIsTap.value = true;
-
-                                                debugPrint("Print send");
-                                                sendMessage(
-                                                    context: context,
-                                                    controller: controller);
-                                              }
-                                            },
-                                            kPadding: EdgeInsets.symmetric(
-                                              vertical: SizeConfig.blockY! * .5,
-                                              horizontal:
-                                                  SizeConfig.blockX! * 1,
-                                            ),
-                                            onHover: (value) =>
-                                                controllerGetManager
-                                                    .setIsHoverSend(value),
-                                            controller: controllerGetManager,
-                                            kText: "Send",
-                                            kColor: kBlue,
-                                            kIsHover: controllerGetManager
-                                                .getIsHoverSend,
-                                          ),
-                                        ),
-                                      ],
+                      child: Obx(
+                        () => Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            // TODO: MAKE THE DATA CAME FROM Map<String,dynamic> list
+                            Obx(() => TextFormFieldWidget(
+                                  kColor: controllerGetManager.kColorName.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.name,
+                                  controller: controller,
+                                  kText: 'Sender Name',
+                                  textEditingController:
+                                      controller.senderNameController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorEmail.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.email,
+                                  controller: controller,
+                                  kText: 'Sender Email',
+                                  textEditingController:
+                                      controller.senderEmailController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorSubject.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.subject,
+                                  controller: controller,
+                                  kText: 'Subject',
+                                  textEditingController:
+                                      controller.subjectController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            Obx(() => TextFormFieldWidget(
+                                  kColor:
+                                      controllerGetManager.kColorContent.value,
+                                  kTextFormFieldEnum: TextFormFieldEnum.content,
+                                  controller: controller,
+                                  kText: 'Content',
+                                  textEditingController:
+                                      controller.contentController.value,
+                                )),
+                            SizedBox(height: SizeConfig.blockY! * 1),
+                            controller.kIsTap.value
+                                ? SizedBox(
+                                    height: getSize(
+                                      sizeType: SizeTypeEnum.height,
+                                      kPlatform: controller.kPlatform.value,
                                     ),
-                            ],
-                          ),
+                                    width: getSize(
+                                      sizeType: SizeTypeEnum.width,
+                                      kPlatform: controller.kPlatform.value,
+                                    ),
+                                    child: const CircularProgressIndicator())
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Obx(
+                                        () => InkWellWIdget(
+                                          kPaddingResponsive:
+                                              kPaddingResponsive,
+                                          kFontSize: kFontSize,
+                                          kOnTap: () {
+                                            if (formKey.currentState!
+                                                    .validate() &&
+                                                isAllFieldsNotEmpty(
+                                                    controller)) {
+                                              controller.kIsTap.value = true;
+
+                                              debugPrint("Print send");
+                                              sendMessage(
+                                                  context: context,
+                                                  controller: controller);
+                                            }
+                                          },
+                                          kPadding: EdgeInsets.symmetric(
+                                            vertical: SizeConfig.blockY! * .5,
+                                            horizontal: SizeConfig.blockX! * 1,
+                                          ),
+                                          onHover: (value) =>
+                                              controllerGetManager
+                                                  .setIsHoverSend(value),
+                                          controller: controllerGetManager,
+                                          kText: "Send",
+                                          kColor: kBlue,
+                                          kIsHover: controllerGetManager
+                                              .getIsHoverSend,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ],
                         ),
                       ),
                     ),

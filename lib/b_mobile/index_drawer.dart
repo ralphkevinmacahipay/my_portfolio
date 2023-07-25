@@ -21,6 +21,7 @@ class MobileLayout extends GetView<ServiceOfMessage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         floatingActionButton: Padding(
