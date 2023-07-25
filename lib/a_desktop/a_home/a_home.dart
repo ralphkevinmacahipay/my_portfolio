@@ -27,42 +27,58 @@ class HomeDesktop extends GetView<GetManagerController> {
           padding: EdgeInsets.only(left: SizeConfig.blockX! * 10.90),
           child: Text(
             text_5,
-            style: TextStyle(fontSize: SizeConfig.blockX! * 1.77),
+            style: kPoppinBold.copyWith(fontSize: 30),
           ),
         ),
         backgroundColor: kDarkBlue,
         actions: [
-          Obx(
-            () => NavItem(
-              navItem: NavItemEnum.home,
-              controller: controller,
-              kColor: controller.kColorHome.value,
-            ),
-          ),
-          SizedBox(width: SizeConfig.blockX! * 2.5),
-          Obx(
-            () => NavItem(
-              controller: controller,
-              kColor: controller.kColorServices.value,
-              navItem: NavItemEnum.services,
-            ),
-          ),
-          SizedBox(width: SizeConfig.blockX! * 2.5),
-          Obx(
-            () => NavItem(
-              controller: controller,
-              kColor: controller.kColorProject.value,
-              navItem: NavItemEnum.project,
-            ),
-          ),
-          SizedBox(width: SizeConfig.blockX! * 2.5),
-          Obx(
-            () => NavItem(
-                controller: controller,
-                kColor: controller.kColorContact.value,
-                navItem: NavItemEnum.contact),
-          ),
-          SizedBox(width: SizeConfig.blockX! * 10)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Obx(
+                () => NavItem(
+                  navItem: NavItemEnum.home,
+                  controller: controller,
+                  kColor: controller.kColorHome.value,
+                ),
+              ),
+              SizedBox(width: SizeConfig.blockX! * 2),
+              Obx(
+                () => NavItem(
+                  controller: controller,
+                  kColor: controller.kColorServices.value,
+                  navItem: NavItemEnum.services,
+                ),
+              ),
+              SizedBox(width: SizeConfig.blockX! * 2),
+              Obx(
+                () => NavItem(
+                  controller: controller,
+                  kColor: controller.kColorProject.value,
+                  navItem: NavItemEnum.project,
+                ),
+              ),
+              SizedBox(width: SizeConfig.blockX! * 2),
+              Obx(
+                () => NavItem(
+                  controller: controller,
+                  kColor: controller.kColorContact.value,
+                  navItem: NavItemEnum.contact,
+                ),
+              ),
+
+              // Obx(
+              //   () => NavItem(
+              //       controller: controller,
+              //       kColor: controller.kColorContact.value,
+              //       navItem: NavItemEnum.contact),
+
+              // ),
+
+              SizedBox(width: SizeConfig.blockX! * 5),
+            ],
+          )
         ],
       ),
       body: BodyHome(items: itemsAnimatedText),

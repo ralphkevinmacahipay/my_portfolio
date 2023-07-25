@@ -45,39 +45,41 @@ class NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.blockY! * 1.95,
-      width: SizeConfig.blockX! * 7,
-      margin: EdgeInsets.symmetric(vertical: SizeConfig.blockY! * 1.7),
+      height: 35,
+      width: 103,
+      padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kBorderRadius),
         color: kColor,
       ),
-      child: TextButton(
-        onPressed: () {
-          switch (navItem) {
-            case NavItemEnum.home:
-              chageColor(controller: controller, kColorHome: kBlue);
-              scrollToPosition(0);
-              break;
-            case NavItemEnum.services:
-              chageColor(controller: controller, kColorServices: kBlue);
-              scrollToPosition(SizeConfig.blockY! * 100);
-              break;
-            case NavItemEnum.project:
-              chageColor(controller: controller, kColorProject: kBlue);
+      child: Center(
+        child: TextButton(
+          onPressed: () {
+            switch (navItem) {
+              case NavItemEnum.home:
+                chageColor(controller: controller, kColorHome: kBlue);
+                scrollToPosition(0);
+                break;
+              case NavItemEnum.services:
+                chageColor(controller: controller, kColorServices: kBlue);
+                scrollToPosition(SizeConfig.blockY! * 100);
+                break;
+              case NavItemEnum.project:
+                chageColor(controller: controller, kColorProject: kBlue);
 
-              scrollToPosition(SizeConfig.blockY! * 100 * 2);
-              break;
-            case NavItemEnum.contact:
-              chageColor(controller: controller, kColorContacts: kBlue);
+                scrollToPosition(SizeConfig.blockY! * 100 * 2);
+                break;
+              case NavItemEnum.contact:
+                chageColor(controller: controller, kColorContacts: kBlue);
 
-              scrollToPosition(SizeConfig.blockY! * 100 * 4);
-              break;
-          }
-        },
-        child: Text(
-          getNavNmae(navItem),
-          style: TextStyle(fontSize: SizeConfig.blockX! * 1.3, color: kWhite),
+                scrollToPosition(SizeConfig.blockY! * 100 * 4);
+                break;
+            }
+          },
+          child: Text(
+            getNavNmae(navItem),
+            style: TextStyle(fontSize: SizeConfig.blockX! * 1.3, color: kWhite),
+          ),
         ),
       ),
     );
