@@ -72,7 +72,7 @@ String kMyGitHub = "https://github.com/ralphkevinmacahipay";
 String kMyLinkedIn =
     "https://www.linkedin.com/in/ralph-kevin-macahipay-7a12a7257/";
 String kCV =
-    'https://drive.google.com/file/d/1ea4D6juoSBXRcp7zjaQQkUFI66ekxwaV/view?usp=sharing';
+    'https://drive.google.com/file/d/1pABxVDR9oj8dR71MU4t2woHah9atog9I/view?usp=sharing';
 
 String kProjectTextTitle = "What I have done?";
 String kProjectSubTitle =
