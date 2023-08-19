@@ -207,15 +207,6 @@ class TextFormFieldWidget extends StatelessWidget {
           case TextFormFieldEnum.name:
             kValidatorFunction(
                 value: value, kColor: controllerGetManager.kColorName);
-            // if (value == null || value.isEmpty) {
-            //   // TODO: set up the TextFormFieldEnum switch case
-            //   //test it first before commit
-            //   controllerGetManager.kColorName.value = kValidatorColor;
-
-            //   return null;
-            // } else {
-            //   controllerGetManager.kColorName.value = kWhite;
-            // }
 
             break;
           case TextFormFieldEnum.email:
