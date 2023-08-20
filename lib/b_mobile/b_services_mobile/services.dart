@@ -51,7 +51,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                   context: context,
                   kPlatform: controller.kPlatform.value,
                   sizeType: SizeTypeEnum.width,
-                  kWidthMobile: 15,
+                  kWidthMobile: 30,
                   kWidthTablet: 38,
                   kWidthWeb: 15),
             ),
@@ -89,7 +89,7 @@ class ServicesWidgetMobile extends GetView<ServiceOfMessage> {
                                     context: context,
                                     kPlatform: controller.kPlatform.value,
                                     sizeType: SizeTypeEnum.width,
-                                    kWidthMobile: 15,
+                                    kWidthMobile: 20,
                                     kWidthTablet: 10,
                                     kWidthWeb: 15),
                                 width: getSizeDynamic(
