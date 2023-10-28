@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/state_management/put_get.dart';
+import 'package:my_profile/views/home_page.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
-
+import 'package:responsive_framework/responsive_framework.dart';
 import 'b_mobile/index_drawer.dart';
 import 'configuration/constant.dart';
 import 'configuration/enum.dart';
@@ -24,10 +25,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) =>
+          ResponsiveBreakpoints.builder(child: child!, breakpoints: [
+        const Breakpoint(start: 0, end: 450, name: MOBILE),
+        const Breakpoint(start: 451, end: 800, name: TABLET),
+        const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+      ]),
       title: kRalph,
       debugShowCheckedModeBanner: false,
       home:
-          const ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
+          const HomePageResponsive(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
     );
   }
 }

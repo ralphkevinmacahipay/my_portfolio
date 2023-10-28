@@ -25,6 +25,7 @@ dependencies:
   top_snackbar_flutter: ^3.1.0
   infinite_carousel: ^1.0.3
   carousel_slider: ^4.2.1
+  responsive_framework: ^1.1.1
 
 dev_dependencies:
   flutter_test:
