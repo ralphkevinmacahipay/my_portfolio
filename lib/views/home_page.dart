@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_profile/views/contacts.dart';
+import 'package:my_profile/views/home.dart';
+import 'package:my_profile/views/projects.dart';
+import 'package:my_profile/views/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -10,6 +14,7 @@ class HomePageResponsive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // backgroundColor: Colors.transparent,
         elevation: 0,
         title: ResponsiveBreakpoints.of(context).isMobile
             ? Row(children: [
@@ -43,6 +48,9 @@ class HomePageResponsive extends StatelessWidget {
                         .marginOnly(right: context.percentWidth * 5),
                     const Text("Contact")
                   ]),
+      ),
+      body: ListView(
+        children: const [HomePage(), Services(), Projects(), Contacts()],
       ),
     );
   }
