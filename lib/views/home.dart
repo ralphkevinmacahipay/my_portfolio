@@ -16,7 +16,9 @@ class HomePage extends StatelessWidget {
       width: context.percentWidth * 100,
       child: ResponsiveBreakpoints.of(context).isDesktop
           ? const DesktopHome()
-          : const TabletHome(),
+          : ResponsiveBreakpoints.of(context).isTablet
+              ? const TabletHome()
+              : const MobileHome(),
     );
   }
 }
@@ -198,6 +200,95 @@ class TabletHome extends StatelessWidget {
             onPressed: () {},
           ),
         ).marginOnly(bottom: context.percentHeight * 10)
+      ],
+    );
+  }
+}
+
+//Mobile
+class MobileHome extends StatelessWidget {
+  const MobileHome({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    List<TyperAnimatedText> itemsAnimatedText = [
+      TyperAnimatedText(kTextAnimated_1,
+          textStyle: kPoppinSemiBold.copyWith(
+              color: kWhite, fontSize: context.percentWidth * 5),
+          speed: const Duration(milliseconds: 100)),
+      TyperAnimatedText(kTextAnimated_2,
+          textStyle: kPoppinSemiBold.copyWith(
+              color: kWhite, fontSize: context.percentWidth * 5),
+          speed: const Duration(milliseconds: 100)),
+      TyperAnimatedText(kTextAnimated_3,
+          textStyle: kPoppinSemiBold.copyWith(
+              color: kWhite, fontSize: context.percentWidth * 5),
+          speed: const Duration(milliseconds: 100)),
+    ];
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: CircleAvatar(
+            radius: context.percentWidth * 30,
+            child: Image.asset(kProfile),
+          ).marginOnly(top: context.percentHeight * 7),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                    text: 'Hi, Welcome to my space\n\n',
+                    style: kPoppinSemiBold.copyWith(
+                        color: kWhite, fontSize: context.percentWidth * 5)),
+                TextSpan(
+                    text: 'I\'m Ralph\n',
+                    style: kPoppinBold.copyWith(
+                        color: kWhite, fontSize: context.percentWidth * 10)),
+                WidgetSpan(
+                  child: AnimatedTextKit(
+                    animatedTexts: itemsAnimatedText,
+                    repeatForever: true,
+                  ),
+                ),
+                const TextSpan(text: '\n\n'),
+                TextSpan(
+                    text: textHome,
+                    style: kPoppinSemiBold.copyWith(
+                        color: kLightGrey, fontSize: context.percentWidth * 6)),
+              ],
+            ),
+          ),
+        ).marginOnly(
+            bottom: context.percentHeight * 10, left: context.percentWidth * 5),
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: ElevatedButton(
+        //     style: ButtonStyle(
+        //         fixedSize: MaterialStatePropertyAll(
+        //             Size(context.percentWidth * 30, context.percentWidth * 6)),
+        //         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+        //             side: BorderSide(width: 1.5, color: kWhite),
+        //             borderRadius: BorderRadius.circular(kBorderRadius))),
+        //         backgroundColor: MaterialStateProperty.resolveWith((states) {
+        //           if (states.contains(MaterialState.hovered) ||
+        //               states.contains(MaterialState.pressed)) {
+        //             return Colors.blue;
+        //           }
+        //           return kTransparent;
+        //         })),
+        //     child: Text(
+        //       'Download CV',
+        //       style:
+        //           kPoppinSemiBold.copyWith(fontSize: context.percentWidth * 2),
+        //     ),
+        //     onPressed: () {},
+        //   ),
+        // ).marginOnly(bottom: context.percentHeight * 10)
       ],
     );
   }
