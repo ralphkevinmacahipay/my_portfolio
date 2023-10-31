@@ -112,16 +112,13 @@ final List<Map<String, dynamic>> kNavigator = [
 
 List<TyperAnimatedText> itemsAnimatedText = [
   TyperAnimatedText(kTextAnimated_1,
-      textStyle:
-          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      textStyle: kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2),
       speed: const Duration(milliseconds: 100)),
   TyperAnimatedText(kTextAnimated_2,
-      textStyle:
-          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      textStyle: kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2),
       speed: const Duration(milliseconds: 100)),
   TyperAnimatedText(kTextAnimated_3,
-      textStyle:
-          kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2, color: kWhite),
+      textStyle: kPoppinBold.copyWith(fontSize: SizeConfig.blockX! * 2),
       speed: const Duration(milliseconds: 100)),
 ];
 

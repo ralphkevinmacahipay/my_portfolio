@@ -7,13 +7,17 @@ import 'package:my_profile/views/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../configuration/constant.dart';
+
 class HomePageResponsive extends StatelessWidget {
   const HomePageResponsive({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kDarkBlue,
       appBar: AppBar(
+        toolbarHeight: context.percentHeight * 8,
         // backgroundColor: Colors.transparent,
         elevation: 0,
         title: ResponsiveBreakpoints.of(context).isMobile
