@@ -17,9 +17,10 @@ class HomePageResponsive extends StatelessWidget {
     return Scaffold(
       backgroundColor: kDarkBlue,
       appBar: AppBar(
+        shadowColor: kDarkBlue.withOpacity(.5),
         toolbarHeight: context.percentHeight * 8,
-        // backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.transparent,
+        // elevation: 5,
         title: ResponsiveBreakpoints.of(context).isMobile
             ? Row(children: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
@@ -53,8 +54,18 @@ class HomePageResponsive extends StatelessWidget {
                     const Text("Contact")
                   ]),
       ),
-      body: ListView(
-        children: const [HomePage(), Services(), Projects(), Contacts()],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(
+              kBackground,
+            ),
+          ),
+        ),
+        child: ListView(
+          children: const [HomePage(), Services(), Projects(), Contacts()],
+        ),
       ),
     );
   }

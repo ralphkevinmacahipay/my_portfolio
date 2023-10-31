@@ -41,10 +41,10 @@ Color kBackGround = const Color(0xff1275B1);
 
 Color kLightGrey = const Color(0xffAAAAAA);
 Color kLighBlue = const Color(0xff132139);
-String kTextAnimated_1 = "Mobile App Developer";
+String kTextAnimated_1 = "A Mobile App Developer";
 String kRalph = "Ralph.dart";
-String kTextAnimated_2 = "Web App Developer";
-String kTextAnimated_3 = "UI/UX Designer";
+String kTextAnimated_2 = "A Web App Developer";
+String kTextAnimated_3 = "A UI/UX Designer";
 String text_1 = 'Hi, Welcome to my space\n';
 String text_2 = 'I’m Ralph';
 String text_3 = " What can I do?";
