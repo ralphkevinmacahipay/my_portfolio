@@ -8,15 +8,36 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../a_desktop/a_home/navigator.dart';
+import '../b_mobile/index_drawer.dart';
 import '../configuration/constant.dart';
 import '../state_management/get_manager.dart';
+import 'widget_sources.dart';
 
 class HomePageResponsive extends StatelessWidget {
   const HomePageResponsive({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+    void _openEndDrawer() {
+      scaffoldKey.currentState!.openEndDrawer();
+    }
+
+    void _closeEndDrawer() {
+      Navigator.of(context).pop();
+    }
+
     return Scaffold(
+      key: scaffoldKey,
+      drawer: ResponsiveBreakpoints.of(context).isMobile
+          ? const NavDrawerMobile()
+          : null,
+      endDrawer: ResponsiveBreakpoints.of(context).isTablet
+          ? const NavDrawerTablet()
+          : null,
+      // drawer:
+      //     ResponsiveBreakpoints.of(context).isTablet ? const NavDrawer() : null,
       backgroundColor: kDarkBlue,
       appBar: AppBar(
         shadowColor: kDarkBlue.withOpacity(.5),
@@ -25,26 +46,29 @@ class HomePageResponsive extends StatelessWidget {
         // elevation: 5,
         title: ResponsiveBreakpoints.of(context).isMobile
             ? Row(children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-                    .marginOnly(right: context.percentWidth * 5),
-                const Text("Home"),
+                Text("Home",
+                    style: kPoppinBold.copyWith(
+                        fontSize: context.percentWidth * 7)),
                 const Spacer(),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.dark_mode))
               ])
             : ResponsiveBreakpoints.of(context).isTablet
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                        const Text("Home"),
-                        const Text("Ralph.dart"),
-                        IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.menu))
-                      ])
-                : Row(children: [
+                ? const Stack(children: [
+                    Align(alignment: Alignment.centerLeft, child: Text("Home")),
+                    Align(
+                        alignment: Alignment.center, child: Text("Ralph.dart")),
+                    // IconButton(
+                    //   onPressed: () {},
+                    //   icon: const Icon(Icons.menu),
+                    // )
+                  ])
+                : Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
                     IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.light_mode))
-                        .marginOnly(right: context.percentWidth * 3),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.light_mode,
+                          size: context.percentWidth * 1.5,
+                        )).marginOnly(right: context.percentWidth * 3),
                     Text("Ralph.dart",
                         style: kPoppinBold.copyWith(
                             fontSize: context.percentWidth * 2)),
@@ -72,7 +96,7 @@ class HomePageResponsive extends StatelessWidget {
                     ).marginOnly(right: context.percentWidth * 3),
                     ButtonElevated(
                       onPressd: () {
-                        scrollToPosition(context.percentHeight * 92);
+                        scrollToPosition(context.percentHeight * 92 * 4);
                         // instanceControll.setHome(services: true);
                       },
                       textTitle: 'Contacts',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../a_desktop/a_home/a_home.dart';
 import '../a_desktop/a_home/navigator.dart';
@@ -77,7 +78,7 @@ class MobileLayout extends GetView<ServiceOfMessage> {
   }
 }
 
-class NavigatorDrawerWidget extends GetView<GetManagerController> {
+class NavigatorDrawerWidget extends StatelessWidget {
   const NavigatorDrawerWidget({
     super.key,
   });
@@ -85,23 +86,23 @@ class NavigatorDrawerWidget extends GetView<GetManagerController> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: SizeConfig.blockX! * 80,
+      width: context.percentWidth * 80,
       backgroundColor: kDarkBlue,
       child: Column(
         children: [
-          SizedBox(height: SizeConfig.blockY! * 2),
+          SizedBox(height: context.percentHeight * 2),
           Text(kRalph,
               style: kPoppinExtraBold.copyWith(
-                  color: kWhite, fontSize: SizeConfig.blockX! * 6)),
-          SizedBox(height: SizeConfig.blockY! * 3),
+                  color: kWhite, fontSize: context.percentWidth * 6)),
+          SizedBox(height: context.percentHeight * 3),
           Expanded(
             child: ListView.builder(
               itemCount: kNavigator.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () {
-                    onPressedNav(
-                        context: context, enumVal: kNavigator[index]['type']);
+                    // onPressedNav(
+                    //     context: context, enumVal: kNavigator[index]['type']);
                   },
                   title: Text(
                     kNavigator[index]['title'],
@@ -121,7 +122,7 @@ class NavigatorDrawerWidget extends GetView<GetManagerController> {
             onPressed: () => openURL(uri: parseURL(url: kCV)),
             child: Text(kDownloadCV),
           ),
-          SizedBox(height: SizeConfig.blockY! * 50),
+          SizedBox(height: context.percentHeight * 50),
         ],
       ),
     );
