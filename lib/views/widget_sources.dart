@@ -85,6 +85,7 @@ class NavDrawerMobile extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () => ViewsControll().onPress(
+                      context: context,
                       type: ViewsControll().kNavigator[index]['title']),
                   title: Text(
                     ViewsControll().kNavigator[index]['title'],

@@ -18,18 +18,7 @@ class HomePageResponsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-    void _openEndDrawer() {
-      scaffoldKey.currentState!.openEndDrawer();
-    }
-
-    void _closeEndDrawer() {
-      Navigator.of(context).pop();
-    }
-
     return Scaffold(
-      key: scaffoldKey,
       drawer: ResponsiveBreakpoints.of(context).isMobile
           ? const NavDrawerMobile()
           : null,
@@ -114,8 +103,6 @@ class HomePageResponsive extends StatelessWidget {
         ),
         child: ListView(
           controller: scrollController,
-          physics: const BouncingScrollPhysics(
-              decelerationRate: ScrollDecelerationRate.normal),
           children: const [HomePage(), Services(), Projects(), Contacts()],
         ),
       ),

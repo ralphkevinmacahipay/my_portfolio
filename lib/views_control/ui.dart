@@ -1,6 +1,8 @@
 // navigator item
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'dart:developer' as dev show log;
+import '../a_desktop/a_home/navigator.dart';
 import '../configuration/constant.dart';
 
 class ViewsControll {
@@ -23,10 +25,19 @@ class ViewsControll {
     }
   ];
 
-  onPress({required String type}) {
+  onPress({required BuildContext context, required String type}) {
     switch (type) {
       case 'Home':
-        dev.log("on press home");
+        scrollToPosition(0);
+
+      case 'Services':
+        scrollToPosition(context.percentHeight * 92);
+
+      case 'Projects':
+        scrollToPosition(context.percentHeight * 92 * 2);
+
+      case 'Contacts':
+        scrollToPosition(context.percentHeight * 92 * 4);
     }
   }
 }
