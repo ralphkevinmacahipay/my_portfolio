@@ -61,19 +61,9 @@ class DesktopHome extends StatelessWidget {
                     style: kPoppinBold.copyWith(
                         color: kWhite, fontSize: context.percentWidth * 4)),
                 WidgetSpan(
-                  child: Row(
-                    children: [
-                      Text(
-                        "A",
-                        style: kPoppinSemiBold.copyWith(
-                            color: kWhite,
-                            fontSize: context.percentWidth * 2.5),
-                      ).paddingOnly(right: context.percentWidth * 2),
-                      AnimatedTextKit(
-                        animatedTexts: itemsAnimatedText,
-                        repeatForever: true,
-                      ),
-                    ],
+                  child: AnimatedTextKit(
+                    animatedTexts: itemsAnimatedText,
+                    repeatForever: true,
                   ),
                 ),
               ],
@@ -175,7 +165,7 @@ class TabletHome extends StatelessWidget {
               ],
             ),
           ),
-        ).marginOnly(top: context.percentHeight * 4),
+        ).marginOnly(top: context.percentHeight * 15),
         Align(
           alignment: Alignment.bottomCenter,
           child: ElevatedButton(

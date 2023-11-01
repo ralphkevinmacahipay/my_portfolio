@@ -7,7 +7,7 @@ class Projects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.percentHeight * 100,
+      height: context.percentHeight * 92,
       width: context.percentWidth * 100,
       decoration: const BoxDecoration(color: Colors.deepPurple),
       child: const Text("Project"),

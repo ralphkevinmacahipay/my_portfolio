@@ -7,7 +7,9 @@ import 'package:my_profile/views/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../a_desktop/a_home/navigator.dart';
 import '../configuration/constant.dart';
+import '../state_management/get_manager.dart';
 
 class HomePageResponsive extends StatelessWidget {
   const HomePageResponsive({super.key});
@@ -42,16 +44,61 @@ class HomePageResponsive extends StatelessWidget {
                     IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.light_mode))
-                        .marginOnly(right: context.percentWidth * 5),
+                        .marginOnly(right: context.percentWidth * 3),
                     const Text("Ralph.dart"),
                     const Spacer(),
-                    const Text("Home")
-                        .marginOnly(right: context.percentWidth * 5),
-                    const Text("Services")
-                        .marginOnly(right: context.percentWidth * 5),
-                    const Text("Projects")
-                        .marginOnly(right: context.percentWidth * 5),
-                    const Text("Contact")
+                    ButtonElevated(
+                      onPressd: () {
+                        scrollToPosition(0);
+                        // instanceControll.setHome(home: true);
+                      },
+                      textTitle: 'Home',
+                    ).marginOnly(right: context.percentWidth * 3),
+                    ButtonElevated(
+                      onPressd: () {
+                        scrollToPosition(context.percentHeight * 92);
+                        // instanceControll.setHome(services: true);
+                      },
+                      textTitle: 'Services',
+                    ).marginOnly(right: context.percentWidth * 3),
+                    ElevatedButton(
+                      style: ButtonStyle(backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.hovered)) {
+                          return kBlue;
+                        }
+
+                        return kTransparent;
+                      })),
+                      child: Text(
+                        "Projects",
+                        style: kPoppinSemiBold.copyWith(
+                            color: kWhite,
+                            fontSize: context.percentWidth * 1.6),
+                      ),
+                      onPressed: () {
+                        scrollToPosition(context.percentHeight * 92 * 2);
+                      },
+                    ).marginOnly(right: context.percentWidth * 3),
+                    ElevatedButton(
+                      style: ButtonStyle(backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.hovered)) {
+                          return kBlue;
+                        }
+
+                        return kTransparent;
+                      })),
+                      child: Text(
+                        "Contacts",
+                        style: kPoppinSemiBold.copyWith(
+                            color: kWhite,
+                            fontSize: context.percentWidth * 1.6),
+                      ),
+                      onPressed: () {
+                        scrollToPosition(context.percentHeight * 92 * 4);
+                      },
+                    )
                   ]),
       ),
       body: Container(
@@ -64,8 +111,50 @@ class HomePageResponsive extends StatelessWidget {
           ),
         ),
         child: ListView(
+          controller: scrollController,
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.normal),
           children: const [HomePage(), Services(), Projects(), Contacts()],
         ),
+      ),
+    );
+  }
+}
+
+class ButtonElevated extends StatelessWidget {
+  final dynamic colorChanger;
+  final String textTitle;
+  final void Function()? onPressd;
+
+  const ButtonElevated({
+    super.key,
+    this.colorChanger,
+    required this.textTitle,
+    this.onPressd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kBorderRadius))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            //colorChanger
+            if (states.contains(MaterialState.hovered)) {
+              return kBlue;
+            }
+            return kTransparent;
+
+            // return instanceControll.isServiceTap.value
+            //     ? kBlue
+            //     : kTransparent;
+          })),
+      onPressed: onPressd,
+      child: Text(
+        textTitle,
+        style: kPoppinSemiBold.copyWith(
+            color: kWhite, fontSize: context.percentWidth * 1.6),
       ),
     );
   }

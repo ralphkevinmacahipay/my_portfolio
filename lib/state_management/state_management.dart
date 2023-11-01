@@ -5,6 +5,7 @@ import 'package:my_profile/configuration/constant.dart';
 import '../configuration/enum.dart';
 
 class GetManagerController extends GetxController {
+  static GetManagerController get instace => Get.find();
   // init
   Rx<Color> kGlobalColor = Colors.transparent.obs;
   final RxBool _isHoveredDLCV = false.obs;
@@ -17,7 +18,7 @@ class GetManagerController extends GetxController {
       isHoverServices = false.obs,
       isHoverProject = false.obs,
       isHoverContact = false.obs,
-      isHomeTap = true.obs,
+      isHomeTap = false.obs,
       isServiceTap = false.obs,
       isProjectTap = false.obs,
       isContactTap = false.obs,
@@ -54,6 +55,16 @@ class GetManagerController extends GetxController {
   void setIsHoverSend(bool isHover) {
     _isHoveredSend.value = isHover;
     debugPrint("Code is send");
+    update();
+  }
+
+  void setHome({bool? home, bool? services}) {
+    isHomeTap.value = home ?? false;
+    isServiceTap.value = services ?? false;
+
+    debugPrint("Value: ${isHomeTap.value}");
+    debugPrint("Value: ${isServiceTap.value}");
+
     update();
   }
 }
