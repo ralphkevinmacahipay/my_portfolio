@@ -94,18 +94,18 @@ final List<Map<String, dynamic>> kNavigator = [
     "icon": Icon(Icons.home_filled, color: kWhite),
   },
   {
-    "title": getNavNmae(NavItemEnum.services),
-    "type": NavItemEnum.services,
+    "title": 'Services',
+    "onpress": NavItemEnum.services,
     "icon": Icon(Icons.work_history, color: kWhite),
   },
   {
-    "title": getNavNmae(NavItemEnum.project),
-    "type": NavItemEnum.project,
+    "title": 'Projcts',
+    "onpress": NavItemEnum.project,
     "icon": Icon(Icons.auto_awesome_motion_rounded, color: kWhite),
   },
   {
-    "title": getNavNmae(NavItemEnum.contact),
-    "type": NavItemEnum.contact,
+    "title": 'Contacts',
+    "onpress": NavItemEnum.contact,
     "icon": Icon(Icons.contact_phone_outlined, color: kWhite),
   }
 ];

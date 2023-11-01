@@ -4,6 +4,9 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../configuration/enum.dart';
+import '../views_control/ui.dart';
+
 // TABLET
 class NavDrawerTablet extends StatelessWidget {
   const NavDrawerTablet({
@@ -78,18 +81,16 @@ class NavDrawerMobile extends StatelessWidget {
           SizedBox(height: context.percentHeight * 3),
           Expanded(
             child: ListView.builder(
-              itemCount: kNavigator.length,
+              itemCount: ViewsControll().kNavigator.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  onTap: () {
-                    // onPressedNav(
-                    //     context: context, enumVal: kNavigator[index]['type']);
-                  },
+                  onTap: () => ViewsControll().onPress(
+                      type: ViewsControll().kNavigator[index]['title']),
                   title: Text(
-                    kNavigator[index]['title'],
+                    ViewsControll().kNavigator[index]['title'],
                     style: kPoppinSemiBold.copyWith(color: kWhite),
                   ),
-                  leading: kNavigator[index]['icon'],
+                  leading: ViewsControll().kNavigator[index]['icon'],
                 );
               },
             ),
