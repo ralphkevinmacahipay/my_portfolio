@@ -45,7 +45,9 @@ class HomePageResponsive extends StatelessWidget {
                             onPressed: () {},
                             icon: const Icon(Icons.light_mode))
                         .marginOnly(right: context.percentWidth * 3),
-                    const Text("Ralph.dart"),
+                    Text("Ralph.dart",
+                        style: kPoppinBold.copyWith(
+                            fontSize: context.percentWidth * 2)),
                     const Spacer(),
                     ButtonElevated(
                       onPressd: () {
@@ -61,44 +63,20 @@ class HomePageResponsive extends StatelessWidget {
                       },
                       textTitle: 'Services',
                     ).marginOnly(right: context.percentWidth * 3),
-                    ElevatedButton(
-                      style: ButtonStyle(backgroundColor:
-                          MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.hovered)) {
-                          return kBlue;
-                        }
-
-                        return kTransparent;
-                      })),
-                      child: Text(
-                        "Projects",
-                        style: kPoppinSemiBold.copyWith(
-                            color: kWhite,
-                            fontSize: context.percentWidth * 1.6),
-                      ),
-                      onPressed: () {
+                    ButtonElevated(
+                      onPressd: () {
                         scrollToPosition(context.percentHeight * 92 * 2);
+                        // instanceControll.setHome(services: true);
                       },
+                      textTitle: 'Projects',
                     ).marginOnly(right: context.percentWidth * 3),
-                    ElevatedButton(
-                      style: ButtonStyle(backgroundColor:
-                          MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.hovered)) {
-                          return kBlue;
-                        }
-
-                        return kTransparent;
-                      })),
-                      child: Text(
-                        "Contacts",
-                        style: kPoppinSemiBold.copyWith(
-                            color: kWhite,
-                            fontSize: context.percentWidth * 1.6),
-                      ),
-                      onPressed: () {
-                        scrollToPosition(context.percentHeight * 92 * 4);
+                    ButtonElevated(
+                      onPressd: () {
+                        scrollToPosition(context.percentHeight * 92);
+                        // instanceControll.setHome(services: true);
                       },
-                    )
+                      textTitle: 'Contacts',
+                    ).marginOnly(right: context.percentWidth * 3),
                   ]),
       ),
       body: Container(

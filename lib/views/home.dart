@@ -139,7 +139,7 @@ class TabletHome extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: CircleAvatar(
-            radius: context.percentWidth * 15,
+            radius: context.percentWidth * 13,
             child: Image.asset(kProfile),
           ).marginOnly(top: context.percentHeight * 10),
         ),
