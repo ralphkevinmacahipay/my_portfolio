@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: kRalph,
       debugShowCheckedModeBanner: false,
       home:
-          const HomePageResponsive(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
+          const ResponsiveWidget(), //HomePage ResponsiveWidget()   MyHomePage(title: 'URL Launcher')
     );
   }
 }
