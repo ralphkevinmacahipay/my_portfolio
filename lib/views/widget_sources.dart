@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../configuration/enum.dart';
-import '../views_control/ui.dart';
+import 'ui.dart';
 
 // TABLET
 class NavDrawerTablet extends StatelessWidget {

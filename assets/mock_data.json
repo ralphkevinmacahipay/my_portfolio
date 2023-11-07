@@ -1,50 +1,35 @@
 [
   {
-    "id": "Project_1",
-    "title": "Android App Developer",
-
-    "desc": "Project_1",
-
-    "icon_1": "Project_1",
-
-    "text_1": "Project_1",
-    "icon_2": "Project_1",
-
-    "text_2": "Project_1",
-    "icon_3": "Project_1",
-
-    "text_3": "Project_1"
+    "icon": "assets/android_image.png",
+    "title": "A Mobile App Developer",
+    "desc": "Let’s turn your idea into a working mobile application.",
+    "icon_a": "assets/flutter_image.png",
+    "title_a": "Flutter",
+    "icon_b": "assets/firebase_image.png",
+    "title_b": "Firebase",
+    "icon_c": "assets/firebase_image.png",
+    "title_c": "Google Cloud Platform"
   },
   {
-    "id": "Project_1",
-    "title": "Android App Developer",
-
-    "desc": "Project_1",
-
-    "icon_1": "Project_1",
-
-    "text_1": "Project_1",
-    "icon_2": "Project_1",
-
-    "text_2": "Project_1",
-    "icon_3": "Project_1",
-
-    "text_3": "Project_1"
+    "icon": "assets/web_image.png",
+    "title": "A Web App Developer",
+    "desc": "Let’s turn your idea into a working web application.",
+    "icon_a": "assets/flutter_image.png",
+    "title_a": "Flutter",
+    "icon_b": "assets/firebase_image.png",
+    "title_b": "Firebase",
+    "icon_c": "assets/firebase_image.png",
+    "title_c": "Google Cloud Platform"
   },
   {
-    "id": "Project_1",
-    "title": "Android App Developer",
-
-    "desc": "Project_1",
-
-    "icon_1": "Project_1",
-
-    "text_1": "Project_1",
-    "icon_2": "Project_1",
-
-    "text_2": "Project_1",
-    "icon_3": "Project_1",
-
-    "text_3": "Project_1"
+    "icon": "kUiImage",
+    "title": "A UI/UX Designer",
+    "desc": "Transforming ideas into intuitive interfaces\nwith a human touch.",
+    "icon_a": "kFlatIconImage",
+    "title_a": "Flaticon",
+    "icon_b": "kFigmaImage",
+    "title_b": "Figma",
+    "icon_c": "",
+    "title_c": ""
   }
 ]

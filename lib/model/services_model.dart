@@ -1,59 +1,70 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
+import 'package:equatable/equatable.dart';
 import 'dart:convert';
 
-List<ServicesModel> servicesFromJson(String str) => List<ServicesModel>.from(
-    json.decode(str).map((x) => ServicesModel.fromJson(x)));
+List<ModelServices> modelServicesFromJson(String str) =>
+    List<ModelServices>.from(
+        json.decode(str).map((x) => ModelServices.fromJson(x)));
 
-String servicesToJson(List<ServicesModel> data) =>
+String modelServicesToJson(List<ModelServices> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ServicesModel {
-  String id;
-  String title;
-  String desc;
-  String icon1;
-  String text1;
-  String icon2;
-  String text2;
-  String icon3;
-  String text3;
+class ModelServices extends Equatable {
+  final String icon;
+  final String title;
+  final String desc;
+  final String iconA;
+  final String titleA;
+  final String iconB;
+  final String titleB;
+  final String iconC;
+  final String titleC;
 
-  ServicesModel({
-    required this.id,
+  const ModelServices({
+    required this.icon,
     required this.title,
     required this.desc,
-    required this.icon1,
-    required this.text1,
-    required this.icon2,
-    required this.text2,
-    required this.icon3,
-    required this.text3,
+    required this.iconA,
+    required this.titleA,
+    required this.iconB,
+    required this.titleB,
+    required this.iconC,
+    required this.titleC,
   });
 
-  factory ServicesModel.fromJson(Map<String, dynamic> json) => ServicesModel(
-        id: json["id"],
+  factory ModelServices.fromJson(Map<String, dynamic> json) => ModelServices(
+        icon: json["icon"],
         title: json["title"],
         desc: json["desc"],
-        icon1: json["icon_1"],
-        text1: json["text_1"],
-        icon2: json["icon_2"],
-        text2: json["text_2"],
-        icon3: json["icon_3"],
-        text3: json["text_3"],
+        iconA: json["icon_a"],
+        titleA: json["title_a"],
+        iconB: json["icon_b"],
+        titleB: json["title_b"],
+        iconC: json["icon_c"],
+        titleC: json["title_c"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "icon": icon,
         "title": title,
         "desc": desc,
-        "icon_1": icon1,
-        "text_1": text1,
-        "icon_2": icon2,
-        "text_2": text2,
-        "icon_3": icon3,
-        "text_3": text3,
+        "icon_a": iconA,
+        "title_a": titleA,
+        "icon_b": iconB,
+        "title_b": titleB,
+        "icon_c": iconC,
+        "title_c": titleC,
       };
+  @override
+  List<Object?> get props => [
+        // id,
+        icon,
+        title,
+        desc,
+        iconA,
+        titleA,
+        iconB,
+        titleB,
+        iconC,
+        titleC,
+      ];
 }

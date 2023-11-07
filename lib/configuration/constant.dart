@@ -5,6 +5,7 @@ import 'package:my_profile/configuration/style.dart';
 
 import 'enum.dart';
 
+String sourceData = "assets/mock_data.json";
 // asset image
 String kBackground = "assets/background.png";
 String kProfile = "assets/profile.png";
