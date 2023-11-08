@@ -9,16 +9,21 @@ class ServiceStateControll extends GetxController {
 //  Rx<List<ServiceViewModel>> services = Rx(List<ServiceViewModel>)(null);
   Rx<List<ServiceViewModel>?> services = Rx<List<ServiceViewModel>?>(null);
 
-  @override
-  void onInit() async {
-    // TODO: implement onInit
+  Future<void> stateDataService() async {
     final List<ServiceViewModel>? fetchData =
         await ListServiceViewModel().fetchData();
     services.value = fetchData;
+  }
 
-    print(" services ==> ${services.value?[2].service?.title}");
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    stateDataService(); // handle services data
+
     super.onInit();
   }
 
   static ServiceStateControll get instance => Get.find();
 }
+
+final instanceService = ServiceStateControll.instance;

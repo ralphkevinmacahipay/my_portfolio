@@ -123,15 +123,15 @@ class TabletHome extends StatelessWidget {
     List<TyperAnimatedText> itemsAnimatedText = [
       TyperAnimatedText(kTextAnimated_1,
           textStyle: kPoppinSemiBold.copyWith(
-              color: kWhite, fontSize: context.percentWidth * 4),
+              color: kWhite, fontSize: context.percentWidth * 3.5),
           speed: const Duration(milliseconds: 100)),
       TyperAnimatedText(kTextAnimated_2,
           textStyle: kPoppinSemiBold.copyWith(
-              color: kWhite, fontSize: context.percentWidth * 4),
+              color: kWhite, fontSize: context.percentWidth * 3.5),
           speed: const Duration(milliseconds: 100)),
       TyperAnimatedText(kTextAnimated_3,
           textStyle: kPoppinSemiBold.copyWith(
-              color: kWhite, fontSize: context.percentWidth * 4),
+              color: kWhite, fontSize: context.percentWidth * 3.5),
           speed: const Duration(milliseconds: 100)),
     ];
     return Stack(

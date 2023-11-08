@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
+import 'package:my_profile/state/get_x.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 List<Map<String, dynamic>> projectList = [
@@ -44,6 +45,7 @@ class Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ServiceStateControll());
     return SizedBox(
       height: context.percentHeight * 92,
       width: context.percentWidth * 100,
@@ -58,59 +60,102 @@ class Services extends StatelessWidget {
               )).marginOnly(top: context.percentHeight * 5),
           Align(
             alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: projectList
-                  .map(
-                    (item) => Container(
-                      decoration: BoxDecoration(
-                          color: kLighBlue,
-                          borderRadius: BorderRadius.circular(kBorderRadius)),
-                      height: 312,
-                      width: 237,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              item['icon'], // icon
-                              height: 100,
-                              width: 100,
-                            ),
-                            Text(item['title'], //title
-                                style: kPoppinExtraBold.copyWith(
-                                    fontSize: 15, color: kWhite)),
-                            Text(item['desc'], //desc
-                                textAlign: TextAlign.center,
-                                style: kPoppinSemiBold.copyWith(
-                                    fontSize: 12, color: kWhite)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                RowWidget(
-                                    icon: item['icon_a'],
-                                    title: item['title_a']),
-                                RowWidget(
-                                    icon: item['icon_b'],
-                                    title: item['title_b']),
-                              ],
-                            ),
-                            item['icon_c'] != '' && item['title_c'] != ''
-                                ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      RowWidget(
-                                          icon: item['icon_c'],
-                                          title: item['title_c']),
-                                    ],
-                                  )
-                                : const SizedBox.shrink(),
-                          ]),
-                    ),
-                  )
-                  .toList(),
+            child: Obx(
+              () => SizedBox(
+                height: 312,
+                child: instanceService.services.value != null
+                    ? Center(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: instanceService.services.value?.length,
+                          itemBuilder: (context, index) {
+                            // final services =
+                            //     instanceService.services.value?[index].service;
+                            print(
+                                "${instanceService.services.value?[index].service!.icon}");
+                            return Container(
+                              decoration: BoxDecoration(
+                                  color: kLighBlue,
+                                  borderRadius:
+                                      BorderRadius.circular(kBorderRadius)),
+                              height: 312,
+                              width: 237,
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      instanceService.services.value![index]
+                                          .service!.icon, // icon kFlutterImage
+                                      height: 100,
+                                      width: 100,
+                                    ),
+                                    Text(
+                                        instanceService.services.value![index]
+                                            .service!.title, //title
+                                        style: kPoppinExtraBold.copyWith(
+                                            fontSize: 15, color: kWhite)),
+                                    Text(
+                                        instanceService.services.value![index]
+                                            .service!.desc, //desc
+                                        textAlign: TextAlign.center,
+                                        style: kPoppinSemiBold.copyWith(
+                                            fontSize: 12, color: kWhite)),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        RowWidget(
+                                            icon: instanceService.services
+                                                .value![index].service!.iconA,
+                                            title: instanceService.services
+                                                .value![index].service!.titleA),
+                                        RowWidget(
+                                            icon: instanceService.services
+                                                .value![index].service!.iconB,
+                                            title: instanceService.services
+                                                .value![index].service!.titleB),
+                                      ],
+                                    ),
+                                    instanceService.services.value![index]
+                                                    .service!.iconC !=
+                                                '' &&
+                                            instanceService
+                                                    .services
+                                                    .value![index]
+                                                    .service!
+                                                    .titleC !=
+                                                ''
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              RowWidget(
+                                                  icon: instanceService
+                                                      .services
+                                                      .value![index]
+                                                      .service!
+                                                      .iconC,
+                                                  title: instanceService
+                                                      .services
+                                                      .value![index]
+                                                      .service!
+                                                      .titleC),
+                                            ],
+                                          )
+                                        : const SizedBox.shrink(),
+                                  ]),
+                            ).marginSymmetric(
+                                horizontal: context.percentWidth * 2);
+                          },
+                        ).marginOnly(),
+                      )
+                    : const Text("No Services"),
+              ),
             ),
-          )
+          ).marginOnly(top: 50)
         ],
       ),
     );

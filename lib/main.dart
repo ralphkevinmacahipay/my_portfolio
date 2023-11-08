@@ -15,7 +15,6 @@ import 'state_management/state_management.dart';
 void main() {
   setPathUrlStrategy();
   Get.put(GetManagerController());
-  Get.put(ServiceStateControll());
 
   Get.put(ServiceOfMessage());
 
