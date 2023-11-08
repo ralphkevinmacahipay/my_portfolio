@@ -16,7 +16,7 @@ String kFlatIconImage = "assets/flaticon_image.png";
 String kFlutterImage = "assets/flutter_image.png";
 String kUiImage = "assets/ui_image.png";
 String kProjectOne = "assets/project_one.png";
-String kProjectOneMobile = "assets/project_one.png";
+String kProjectSafeMo = "assets/safemoApp.png";
 
 String kWebImage = "assets/web_image.png";
 String kFaceBook = "assets/facebook_image.png";
@@ -165,7 +165,7 @@ final List<Map<String, dynamic>> listItemCorouselServices = [
 ];
 
 final List<Map<String, dynamic>> listItemCorouselWork = [
-  {"image": kProjectOneMobile}
+  {"image": kProjectSafeMo}
 ];
 
 List<Map<String, dynamic>> myListIcon = [
