@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TextApp extends StatelessWidget {
+  const TextApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('ListView with Hover Effect'),
-        ),
-        body: ListView.builder(
-          itemCount: 10, // Replace with the actual number of items
-          itemBuilder: (BuildContext context, int index) {
-            return HoverContainer(index: index);
-          },
-        ),
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: 10, // Replace with the actual number of items
+        itemBuilder: (BuildContext context, int index) {
+          return HoverContainer(index: index);
+        },
       ),
     );
   }

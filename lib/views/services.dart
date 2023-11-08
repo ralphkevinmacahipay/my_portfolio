@@ -70,85 +70,15 @@ class Services extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemCount: instanceService.services.value?.length,
                           itemBuilder: (context, index) {
+                            GlobalKey containerKey = GlobalKey();
                             // final services =
                             //     instanceService.services.value?[index].service;
                             print(
                                 "${instanceService.services.value?[index].service!.icon}");
-                            return Container(
-                              decoration: BoxDecoration(
-                                  color: kLighBlue,
-                                  borderRadius:
-                                      BorderRadius.circular(kBorderRadius)),
-                              height: 312,
-                              width: 237,
-                              child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      instanceService.services.value![index]
-                                          .service!.icon, // icon kFlutterImage
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                    Text(
-                                        instanceService.services.value![index]
-                                            .service!.title, //title
-                                        style: kPoppinExtraBold.copyWith(
-                                            fontSize: 15, color: kWhite)),
-                                    Text(
-                                        instanceService.services.value![index]
-                                            .service!.desc, //desc
-                                        textAlign: TextAlign.center,
-                                        style: kPoppinSemiBold.copyWith(
-                                            fontSize: 12, color: kWhite)),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        RowWidget(
-                                            icon: instanceService.services
-                                                .value![index].service!.iconA,
-                                            title: instanceService.services
-                                                .value![index].service!.titleA),
-                                        RowWidget(
-                                            icon: instanceService.services
-                                                .value![index].service!.iconB,
-                                            title: instanceService.services
-                                                .value![index].service!.titleB),
-                                      ],
-                                    ),
-                                    instanceService.services.value![index]
-                                                    .service!.iconC !=
-                                                '' &&
-                                            instanceService
-                                                    .services
-                                                    .value![index]
-                                                    .service!
-                                                    .titleC !=
-                                                ''
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              RowWidget(
-                                                  icon: instanceService
-                                                      .services
-                                                      .value![index]
-                                                      .service!
-                                                      .iconC,
-                                                  title: instanceService
-                                                      .services
-                                                      .value![index]
-                                                      .service!
-                                                      .titleC),
-                                            ],
-                                          )
-                                        : const SizedBox.shrink(),
-                                  ]),
-                            ).marginSymmetric(
-                                horizontal: context.percentWidth * 2);
+                            return BuilderServices(
+                              containerKey: containerKey,
+                              index: index,
+                            );
                           },
                         ).marginOnly(),
                       )
@@ -158,6 +88,101 @@ class Services extends StatelessWidget {
           ).marginOnly(top: 50)
         ],
       ),
+    );
+  }
+}
+
+class BuilderServices extends StatefulWidget {
+  const BuilderServices({
+    super.key,
+    required this.containerKey,
+    required this.index,
+  });
+  final int index;
+  final GlobalKey<State<StatefulWidget>> containerKey;
+
+  @override
+  State<BuilderServices> createState() => _BuilderServicesState();
+}
+
+class _BuilderServicesState extends State<BuilderServices> {
+  bool isHovering = false;
+  double h = 500;
+  double w = 237;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        print("text");
+      },
+      onHover: (isHover) {
+        setState(() {
+          isHovering = isHover;
+        });
+        print("isHover $isHovering");
+      },
+      child: AnimatedContainer(
+        key: widget.containerKey,
+        duration: const Duration(microseconds: 200),
+        curve: Curves.ease,
+        decoration: BoxDecoration(
+            color: isHovering ? kHoverColor : kLighBlue,
+            borderRadius: BorderRadius.circular(kBorderRadius)),
+        height: 500,
+        width: isHovering ? 300 : 237,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                instanceService.services.value![widget.index].service!
+                    .icon, // icon kFlutterImage
+                height: 100,
+                width: 100,
+              ),
+              Text(
+                  instanceService
+                      .services.value![widget.index].service!.title, //title
+                  style:
+                      kPoppinExtraBold.copyWith(fontSize: 15, color: kWhite)),
+              Text(
+                  instanceService
+                      .services.value![widget.index].service!.desc, //desc
+                  textAlign: TextAlign.center,
+                  style: kPoppinSemiBold.copyWith(fontSize: 12, color: kWhite)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RowWidget(
+                      icon: instanceService
+                          .services.value![widget.index].service!.iconA,
+                      title: instanceService
+                          .services.value![widget.index].service!.titleA),
+                  RowWidget(
+                      icon: instanceService
+                          .services.value![widget.index].service!.iconB,
+                      title: instanceService
+                          .services.value![widget.index].service!.titleB),
+                ],
+              ),
+              instanceService.services.value![widget.index].service!.iconC !=
+                          '' &&
+                      instanceService
+                              .services.value![widget.index].service!.titleC !=
+                          ''
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RowWidget(
+                            icon: instanceService
+                                .services.value![widget.index].service!.iconC,
+                            title: instanceService
+                                .services.value![widget.index].service!.titleC),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+            ]),
+      ).marginSymmetric(horizontal: context.percentWidth * 2),
     );
   }
 }
@@ -184,29 +209,5 @@ class RowWidget extends StatelessWidget {
             style: kPoppinSemiBold.copyWith(fontSize: 12, color: kWhite))
       ],
     );
-  }
-}
-
-class ListTileWidget extends StatelessWidget {
-  final String icon;
-  final String kTitle;
-  const ListTileWidget({
-    super.key,
-    required this.icon,
-    required this.kTitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-        minLeadingWidth: 2,
-        contentPadding: EdgeInsets.zero,
-        leading: Image.asset(
-          icon,
-          height: 21,
-          width: 17,
-        ),
-        title: Text(kTitle,
-            style: kPoppinSemiBold.copyWith(fontSize: 12, color: kWhite)));
   }
 }
