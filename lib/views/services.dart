@@ -4,6 +4,9 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+String servicesDesc =
+    "As a freelance designer and developer, I've collaborated with startups to create digital products for businesses and consumers alike. My services span brand design and programming, offering comprehensive solutions for diverse needs. With a passion for innovation and a commitment to excellence.";
+
 List<Map<String, dynamic>> projectList = [
   {
     'icon': kAndroidImage,
@@ -53,13 +56,24 @@ class Services extends StatelessWidget {
         children: [
           Align(
               alignment: Alignment.topCenter,
-              child: Text(
-                "What can I do?",
-                style: kPoppinBold.copyWith(
-                    color: kWhite, fontSize: context.percentWidth * 3),
+              child: Column(
+                children: [
+                  Text(
+                    "Services",
+                    style: kPoppinBold.copyWith(
+                        color: kWhite, fontSize: context.percentWidth * 3),
+                  ),
+                  Text(
+                    servicesDesc,
+                    textAlign: TextAlign.center,
+                    style: kPoppinSemiBold.copyWith(
+                        color: kLightGrey,
+                        fontSize: context.percentWidth * 1.5),
+                  ).paddingSymmetric(horizontal: 50),
+                ],
               )).marginOnly(top: context.percentHeight * 5),
           Align(
-            alignment: Alignment.center,
+            alignment: Alignment.bottomCenter,
             child: Obx(
               () => SizedBox(
                 height: 312,
@@ -85,7 +99,7 @@ class Services extends StatelessWidget {
                     : const Text("No Services"),
               ),
             ),
-          ).marginOnly(top: 50)
+          ).marginOnly(bottom: 20)
         ],
       ),
     );
@@ -107,8 +121,7 @@ class BuilderServices extends StatefulWidget {
 
 class _BuilderServicesState extends State<BuilderServices> {
   bool isHovering = false;
-  double h = 500;
-  double w = 237;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
