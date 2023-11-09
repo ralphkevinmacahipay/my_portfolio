@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/state/get_x.dart';
 import 'package:my_profile/state_management/put_get.dart';
 import 'package:my_profile/views/home_page.dart';
 import 'package:url_strategy/url_strategy.dart';

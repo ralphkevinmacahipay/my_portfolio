@@ -6,12 +6,9 @@ import 'package:my_profile/views/projects.dart';
 import 'package:my_profile/views/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../a_desktop/a_home/navigator.dart';
-import '../b_mobile/index_drawer.dart';
 import '../configuration/constant.dart';
-import '../state_management/get_manager.dart';
-import 'widget_sources.dart';
+import '../services/general_services.dart';
 
 class HomePageResponsive extends StatelessWidget {
   const HomePageResponsive({super.key});
@@ -146,5 +143,150 @@ class ButtonElevated extends StatelessWidget {
             color: kWhite, fontSize: context.percentWidth * 1.6),
       ),
     );
+  }
+}
+
+// TABLET
+class NavDrawerTablet extends StatelessWidget {
+  const NavDrawerTablet({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      width: context.percentWidth * 40,
+      backgroundColor: kDarkBlue,
+      child: Column(
+        children: [
+          SizedBox(height: context.percentHeight * 2),
+          Text(kRalph,
+              style: kPoppinExtraBold.copyWith(
+                  color: kWhite, fontSize: context.percentWidth * 6)),
+          SizedBox(height: context.percentHeight * 3),
+          Expanded(
+            child: ListView.builder(
+              itemCount: kNavigator.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () {
+                    // onPressedNav(
+                    //     context: context, enumVal: kNavigator[index]['type']);
+                  },
+                  title: Text(
+                    kNavigator[index]['title'],
+                    style: kPoppinSemiBold.copyWith(color: kWhite),
+                  ),
+                  leading: kNavigator[index]['icon'],
+                );
+              },
+            ),
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateColor.resolveWith(
+                (states) => kLightBlue,
+              ),
+            ),
+            onPressed: () => GeneralServices()
+                .openURL(uri: GeneralServices().parseURL(url: kCV)),
+            child: Text(kDownloadCV),
+          ),
+          SizedBox(height: context.percentHeight * 50),
+        ],
+      ),
+    );
+  }
+}
+
+// MOBILE
+class NavDrawerMobile extends StatelessWidget {
+  const NavDrawerMobile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      width: context.percentWidth * 50,
+      backgroundColor: kDarkBlue,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: context.percentHeight * 2),
+          Text(kRalph,
+              style: kPoppinExtraBold.copyWith(
+                  color: kWhite, fontSize: context.percentWidth * 6)),
+          SizedBox(height: context.percentHeight * 3),
+          Expanded(
+            child: ListView.builder(
+              itemCount: ViewsControll().kNavigator.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () => ViewsControll().onPress(
+                      context: context,
+                      type: ViewsControll().kNavigator[index]['title']),
+                  title: Text(
+                    ViewsControll().kNavigator[index]['title'],
+                    style: kPoppinSemiBold.copyWith(color: kWhite),
+                  ),
+                  leading: ViewsControll().kNavigator[index]['icon'],
+                );
+              },
+            ),
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateColor.resolveWith(
+                (states) => kLightBlue,
+              ),
+            ),
+            onPressed: () => GeneralServices()
+                .openURL(uri: GeneralServices().parseURL(url: kCV)),
+            child: Text(kDownloadCV),
+          ),
+          const Spacer(
+            flex: 2,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ViewsControll {
+  final List<Map<String, dynamic>> kNavigator = [
+    {
+      "title": 'Home',
+      "icon": Icon(Icons.home_filled, color: kWhite),
+    },
+    {
+      "title": 'Services',
+      "icon": Icon(Icons.work_history, color: kWhite),
+    },
+    {
+      "title": 'Projects',
+      "icon": Icon(Icons.auto_awesome_motion_rounded, color: kWhite),
+    },
+    {
+      "title": 'Contacts',
+      "icon": Icon(Icons.contact_phone_outlined, color: kWhite),
+    }
+  ];
+
+  onPress({required BuildContext context, required String type}) {
+    switch (type) {
+      case 'Home':
+        scrollToPosition(0);
+
+      case 'Services':
+        scrollToPosition(context.percentHeight * 92);
+
+      case 'Projects':
+        scrollToPosition(context.percentHeight * 92 * 2);
+
+      case 'Contacts':
+        scrollToPosition(context.percentHeight * 92 * 4);
+    }
   }
 }

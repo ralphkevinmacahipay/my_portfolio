@@ -1,9 +1,6 @@
 import 'package:get/get.dart';
-import 'package:my_profile/model/services/services_model.dart';
-import 'package:my_profile/services/services/services_service.dart';
 import 'package:my_profile/views_model/projects/projects_view_model.dart';
 
-import '../views/services.dart';
 import '../views_model/services_view_model.dart';
 
 class ServiceStateControll extends GetxController {

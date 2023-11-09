@@ -1,6 +1,4 @@
 import 'package:my_profile/model/services/services_model.dart';
-
-import '../configuration/constant.dart';
 import '../services/services/services_service.dart';
 
 class ListServiceViewModel {

@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/state/get_x.dart';
@@ -7,7 +6,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../configuration/constant.dart';
 import '../model/projects/project_model.dart';
-import '../play_ground.dart';
 import '../services/general_services.dart';
 
 String servicesDesc =
