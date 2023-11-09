@@ -8,6 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../configuration/constant.dart';
 import '../model/projects/project_model.dart';
 import '../play_ground.dart';
+import '../services/general_services.dart';
 
 String servicesDesc =
     "Throughout my career as a designer and developer, I have crafted digital products catering to both commercial and individual needs.";
@@ -186,7 +187,7 @@ class ProjectContent extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: context.percentWidth * 15.34,
+                  width: context.percentWidth * 18,
                   child: Text(services.projectDesc,
                       style: kPoppinRegular.copyWith(
                           fontSize: context.percentWidth * 1.5, color: kWhite)),
@@ -194,7 +195,11 @@ class ProjectContent extends StatelessWidget {
               ],
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: const Text("View Project"))
+          ElevatedButton(
+                  onPressed: () => GeneralServices().openURL(
+                      uri: GeneralServices()
+                          .parseURL(url: services.projectLink)),
+                  child: const Text("View Project"))
               .marginOnly(bottom: context.percentHeight * 2)
         ],
       ),
