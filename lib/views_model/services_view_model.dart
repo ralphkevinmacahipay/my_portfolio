@@ -1,7 +1,7 @@
-import 'package:my_profile/model/services_model.dart';
+import 'package:my_profile/model/services/services_model.dart';
 
 import '../configuration/constant.dart';
-import '../services/services_service.dart';
+import '../services/services/services_service.dart';
 
 class ListServiceViewModel {
   List<ServiceViewModel>? _services;
