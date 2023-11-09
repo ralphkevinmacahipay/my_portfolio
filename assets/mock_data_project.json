@@ -1,16 +1,16 @@
 [
   {
-    "id": "1",
+    "id": "0",
     "project_title": "SAFEMO APP",
     "project_link": "test link",
-    "image": "assets/gora_project.png",
-    "project_desc": "Test Description"
+    "image": "assets/safemoApp.png",
+    "project_desc": "The SafeMO app is designed for commuters, aiming to provide security measures in partnership with 911 here in Puerto Princesa City."
   },
   {
     "id": "1",
-    "project_title": "SAFEMO APP",
+    "project_title": "GORA APP",
     "project_link": "test link",
     "image": "assets/gora_project.png",
-    "project_desc": "Test Description"
+    "project_desc": "Gora is a user-friendly van rental and booking app that streamlines the process of finding and reserving the perfect van for your transportation needs."
   }
 ]

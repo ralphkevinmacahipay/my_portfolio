@@ -77,18 +77,18 @@ class Services extends StatelessWidget {
             child: Obx(
               () => SizedBox(
                 height: 312,
-                child: instanceService.services.value != null
+                child: instanceServices.services.value != null
                     ? Center(
                         child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemCount: instanceService.services.value?.length,
+                          itemCount: instanceServices.services.value?.length,
                           itemBuilder: (context, index) {
                             GlobalKey containerKey = GlobalKey();
                             // final services =
                             //     instanceService.services.value?[index].service;
                             print(
-                                "${instanceService.services.value?[index].service!.icon}");
+                                "${instanceServices.services.value?[index].service!.icon}");
                             return BuilderServices(
                               containerKey: containerKey,
                               index: index,
@@ -148,18 +148,18 @@ class _BuilderServicesState extends State<BuilderServices> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                instanceService.services.value![widget.index].service!
+                instanceServices.services.value![widget.index].service!
                     .icon, // icon kFlutterImage
                 height: 100,
                 width: 100,
               ),
               Text(
-                  instanceService
+                  instanceServices
                       .services.value![widget.index].service!.title, //title
                   style:
                       kPoppinExtraBold.copyWith(fontSize: 15, color: kWhite)),
               Text(
-                  instanceService
+                  instanceServices
                       .services.value![widget.index].service!.desc, //desc
                   textAlign: TextAlign.center,
                   style: kPoppinSemiBold.copyWith(fontSize: 12, color: kWhite)),
@@ -167,29 +167,29 @@ class _BuilderServicesState extends State<BuilderServices> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   RowWidget(
-                      icon: instanceService
+                      icon: instanceServices
                           .services.value![widget.index].service!.iconA,
-                      title: instanceService
+                      title: instanceServices
                           .services.value![widget.index].service!.titleA),
                   RowWidget(
-                      icon: instanceService
+                      icon: instanceServices
                           .services.value![widget.index].service!.iconB,
-                      title: instanceService
+                      title: instanceServices
                           .services.value![widget.index].service!.titleB),
                 ],
               ),
-              instanceService.services.value![widget.index].service!.iconC !=
+              instanceServices.services.value![widget.index].service!.iconC !=
                           '' &&
-                      instanceService
+                      instanceServices
                               .services.value![widget.index].service!.titleC !=
                           ''
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         RowWidget(
-                            icon: instanceService
+                            icon: instanceServices
                                 .services.value![widget.index].service!.iconC,
-                            title: instanceService
+                            title: instanceServices
                                 .services.value![widget.index].service!.titleC),
                       ],
                     )

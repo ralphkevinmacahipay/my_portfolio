@@ -10,6 +10,7 @@ class ServiceStateControll extends GetxController {
 //  Rx<List<ServiceViewModel>> services = Rx(List<ServiceViewModel>)(null);
   Rx<List<ServiceViewModel>?> services = Rx<List<ServiceViewModel>?>(null);
   Rx<List<ProjectViewModel>?> projects = Rx<List<ProjectViewModel>?>(null);
+  RxInt currProd = 0.obs;
 
   Future<void> stateDataService() async {
     final List<ServiceViewModel>? fetchData =
@@ -26,6 +27,8 @@ class ServiceStateControll extends GetxController {
       } else {
         print("No project data the length is : ${projects.value?.length}");
       }
+    } else {
+      print('getFromViewModel is $getFromViewModel');
     }
   }
 
@@ -40,4 +43,4 @@ class ServiceStateControll extends GetxController {
   static ServiceStateControll get instance => Get.find();
 }
 
-final instanceService = ServiceStateControll.instance;
+final instanceServices = ServiceStateControll.instance;

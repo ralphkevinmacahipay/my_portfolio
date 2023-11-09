@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_profile/state/get_x.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../configuration/constant.dart';
+import '../model/projects/project_model.dart';
 import '../play_ground.dart';
 
 String servicesDesc =
@@ -51,58 +53,88 @@ class _ProjectsState extends State<Projects> {
               )).marginOnly(top: context.percentHeight * 2),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-                decoration: BoxDecoration(
-                    color: kLighBlue, borderRadius: BorderRadius.circular(15)),
-                width: context.percentWidth * 77.083,
-                height: context.percentHeight * 57.88,
-                child: Stack(
-                  children: [
-                    PageView.builder(
-                      onPageChanged: (index) {
-                        print('index $index');
-                      },
-                      controller: pageViewControll,
-                      itemCount: 5,
-                      itemBuilder: (context, index) => const ProjectContent(),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                          iconSize: 50,
-                          color: kWhite,
-                          onPressed: () {
-                            pageViewControll.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_circle_right_outlined)),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                          iconSize: 50,
-                          color: kWhite,
-                          onPressed: () {
-                            pageViewControll.previousPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_circle_left_outlined)),
-                    ),
-                  ],
-                )),
-          ).marginOnly(bottom: context.percentHeight * 10),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SmoothPageIndicator(
-              controller: pageViewControll,
-              count: 5,
-              effect: ExpandingDotsEffect(dotColor: kWhite),
+            child: Obx(
+              () => instanceServices.projects.value != null
+                  ? Container(
+                      decoration: BoxDecoration(
+                          color: kLighBlue,
+                          borderRadius: BorderRadius.circular(15)),
+                      width: context.percentWidth * 77.083,
+                      height: context.percentHeight * 57.88,
+                      child: Stack(
+                        children: [
+                          PageView.builder(
+                            itemCount: instanceServices.projects.value?.length,
+                            onPageChanged: (index) {
+                              print('index $index');
+                              instanceServices.currProd.value = index;
+                            },
+                            controller: pageViewControll,
+                            itemBuilder: (context, index) {
+                              final GlobalKey keyContainer = GlobalKey();
+                              final services = instanceServices
+                                  .projects.value![index].project;
+                              return ProjectContent(
+                                services: services,
+                                index: index,
+                                keyContainer: keyContainer,
+                              );
+                            },
+                          ),
+                          Obx(
+                            () => instanceServices.currProd.value !=
+                                    instanceServices.projects.value!.length - 1
+                                ? Align(
+                                    alignment: Alignment.centerRight,
+                                    child: IconButton(
+                                        iconSize: 50,
+                                        color: kWhite,
+                                        onPressed: () {
+                                          pageViewControll.nextPage(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            curve: Curves.ease,
+                                          );
+                                        },
+                                        icon: const Icon(
+                                            Icons.arrow_circle_right_outlined)),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
+                          Obx(
+                            () => instanceServices.currProd.value > 0
+                                ? Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: IconButton(
+                                        iconSize: 50,
+                                        color: kWhite,
+                                        onPressed: () {
+                                          pageViewControll.previousPage(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            curve: Curves.ease,
+                                          );
+                                        },
+                                        icon: const Icon(
+                                            Icons.arrow_circle_left_outlined)),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
+                        ],
+                      ))
+                  : const Center(child: Text("No Available Project")),
             ),
-          ).marginOnly(bottom: context.percentHeight * 5)
+          ).marginOnly(bottom: context.percentHeight * 10),
+          instanceServices.projects.value != null
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SmoothPageIndicator(
+                    controller: pageViewControll,
+                    count: instanceServices.projects.value!.length,
+                    effect: ExpandingDotsEffect(dotColor: kWhite),
+                  ),
+                ).marginOnly(bottom: context.percentHeight * 5)
+              : const SizedBox.shrink()
         ],
       ),
     );
@@ -110,13 +142,21 @@ class _ProjectsState extends State<Projects> {
 }
 
 class ProjectContent extends StatelessWidget {
+  final ProjectsModel services;
+
+  final int index;
+  final GlobalKey keyContainer;
   const ProjectContent({
     super.key,
+    required this.keyContainer,
+    required this.index,
+    required this.services,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      key: keyContainer,
       height: context.percentHeight * 39.59,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +164,7 @@ class ProjectContent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("SAFEMO APP",
+              Text(services.projectTitle,
                       style: kPoppinExtraBold.copyWith(
                           fontSize: context.percentWidth * 2, color: kWhite))
                   .marginOnly(
@@ -141,13 +181,13 @@ class ProjectContent extends StatelessWidget {
                   width: context.percentWidth * 40.9,
                   height: context.percentHeight * 37.25,
                   child: Image.asset(
-                    kSafeMoProject,
+                    services.image,
                     fit: BoxFit.fill,
                   ),
                 ),
                 SizedBox(
                   width: context.percentWidth * 15.34,
-                  child: Text(descProd,
+                  child: Text(services.projectDesc,
                       style: kPoppinRegular.copyWith(
                           fontSize: context.percentWidth * 1.5, color: kWhite)),
                 ),

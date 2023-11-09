@@ -13,7 +13,7 @@ class ListProjectsViewModel {
     } catch (e) {
       print("ERROR: $e");
     }
-    return null;
+    return projects;
   }
 }
 
