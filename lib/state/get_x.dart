@@ -7,6 +7,8 @@ class ServiceStateControll extends GetxController {
 //  Rx<List<ServiceViewModel>> services = Rx(List<ServiceViewModel>)(null);
   Rx<List<ServiceViewModel>?> services = Rx<List<ServiceViewModel>?>(null);
   Rx<List<ProjectViewModel>?> projects = Rx<List<ProjectViewModel>?>(null);
+  RxBool isSending = false.obs;
+  RxBool isEmailSent = false.obs;
   RxInt currProd = 0.obs;
 
   Future<void> stateDataService() async {

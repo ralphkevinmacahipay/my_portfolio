@@ -106,7 +106,7 @@ class IconWidgetProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      iconSize: context.percentWidth * 3.472,
+      iconSize: context.percentWidth * 2.472,
       onPressed: () =>
           GeneralServices().openURL(uri: GeneralServices().parseURL(url: link)),
       icon: Image.asset(kIcon, fit: BoxFit.cover),

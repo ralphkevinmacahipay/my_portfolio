@@ -4,11 +4,17 @@ import 'package:my_profile/views/contacts.dart';
 import 'package:my_profile/views/home.dart';
 import 'package:my_profile/views/projects.dart';
 import 'package:my_profile/views/services.dart';
+import 'package:my_profile/views/widget_sources.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:rive/rive.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../a_desktop/a_home/navigator.dart';
 import '../configuration/constant.dart';
+import '../functions/functions_widget.dart';
+import '../my_widget/my_widget.dart';
 import '../services/general_services.dart';
+import '../state/get_x.dart';
+import '../state_management/state_management.dart';
 
 class HomePageResponsive extends StatelessWidget {
   const HomePageResponsive({super.key});
@@ -16,6 +22,7 @@ class HomePageResponsive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: const ChatButtonFloating(),
       drawer: ResponsiveBreakpoints.of(context).isMobile
           ? const NavDrawerMobile()
           : null,
@@ -101,6 +108,198 @@ class HomePageResponsive extends StatelessWidget {
         child: ListView(
           controller: scrollController,
           children: const [HomePage(), Services(), Projects(), Contacts()],
+        ),
+      ),
+    );
+  }
+}
+
+class ChatButtonFloating extends StatefulWidget {
+  const ChatButtonFloating({
+    super.key,
+  });
+
+  @override
+  State<ChatButtonFloating> createState() => _ChatButtonFloatingState();
+}
+
+class _ChatButtonFloatingState extends State<ChatButtonFloating> {
+  late TextEditingController _controllerName;
+  late TextEditingController _controllerEmail;
+  late TextEditingController _controllerSuject;
+  late TextEditingController _controllerContent;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _controllerName = TextEditingController();
+    _controllerEmail = TextEditingController();
+    _controllerSuject = TextEditingController();
+    _controllerContent = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerName.dispose();
+    _controllerEmail.dispose();
+    _controllerSuject.dispose();
+    _controllerContent.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: kTransparent,
+      onPressed: () {
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                backgroundColor: kLighBlue,
+                content: Builder(
+                  builder: (context) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    height: 412,
+                    width: 300,
+                    child: Obx(
+                      () => IgnorePointer(
+                          ignoring: instanceServices.isSending.value,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Lest't Connect!",
+                                      style: kPoppinBold.copyWith(
+                                          color: kWhite,
+                                          fontSize: context.percentWidth * 2),
+                                    ),
+                                    IconButton(
+                                      iconSize: context.percentWidth * 2.5,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      icon: Image.asset(
+                                        kExitImage,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  ],
+                                ).marginSymmetric(),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextFormFieldWidget(
+                                      kController: _controllerName,
+                                      kTitle: "Name"),
+                                  TextFormFieldWidget(
+                                      kController: _controllerEmail,
+                                      kTitle: "Email"),
+                                  TextFormFieldWidget(
+                                      kController: _controllerSuject,
+                                      kTitle: "Subject"),
+                                  TextFormFieldWidget(
+                                      kController: _controllerContent,
+                                      kTitle: "Content"),
+                                  instanceServices.isSending.value
+                                      ? const Center(
+                                          child: CircularProgressIndicator())
+                                      : ElevatedWidget(
+                                          h: 4,
+                                          w: 10,
+                                          ktitle: "Send",
+                                          onPress: () {
+                                            instanceServices.isSending.value =
+                                                true;
+                                            GeneralServices.devLog(
+                                                "_controllerName ${_controllerEmail.text}");
+                                            GeneralServices()
+                                                .sendEmail(
+                                                    name: _controllerName.text,
+                                                    email:
+                                                        _controllerEmail.text,
+                                                    subject:
+                                                        _controllerSuject.text,
+                                                    content:
+                                                        _controllerContent.text)
+                                                .then((value) {
+                                              if (instanceServices
+                                                  .isSending.value) {
+                                                instanceServices
+                                                    .isSending.value = false;
+                                                Navigator.of(context).pop();
+                                              }
+                                            });
+                                          },
+                                        )
+                                ],
+                              ).marginOnly(top: context.percentHeight * 5),
+                            ],
+                          )),
+                    ),
+                  ),
+                ));
+          },
+        ).then((value) {
+          if (instanceServices.isEmailSent.value) {
+            instanceServices.isEmailSent.value = false;
+            GeneralServices().popAndSnackBar(context);
+          }
+        });
+      },
+      child: RiveAnimation.asset(
+        kChatImage,
+      ),
+    );
+  }
+
+  _voidSerd() {}
+}
+
+class TextFormFieldWidget extends StatelessWidget {
+  final TextEditingController kController;
+  final String kTitle;
+  const TextFormFieldWidget({
+    super.key,
+    required this.kController,
+    required this.kTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onFieldSubmitted: (value) {
+        kController.text = value;
+      },
+      controller: kController,
+      style: kPoppinRegular.copyWith(color: kWhite),
+      decoration: InputDecoration(
+        labelText: kTitle,
+        labelStyle: TextStyle(color: kWhite),
+        contentPadding: const EdgeInsets.symmetric(
+            vertical: 10, horizontal: 20), // Adjust the padding as needed
+        enabledBorder: OutlineInputBorder(
+          gapPadding: 2,
+          borderSide: BorderSide(color: kWhite),
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.blue),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
       ),
     );
