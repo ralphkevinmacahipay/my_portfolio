@@ -7,6 +7,8 @@ import '../configuration/constant.dart';
 class ElevatedWidget extends StatelessWidget {
   final double h;
   final double w;
+  final double s;
+
   final String ktitle;
   final void Function()? onPress;
 
@@ -16,6 +18,7 @@ class ElevatedWidget extends StatelessWidget {
     required this.onPress,
     required this.h,
     required this.w,
+    required this.s,
   });
 
   @override
@@ -23,7 +26,7 @@ class ElevatedWidget extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
           fixedSize: MaterialStatePropertyAll(
-              Size(context.percentWidth * w, context.percentWidth * h)),
+              Size(context.percentWidth * 8, context.percentWidth * 2.5)),
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
               side: BorderSide(width: 1.5, color: kWhite),
               borderRadius: BorderRadius.circular(kBorderRadius))),
@@ -36,7 +39,7 @@ class ElevatedWidget extends StatelessWidget {
       onPressed: onPress,
       child: Text(
         ktitle,
-        style: kPoppinSemiBold.copyWith(fontSize: context.percentWidth * 2),
+        style: kPoppinSemiBold.copyWith(fontSize: context.percentWidth * 1.4),
       ),
     );
   }

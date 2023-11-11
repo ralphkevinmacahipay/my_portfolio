@@ -178,23 +178,15 @@ class TabletHome extends StatelessWidget {
         ).marginOnly(top: context.percentHeight * 15),
         Align(
           alignment: Alignment.bottomCenter,
-          child: ElevatedWidget(
-            h: 6,
-            w: 30,
-            ktitle: "Download CV",
-            onPress: () => _voidOpenLink(),
-          ),
-        ).marginOnly(bottom: context.percentHeight * 10)
+          child: Text(textHome,
+              textAlign: TextAlign.left,
+              style: kPoppinSemiBold.copyWith(
+                  color: kLightGrey, fontSize: context.percentWidth * 3.5)),
+        )
+            .marginOnly(bottom: context.percentHeight * 10)
+            .marginSymmetric(horizontal: context.percentWidth * 5)
       ],
     );
-  }
-
-  _voidOpenLink() {
-    print("code is here");
-    GeneralServices().openURL(
-        uri: GeneralServices().parseURL(
-            url:
-                "https://drive.google.com/file/d/1ob8jN81m0zj2SYRl5Ctl-RkBX01P8aES/view?usp=drivesdk"));
   }
 }
 

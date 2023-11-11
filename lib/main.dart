@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/state_management/put_get.dart';
-import 'package:my_profile/views/home_page.dart';
+import 'package:my_profile/views/index_page.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
 import 'package:responsive_framework/responsive_framework.dart';

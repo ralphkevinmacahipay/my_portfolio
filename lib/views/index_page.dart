@@ -150,6 +150,13 @@ class _ChatButtonFloatingState extends State<ChatButtonFloating> {
     super.dispose();
   }
 
+  _clear() {
+    _controllerName.clear();
+    _controllerEmail.clear();
+    _controllerSuject.clear();
+    _controllerContent.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -219,8 +226,9 @@ class _ChatButtonFloatingState extends State<ChatButtonFloating> {
                                       ? const Center(
                                           child: CircularProgressIndicator())
                                       : ElevatedWidget(
-                                          h: 4,
-                                          w: 10,
+                                          s: 1.4,
+                                          h: 2.5,
+                                          w: 8,
                                           ktitle: "Send",
                                           onPress: () {
                                             instanceServices.isSending.value =
@@ -257,6 +265,7 @@ class _ChatButtonFloatingState extends State<ChatButtonFloating> {
         ).then((value) {
           if (instanceServices.isEmailSent.value) {
             instanceServices.isEmailSent.value = false;
+            _clear();
             GeneralServices().popAndSnackBar(context);
           }
         });
@@ -266,8 +275,6 @@ class _ChatButtonFloatingState extends State<ChatButtonFloating> {
       ),
     );
   }
-
-  _voidSerd() {}
 }
 
 class TextFormFieldWidget extends StatelessWidget {
@@ -365,18 +372,17 @@ class NavDrawerTablet extends StatelessWidget {
           SizedBox(height: context.percentHeight * 3),
           Expanded(
             child: ListView.builder(
-              itemCount: kNavigator.length,
+              itemCount: ViewsControll().kNavigator.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  onTap: () {
-                    // onPressedNav(
-                    //     context: context, enumVal: kNavigator[index]['type']);
-                  },
+                  onTap: () => ViewsControll().onPress(
+                      context: context,
+                      type: ViewsControll().kNavigator[index]['title']),
                   title: Text(
-                    kNavigator[index]['title'],
+                    ViewsControll().kNavigator[index]['title'],
                     style: kPoppinSemiBold.copyWith(color: kWhite),
                   ),
-                  leading: kNavigator[index]['icon'],
+                  leading: ViewsControll().kNavigator[index]['icon'],
                 );
               },
             ),
@@ -387,14 +393,21 @@ class NavDrawerTablet extends StatelessWidget {
                 (states) => kLightBlue,
               ),
             ),
-            onPressed: () => GeneralServices()
-                .openURL(uri: GeneralServices().parseURL(url: kCV)),
+            onPressed: () => _voidOpenLink(),
             child: Text(kDownloadCV),
           ),
           SizedBox(height: context.percentHeight * 50),
         ],
       ),
     );
+  }
+
+  _voidOpenLink() {
+    print("code is here");
+    GeneralServices().openURL(
+        uri: GeneralServices().parseURL(
+            url:
+                "https://drive.google.com/file/d/1ob8jN81m0zj2SYRl5Ctl-RkBX01P8aES/view?usp=drivesdk"));
   }
 }
 

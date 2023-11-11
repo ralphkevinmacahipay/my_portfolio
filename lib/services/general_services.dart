@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -8,6 +9,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer' as dev show log;
 import 'package:http/http.dart' as http;
+import 'package:velocity_x/velocity_x.dart';
 
 class GeneralServices {
   Future<void> openURL({required Uri uri}) async {
@@ -69,13 +71,16 @@ class GeneralServices {
     showTopSnackBar(
       displayDuration: const Duration(seconds: 1),
       Overlay.of(context),
-      CustomSnackBar.success(
-        icon: Icon(
-          Icons.sentiment_very_satisfied,
-          color: kTransparent,
+      SizedBox(
+        height: 50,
+        child: CustomSnackBar.success(
+          icon: Icon(
+            Icons.sentiment_very_satisfied,
+            color: kTransparent,
+          ),
+          message: "Message was successfully sent.",
         ),
-        message: "Message was successfully sent.",
-      ),
+      ).marginSymmetric(horizontal: context.percentWidth * 37),
     );
   }
 }

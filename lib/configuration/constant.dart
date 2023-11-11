@@ -90,7 +90,7 @@ final kPoppinRegular = GoogleFonts.poppins(fontWeight: FontWeight.w400);
 // navigator item
 final List<Map<String, dynamic>> kNavigator = [
   {
-    "title": getNavNmae(NavItemEnum.home),
+    "title": "Home",
     "type": NavItemEnum.home,
     "icon": Icon(Icons.home_filled, color: kWhite),
   },
