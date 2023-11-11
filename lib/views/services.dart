@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 String servicesDesc =
@@ -54,26 +55,39 @@ class Services extends StatelessWidget {
       width: context.percentWidth * 100,
       child: Stack(
         children: [
+          ResponsiveBreakpoints.of(context).isMobile
+              ? const SizedBox.shrink()
+              : Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Text(
+                        "Services",
+                        style: kPoppinBold.copyWith(
+                            color: kWhite,
+                            fontSize:
+                                ResponsiveBreakpoints.of(context).isDesktop
+                                    ? context.percentWidth * 3
+                                    : ResponsiveBreakpoints.of(context).isTablet
+                                        ? context.percentWidth * 5
+                                        : 0),
+                      ),
+                      Text(
+                        servicesDesc,
+                        textAlign: TextAlign.center,
+                        style: kPoppinSemiBold.copyWith(
+                            color: kLightGrey,
+                            fontSize:
+                                ResponsiveBreakpoints.of(context).isDesktop
+                                    ? context.percentWidth * 1.5
+                                    : context.percentWidth * 2.5),
+                      ).paddingSymmetric(horizontal: 50, vertical: 50),
+                    ],
+                  )).marginOnly(top: context.percentHeight * 5),
           Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  Text(
-                    "Services",
-                    style: kPoppinBold.copyWith(
-                        color: kWhite, fontSize: context.percentWidth * 3),
-                  ),
-                  Text(
-                    servicesDesc,
-                    textAlign: TextAlign.center,
-                    style: kPoppinSemiBold.copyWith(
-                        color: kLightGrey,
-                        fontSize: context.percentWidth * 1.5),
-                  ).paddingSymmetric(horizontal: 50),
-                ],
-              )).marginOnly(top: context.percentHeight * 5),
-          Align(
-            alignment: Alignment.bottomCenter,
+            alignment: ResponsiveBreakpoints.of(context).isDesktop
+                ? Alignment.bottomCenter
+                : Alignment.center,
             child: Obx(
               () => SizedBox(
                 height: 312,
@@ -99,7 +113,11 @@ class Services extends StatelessWidget {
                     : const Text("No Services"),
               ),
             ),
-          ).marginOnly(bottom: 20)
+          ).marginOnly(
+              bottom: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 0,
+              top: ResponsiveBreakpoints.of(context).isTablet
+                  ? context.percentHeight * 15
+                  : 0)
         ],
       ),
     );
@@ -125,9 +143,13 @@ class _BuilderServicesState extends State<BuilderServices> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        print("text");
-      },
+      onTap: ResponsiveBreakpoints.of(context).isTablet
+          ? () {
+              setState(() {
+                isHovering = !isHovering;
+              });
+            }
+          : () {},
       onHover: (isHover) {
         setState(() {
           isHovering = isHover;
@@ -195,7 +217,10 @@ class _BuilderServicesState extends State<BuilderServices> {
                     )
                   : const SizedBox.shrink(),
             ]),
-      ).marginSymmetric(horizontal: context.percentWidth * 2),
+      ).marginSymmetric(
+          horizontal: ResponsiveBreakpoints.of(context).isDesktop
+              ? context.percentWidth * 2
+              : context.percentWidth * 1),
     );
   }
 }

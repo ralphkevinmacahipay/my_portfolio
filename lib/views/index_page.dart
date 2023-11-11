@@ -39,16 +39,21 @@ class HomePageResponsive extends StatelessWidget {
         // elevation: 5,
         title: ResponsiveBreakpoints.of(context).isMobile
             ? Row(children: [
-                Text("Home",
-                    style: kPoppinBold.copyWith(
-                        fontSize: context.percentWidth * 7)),
+                Obx(
+                  () => Text(instanceServices.pageTitle.value,
+                      style: kPoppinBold.copyWith(
+                          fontSize: context.percentWidth * 7)),
+                ),
                 const Spacer(),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.dark_mode))
               ])
             : ResponsiveBreakpoints.of(context).isTablet
-                ? const Stack(children: [
-                    Align(alignment: Alignment.centerLeft, child: Text("Home")),
+                ? Stack(children: [
                     Align(
+                        alignment: Alignment.centerLeft,
+                        child:
+                            Obx(() => Text(instanceServices.pageTitle.value))),
+                    const Align(
                         alignment: Alignment.center, child: Text("Ralph.dart")),
                     // IconButton(
                     //   onPressed: () {},
@@ -487,6 +492,7 @@ class ViewsControll {
   ];
 
   onPress({required BuildContext context, required String type}) {
+    instanceServices.pageTitle.value = type;
     switch (type) {
       case 'Home':
         scrollToPosition(0);
@@ -500,5 +506,7 @@ class ViewsControll {
       case 'Contacts':
         scrollToPosition(context.percentHeight * 92 * 4);
     }
+
+    Navigator.of(context).pop();
   }
 }
