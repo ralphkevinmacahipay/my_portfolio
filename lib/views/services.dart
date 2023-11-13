@@ -122,7 +122,7 @@ class _ServicesState extends State<Services> {
                   ? context.percentHeight * 10
                   : ResponsiveBreakpoints.of(context).isTablet
                       ? context.percentHeight * 15
-                      : 0),
+                      : context.percentHeight * 5),
           Obx(() => instanceServices.services.value != null
               ? ResponsiveBreakpoints.of(context).isMobile
                   ? Align(

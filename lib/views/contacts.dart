@@ -19,57 +19,83 @@ class Contacts extends StatelessWidget {
       width: context.percentWidth * 100,
       child: Stack(children: [
         TitleWidget(servicesDesc: contactDesc, kTitle: "Contacts"),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            decoration: BoxDecoration(
-                color: kLighDark, borderRadius: BorderRadius.circular(15)),
-            width: context.percentWidth * 88.61,
-            height: context.percentHeight * 40.76,
-            child: Column(
-                mainAxisAlignment: ResponsiveBreakpoints.of(context).isDesktop
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Stay Connected",
-                      style: kPoppinSemiBold.copyWith(
-                          color: kWhite,
-                          fontSize: context.percentWidth * 4.513)),
-                  ResponsiveBreakpoints.of(context).isDesktop
-                      ? Text(contactDesc,
-                              textAlign: TextAlign.center,
-                              style: kPoppinRegular.copyWith(
-                                color: kWhite,
-                                fontSize: context.percentWidth * 1.3888,
-                              ))
-                          .marginSymmetric(horizontal: context.percentWidth * 5)
-                      : const SizedBox.shrink(),
-                  Divider(
-                    thickness: 2,
-                    color: kWhite,
-                    height: 10,
-                  ).marginSymmetric(horizontal: context.percentWidth * 5),
-                  ResponsiveBreakpoints.of(context).isDesktop
-                      ? const Spacer()
-                      : const SizedBox.shrink(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconWidgetProvider(kIcon: kFaceBook, link: kMyFaceBook),
-                      IconWidgetProvider(kIcon: kInstagram, link: kMyInstagram),
-                      IconWidgetProvider(kIcon: kGitHub, link: kMyGitHub),
-                      IconWidgetProvider(kIcon: kLinkedIn, link: kMyLinkedIn),
-                    ],
-                  ).marginOnly(bottom: context.percentHeight * 5)
-                ]),
-          ),
-        ).marginOnly(bottom: context.percentHeight * 10),
+        ResponsiveBreakpoints.of(context).isMobile
+            ? Align(
+                alignment: Alignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconWidgetProvider(kIcon: kFaceBook, link: kMyFaceBook),
+                    IconWidgetProvider(kIcon: kInstagram, link: kMyInstagram),
+                    IconWidgetProvider(kIcon: kGitHub, link: kMyGitHub),
+                    IconWidgetProvider(kIcon: kLinkedIn, link: kMyLinkedIn)
+                  ],
+                ),
+              )
+            : const ContactDestopAndTablet()
+                .marginOnly(bottom: context.percentHeight * 10),
         CopyRigthWidget(
           kFontSize: ResponsiveBreakpoints.of(context).isDesktop
               ? context.percentWidth * 1
-              : context.percentWidth * 2,
+              : ResponsiveBreakpoints.of(context).isTablet
+                  ? context.percentWidth * 2
+                  : context.percentWidth * 3,
         )
       ]),
+    );
+  }
+}
+
+class ContactDestopAndTablet extends StatelessWidget {
+  const ContactDestopAndTablet({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        decoration: BoxDecoration(
+            color: kLighDark, borderRadius: BorderRadius.circular(15)),
+        width: context.percentWidth * 88.61,
+        height: context.percentHeight * 40.76,
+        child: Column(
+            mainAxisAlignment: ResponsiveBreakpoints.of(context).isDesktop
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("Stay Connected",
+                  style: kPoppinSemiBold.copyWith(
+                      color: kWhite, fontSize: context.percentWidth * 4.513)),
+              ResponsiveBreakpoints.of(context).isDesktop
+                  ? Text(contactDesc,
+                      textAlign: TextAlign.center,
+                      style: kPoppinRegular.copyWith(
+                        color: kWhite,
+                        fontSize: context.percentWidth * 1.3888,
+                      )).marginSymmetric(horizontal: context.percentWidth * 5)
+                  : const SizedBox.shrink(),
+              Divider(
+                thickness: 2,
+                color: kWhite,
+                height: 10,
+              ).marginSymmetric(horizontal: context.percentWidth * 5),
+              ResponsiveBreakpoints.of(context).isDesktop
+                  ? const Spacer()
+                  : const SizedBox.shrink(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconWidgetProvider(kIcon: kFaceBook, link: kMyFaceBook),
+                  IconWidgetProvider(kIcon: kInstagram, link: kMyInstagram),
+                  IconWidgetProvider(kIcon: kGitHub, link: kMyGitHub),
+                  IconWidgetProvider(kIcon: kLinkedIn, link: kMyLinkedIn),
+                ],
+              ).marginOnly(bottom: context.percentHeight * 5)
+            ]),
+      ),
     );
   }
 }
@@ -110,7 +136,10 @@ class CopyRigthWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ).marginOnly(
+        bottom: ResponsiveBreakpoints.of(context).isMobile
+            ? context.percentWidth * 10
+            : 0);
   }
 }
 
@@ -129,10 +158,15 @@ class IconWidgetProvider extends StatelessWidget {
     return IconButton(
       iconSize: ResponsiveBreakpoints.of(context).isDesktop
           ? context.percentWidth * 2.472
-          : context.percentWidth * 10,
+          : ResponsiveBreakpoints.of(context).isTablet
+              ? context.percentWidth * 10
+              : context.percentWidth * 20,
       onPressed: () =>
           GeneralServices().openURL(uri: GeneralServices().parseURL(url: link)),
       icon: Image.asset(kIcon, fit: BoxFit.cover),
-    );
+    ).marginSymmetric(
+        vertical: ResponsiveBreakpoints.of(context).isMobile
+            ? context.percentHeight * 2
+            : 0);
   }
 }

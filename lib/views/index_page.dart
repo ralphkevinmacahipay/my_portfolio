@@ -504,7 +504,7 @@ class ViewsControll {
         scrollToPosition(context.percentHeight * 92 * 2);
 
       case 'Contacts':
-        scrollToPosition(context.percentHeight * 92 * 4);
+        scrollToPosition(context.percentHeight * 92 * 3);
     }
 
     Navigator.of(context).pop();

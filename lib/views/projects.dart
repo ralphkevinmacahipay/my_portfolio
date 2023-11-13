@@ -117,7 +117,10 @@ class _ProjectsState extends State<Projects> {
                       ))
                   : const SizedBox.shrink(),
             ),
-          ).marginOnly(bottom: context.percentHeight * 10),
+          ).marginOnly(
+              bottom: ResponsiveBreakpoints.of(context).isMobile
+                  ? 0
+                  : context.percentHeight * 10),
           instanceServices.projects.value != null
               ? Align(
                   alignment: Alignment.bottomCenter,
@@ -128,7 +131,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                 ).marginOnly(
                   bottom: ResponsiveBreakpoints.of(context).isMobile
-                      ? context.percentHeight * 18
+                      ? context.percentHeight * 10
                       : context.percentHeight * 5)
               : const SizedBox.shrink()
         ],
