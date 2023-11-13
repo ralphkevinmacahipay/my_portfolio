@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/state/get_x.dart';
+import 'package:my_profile/views/widget_sources.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import 'package:responsive_framework/responsive_framework.dart';
 import '../configuration/constant.dart';
 import '../model/projects/project_model.dart';
 import '../services/general_services.dart';
@@ -32,24 +33,7 @@ class _ProjectsState extends State<Projects> {
       decoration: const BoxDecoration(),
       child: Stack(
         children: [
-          Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  Text(
-                    "Projects",
-                    style: kPoppinBold.copyWith(
-                        color: kWhite, fontSize: context.percentWidth * 3),
-                  ),
-                  Text(
-                    servicesDesc,
-                    textAlign: TextAlign.center,
-                    style: kPoppinSemiBold.copyWith(
-                        color: kLightGrey,
-                        fontSize: context.percentWidth * 1.5),
-                  ).paddingSymmetric(horizontal: 50),
-                ],
-              )).marginOnly(top: context.percentHeight * 2),
+          TitleWidget(kTitle: "Projects", servicesDesc: servicesDesc),
           Align(
             alignment: Alignment.bottomCenter,
             child: Obx(
@@ -121,7 +105,7 @@ class _ProjectsState extends State<Projects> {
                           ),
                         ],
                       ))
-                  : const Center(child: Text("No Available Project")),
+                  : const SizedBox.shrink(),
             ),
           ).marginOnly(bottom: context.percentHeight * 10),
           instanceServices.projects.value != null
@@ -165,7 +149,10 @@ class ProjectContent extends StatelessWidget {
             children: [
               Text(services.projectTitle,
                       style: kPoppinExtraBold.copyWith(
-                          fontSize: context.percentWidth * 2, color: kWhite))
+                          fontSize: ResponsiveBreakpoints.of(context).isDesktop
+                              ? context.percentWidth * 2
+                              : context.percentWidth * 5,
+                          color: kWhite))
                   .marginOnly(
                       left: context.percentWidth * 10,
                       top: context.percentHeight * 3.32),
@@ -173,25 +160,47 @@ class ProjectContent extends StatelessWidget {
           ),
           SizedBox(
             height: context.percentHeight * 39.59,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: context.percentWidth * 40.9,
-                  height: context.percentHeight * 37.25,
-                  child: Image.asset(
-                    services.image,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                SizedBox(
-                  width: context.percentWidth * 18,
-                  child: Text(services.projectDesc,
-                      style: kPoppinRegular.copyWith(
-                          fontSize: context.percentWidth * 1.5, color: kWhite)),
-                ),
-              ],
-            ),
+            child: ResponsiveBreakpoints.of(context).isDesktop
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: context.percentWidth * 40.9,
+                        height: context.percentHeight * 37.25,
+                        child: Image.asset(
+                          services.image,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(
+                        width: context.percentWidth * 18,
+                        child: Text(services.projectDesc,
+                            style: kPoppinRegular.copyWith(
+                                fontSize: context.percentWidth * 1.5,
+                                color: kWhite)),
+                      ),
+                    ],
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                        SizedBox(
+                          width: context.percentWidth * 50,
+                          height: context.percentHeight * 20,
+                          child: Image.asset(
+                            services.image,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        SizedBox(
+                          width: context.percentWidth * 50,
+                          child: Text(services.projectDesc,
+                              textAlign: TextAlign.center,
+                              style: kPoppinRegular.copyWith(
+                                  fontSize: context.percentWidth * 2.5,
+                                  color: kWhite)),
+                        )
+                      ]),
           ),
           ElevatedButton(
                   onPressed: () => GeneralServices().openURL(

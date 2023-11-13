@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
+import 'package:my_profile/views/widget_sources.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -65,48 +66,7 @@ class _ServicesState extends State<Services> {
       width: context.percentWidth * 100,
       child: Stack(
         children: [
-          ResponsiveBreakpoints.of(context).isMobile
-              ? Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    servicesDesc,
-                    textAlign: TextAlign.center,
-                    style: kPoppinSemiBold.copyWith(
-                        color: kLightGrey,
-                        fontSize: context.percentWidth * 3.5),
-                  ),
-                ).marginAll(context.percentHeight * 2.5)
-              : Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Services",
-                        style: kPoppinBold.copyWith(
-                            color: kWhite,
-                            fontSize:
-                                ResponsiveBreakpoints.of(context).isDesktop
-                                    ? context.percentWidth * 3
-                                    : ResponsiveBreakpoints.of(context).isTablet
-                                        ? context.percentWidth * 5
-                                        : 0),
-                      ),
-                      Text(
-                        servicesDesc,
-                        textAlign: TextAlign.center,
-                        style: kPoppinSemiBold.copyWith(
-                            color: kLightGrey,
-                            fontSize:
-                                ResponsiveBreakpoints.of(context).isDesktop
-                                    ? context.percentWidth * 1.5
-                                    : context.percentWidth * 2.5),
-                      ).paddingSymmetric(
-                          horizontal: 50,
-                          vertical: ResponsiveBreakpoints.of(context).isTablet
-                              ? 50
-                              : 0),
-                    ],
-                  )).marginOnly(top: context.percentHeight * 0),
+          TitleWidget(servicesDesc: servicesDesc, kTitle: "Services"),
           Align(
             alignment: ResponsiveBreakpoints.of(context).isDesktop
                 ? Alignment.bottomCenter
