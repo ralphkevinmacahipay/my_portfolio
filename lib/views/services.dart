@@ -5,6 +5,7 @@ import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 String servicesDesc =
@@ -56,7 +57,6 @@ class Services extends StatefulWidget {
 class _ServicesState extends State<Services> {
   @override
   Widget build(BuildContext context) {
-    int activeIndex = 0;
     // CarouselController _carouselController = CarouselController();
 
     Get.put(ServiceStateControll());
@@ -122,10 +122,10 @@ class _ServicesState extends State<Services> {
                                 itemCount:
                                     instanceServices.services.value?.length,
                                 options: CarouselOptions(
+                                    autoPlayInterval:
+                                        const Duration(seconds: 2),
                                     onPageChanged: (index, reason) {
-                                      setState(() {
-                                        activeIndex = index;
-                                      });
+                                      instanceServices.currPage.value = index;
                                     },
                                     viewportFraction: .8,
                                     autoPlay: true,
@@ -145,8 +145,6 @@ class _ServicesState extends State<Services> {
                                     instanceServices.services.value?.length,
                                 itemBuilder: (context, index) {
                                   GlobalKey containerKey = GlobalKey();
-                                  // final services =
-                                  //     instanceService.services.value?[index].service;
 
                                   return BuilderServices(
                                     containerKey: containerKey,
@@ -154,23 +152,6 @@ class _ServicesState extends State<Services> {
                                   );
                                 },
                               ).marginOnly(),
-                        /*
-                         ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: instanceServices.services.value?.length,
-                          itemBuilder: (context, index) {
-                            GlobalKey containerKey = GlobalKey();
-                            // final services =
-                            //     instanceService.services.value?[index].service;
-                    
-                            return BuilderServices(
-                              containerKey: containerKey,
-                              index: index,
-                            );
-                          },
-                        ).marginOnly(),
-                         */
                       )
                     : const Text("No Services"),
               ),
@@ -180,12 +161,17 @@ class _ServicesState extends State<Services> {
               top: ResponsiveBreakpoints.of(context).isTablet
                   ? context.percentHeight * 15
                   : context.percentHeight * 10),
-          instanceServices.services.value != null
-              ? DotsIndicator(
-                  dotsCount: instanceServices.services.value!.length,
-                  position: activeIndex,
-                )
-              : const SizedBox.shrink()
+          Obx(() => instanceServices.services.value != null
+              ? ResponsiveBreakpoints.of(context).isMobile
+                  ? Align(
+                      alignment: Alignment.bottomCenter,
+                      child: DotsIndicator(
+                        dotsCount: instanceServices.services.value!.length,
+                        position: instanceServices.currPage.value,
+                      ),
+                    ).marginOnly(bottom: context.percentHeight * 10)
+                  : const SizedBox.shrink()
+              : const SizedBox.shrink()),
         ],
       ),
     );

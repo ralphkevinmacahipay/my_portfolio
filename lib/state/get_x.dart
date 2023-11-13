@@ -10,6 +10,7 @@ class ServiceStateControll extends GetxController {
   RxBool isSending = false.obs;
   RxBool isEmailSent = false.obs;
   RxInt currProd = 0.obs;
+  RxInt currPage = 0.obs;
   RxString pageTitle = "Home".obs;
 
   Future<void> stateDataService() async {
