@@ -35,14 +35,18 @@ class _ProjectsState extends State<Projects> {
         children: [
           TitleWidget(kTitle: "Projects", servicesDesc: servicesDesc),
           Align(
-            alignment: Alignment.bottomCenter,
+            alignment: ResponsiveBreakpoints.of(context).isMobile
+                ? Alignment.center
+                : Alignment.bottomCenter,
             child: Obx(
               () => instanceServices.projects.value != null
                   ? Container(
                       decoration: BoxDecoration(
                           color: kLighBlue,
                           borderRadius: BorderRadius.circular(15)),
-                      width: context.percentWidth * 77.083,
+                      width: ResponsiveBreakpoints.of(context).isMobile
+                          ? context.percentWidth * 90
+                          : context.percentWidth * 77.083,
                       height: context.percentHeight * 57.88,
                       child: Stack(
                         children: [
@@ -64,45 +68,51 @@ class _ProjectsState extends State<Projects> {
                               );
                             },
                           ),
-                          Obx(
-                            () => instanceServices.currProd.value !=
-                                    instanceServices.projects.value!.length - 1
-                                ? Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                        iconSize: 50,
-                                        color: kWhite,
-                                        onPressed: () {
-                                          pageViewControll.nextPage(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            curve: Curves.ease,
-                                          );
-                                        },
-                                        icon: const Icon(
-                                            Icons.arrow_circle_right_outlined)),
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
-                          Obx(
-                            () => instanceServices.currProd.value > 0
-                                ? Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                        iconSize: 50,
-                                        color: kWhite,
-                                        onPressed: () {
-                                          pageViewControll.previousPage(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            curve: Curves.ease,
-                                          );
-                                        },
-                                        icon: const Icon(
-                                            Icons.arrow_circle_left_outlined)),
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
+                          ResponsiveBreakpoints.of(context).isMobile
+                              ? const SizedBox.shrink()
+                              : Obx(
+                                  () => instanceServices.currProd.value !=
+                                          instanceServices
+                                                  .projects.value!.length -
+                                              1
+                                      ? Align(
+                                          alignment: Alignment.centerRight,
+                                          child: IconButton(
+                                              iconSize: 50,
+                                              color: kWhite,
+                                              onPressed: () {
+                                                pageViewControll.nextPage(
+                                                  duration: const Duration(
+                                                      milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              },
+                                              icon: const Icon(Icons
+                                                  .arrow_circle_right_outlined)),
+                                        )
+                                      : const SizedBox.shrink(),
+                                ),
+                          ResponsiveBreakpoints.of(context).isMobile
+                              ? const SizedBox.shrink()
+                              : Obx(
+                                  () => instanceServices.currProd.value > 0
+                                      ? Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: IconButton(
+                                              iconSize: 50,
+                                              color: kWhite,
+                                              onPressed: () {
+                                                pageViewControll.previousPage(
+                                                  duration: const Duration(
+                                                      milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              },
+                                              icon: const Icon(Icons
+                                                  .arrow_circle_left_outlined)),
+                                        )
+                                      : const SizedBox.shrink(),
+                                ),
                         ],
                       ))
                   : const SizedBox.shrink(),
@@ -116,7 +126,10 @@ class _ProjectsState extends State<Projects> {
                     count: instanceServices.projects.value!.length,
                     effect: ExpandingDotsEffect(dotColor: kWhite),
                   ),
-                ).marginOnly(bottom: context.percentHeight * 5)
+                ).marginOnly(
+                  bottom: ResponsiveBreakpoints.of(context).isMobile
+                      ? context.percentHeight * 18
+                      : context.percentHeight * 5)
               : const SizedBox.shrink()
         ],
       ),
@@ -151,7 +164,9 @@ class ProjectContent extends StatelessWidget {
                       style: kPoppinExtraBold.copyWith(
                           fontSize: ResponsiveBreakpoints.of(context).isDesktop
                               ? context.percentWidth * 2
-                              : context.percentWidth * 5,
+                              : ResponsiveBreakpoints.of(context).isTablet
+                                  ? context.percentWidth * 5
+                                  : context.percentWidth * 6,
                           color: kWhite))
                   .marginOnly(
                       left: context.percentWidth * 10,
@@ -185,7 +200,9 @@ class ProjectContent extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                         SizedBox(
-                          width: context.percentWidth * 50,
+                          width: ResponsiveBreakpoints.of(context).isMobile
+                              ? context.percentWidth * 70
+                              : context.percentWidth * 50,
                           height: context.percentHeight * 20,
                           child: Image.asset(
                             services.image,
@@ -193,11 +210,16 @@ class ProjectContent extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: context.percentWidth * 50,
+                          width: ResponsiveBreakpoints.of(context).isMobile
+                              ? context.percentWidth * 80
+                              : context.percentWidth * 50,
                           child: Text(services.projectDesc,
                               textAlign: TextAlign.center,
                               style: kPoppinRegular.copyWith(
-                                  fontSize: context.percentWidth * 2.5,
+                                  fontSize:
+                                      ResponsiveBreakpoints.of(context).isMobile
+                                          ? context.percentWidth * 3.9
+                                          : context.percentWidth * 2.5,
                                   color: kWhite)),
                         )
                       ]),

@@ -111,16 +111,18 @@ class _ServicesState extends State<Services> {
                                     index: index,
                                   );
                                 },
-                              ).marginOnly(),
+                              ),
                       )
                     : const Text("No Services"),
               ),
             ),
           ).marginOnly(
               bottom: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 0,
-              top: ResponsiveBreakpoints.of(context).isTablet
-                  ? context.percentHeight * 15
-                  : context.percentHeight * 10),
+              top: ResponsiveBreakpoints.of(context).isDesktop
+                  ? context.percentHeight * 10
+                  : ResponsiveBreakpoints.of(context).isTablet
+                      ? context.percentHeight * 15
+                      : 0),
           Obx(() => instanceServices.services.value != null
               ? ResponsiveBreakpoints.of(context).isMobile
                   ? Align(

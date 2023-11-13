@@ -425,7 +425,7 @@ class NavDrawerMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: context.percentWidth * 50,
+      width: context.percentWidth * 70,
       backgroundColor: kDarkBlue,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -463,7 +463,7 @@ class NavDrawerMobile extends StatelessWidget {
             child: Text(kDownloadCV),
           ),
           const Spacer(
-            flex: 2,
+            flex: 1,
           )
         ],
       ),
