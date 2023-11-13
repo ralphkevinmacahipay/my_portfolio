@@ -1,8 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 String servicesDesc =
@@ -44,11 +46,19 @@ List<Map<String, dynamic>> projectList = [
   },
 ];
 
-class Services extends StatelessWidget {
+class Services extends StatefulWidget {
   const Services({super.key});
 
   @override
+  State<Services> createState() => _ServicesState();
+}
+
+class _ServicesState extends State<Services> {
+  @override
   Widget build(BuildContext context) {
+    int activeIndex = 0;
+    // CarouselController _carouselController = CarouselController();
+
     Get.put(ServiceStateControll());
     return SizedBox(
       height: context.percentHeight * 92,
@@ -56,7 +66,16 @@ class Services extends StatelessWidget {
       child: Stack(
         children: [
           ResponsiveBreakpoints.of(context).isMobile
-              ? const SizedBox.shrink()
+              ? Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    servicesDesc,
+                    textAlign: TextAlign.center,
+                    style: kPoppinSemiBold.copyWith(
+                        color: kLightGrey,
+                        fontSize: context.percentWidth * 3.5),
+                  ),
+                ).marginAll(context.percentHeight * 2.5)
               : Align(
                   alignment: Alignment.topCenter,
                   child: Column(
@@ -81,19 +100,62 @@ class Services extends StatelessWidget {
                                 ResponsiveBreakpoints.of(context).isDesktop
                                     ? context.percentWidth * 1.5
                                     : context.percentWidth * 2.5),
-                      ).paddingSymmetric(horizontal: 50, vertical: 50),
+                      ).paddingSymmetric(
+                          horizontal: 50,
+                          vertical: ResponsiveBreakpoints.of(context).isTablet
+                              ? 50
+                              : 0),
                     ],
-                  )).marginOnly(top: context.percentHeight * 5),
+                  )).marginOnly(top: context.percentHeight * 0),
           Align(
             alignment: ResponsiveBreakpoints.of(context).isDesktop
                 ? Alignment.bottomCenter
-                : Alignment.center,
+                : Alignment.center, // tablet and mobile position center
             child: Obx(
               () => SizedBox(
                 height: 312,
                 child: instanceServices.services.value != null
                     ? Center(
-                        child: ListView.builder(
+                        child: ResponsiveBreakpoints.of(context).isMobile
+                            ? CarouselSlider.builder(
+                                // carouselController: _carouselController,
+                                itemCount:
+                                    instanceServices.services.value?.length,
+                                options: CarouselOptions(
+                                    onPageChanged: (index, reason) {
+                                      setState(() {
+                                        activeIndex = index;
+                                      });
+                                    },
+                                    viewportFraction: .8,
+                                    autoPlay: true,
+                                    height: 500,
+                                    enlargeCenterPage: true),
+                                itemBuilder: (context, index, realIndex) {
+                                  GlobalKey containerKey = GlobalKey();
+
+                                  return BuilderServices(
+                                      containerKey: containerKey, index: index);
+                                },
+                              )
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    instanceServices.services.value?.length,
+                                itemBuilder: (context, index) {
+                                  GlobalKey containerKey = GlobalKey();
+                                  // final services =
+                                  //     instanceService.services.value?[index].service;
+
+                                  return BuilderServices(
+                                    containerKey: containerKey,
+                                    index: index,
+                                  );
+                                },
+                              ).marginOnly(),
+                        /*
+                         ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: instanceServices.services.value?.length,
@@ -101,14 +163,14 @@ class Services extends StatelessWidget {
                             GlobalKey containerKey = GlobalKey();
                             // final services =
                             //     instanceService.services.value?[index].service;
-                            print(
-                                "${instanceServices.services.value?[index].service!.icon}");
+                    
                             return BuilderServices(
                               containerKey: containerKey,
                               index: index,
                             );
                           },
                         ).marginOnly(),
+                         */
                       )
                     : const Text("No Services"),
               ),
@@ -117,7 +179,13 @@ class Services extends StatelessWidget {
               bottom: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 0,
               top: ResponsiveBreakpoints.of(context).isTablet
                   ? context.percentHeight * 15
-                  : 0)
+                  : context.percentHeight * 10),
+          instanceServices.services.value != null
+              ? DotsIndicator(
+                  dotsCount: instanceServices.services.value!.length,
+                  position: activeIndex,
+                )
+              : const SizedBox.shrink()
         ],
       ),
     );
@@ -143,19 +211,22 @@ class _BuilderServicesState extends State<BuilderServices> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ResponsiveBreakpoints.of(context).isTablet
+      onTap: ResponsiveBreakpoints.of(context).isTablet ||
+              ResponsiveBreakpoints.of(context).isMobile
           ? () {
               setState(() {
                 isHovering = !isHovering;
               });
             }
           : () {},
-      onHover: (isHover) {
-        setState(() {
-          isHovering = isHover;
-        });
-        print("isHover $isHovering");
-      },
+      onHover: ResponsiveBreakpoints.of(context).isDesktop
+          ? (isHover) {
+              setState(() {
+                isHovering = isHover;
+              });
+              print("isHover $isHovering");
+            }
+          : null,
       child: AnimatedContainer(
         key: widget.containerKey,
         duration: const Duration(microseconds: 200),
@@ -220,7 +291,9 @@ class _BuilderServicesState extends State<BuilderServices> {
       ).marginSymmetric(
           horizontal: ResponsiveBreakpoints.of(context).isDesktop
               ? context.percentWidth * 2
-              : context.percentWidth * 1),
+              : ResponsiveBreakpoints.of(context).isTablet
+                  ? context.percentWidth * 1
+                  : 0),
     );
   }
 }
