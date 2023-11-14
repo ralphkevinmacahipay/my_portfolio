@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/configuration/constant.dart';
 import 'package:my_profile/state/get_x.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -58,7 +59,7 @@ class GeneralServices {
       if (response.statusCode != 200) {
         return;
       }
-
+      print("code is here");
       devLog(response.body);
       instanceServices.isEmailSent.value = true;
       return response.statusCode;
@@ -80,7 +81,10 @@ class GeneralServices {
           ),
           message: "Message was successfully sent.",
         ),
-      ).marginSymmetric(horizontal: context.percentWidth * 37),
+      ).marginSymmetric(
+          horizontal: ResponsiveBreakpoints.of(context).isDesktop
+              ? context.percentWidth * 37
+              : context.percentWidth * 10),
     );
   }
 }

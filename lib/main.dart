@@ -5,6 +5,7 @@ import 'package:my_profile/views/index_page.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'a_desktop/a_home/a_home.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'app_theme/app_theme.dart';
 import 'b_mobile/index_drawer.dart';
 import 'configuration/constant.dart';
 import 'configuration/enum.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
       builder: (context, child) =>
           ResponsiveBreakpoints.builder(child: child!, breakpoints: [
         const Breakpoint(start: 0, end: 450, name: MOBILE),

@@ -27,8 +27,11 @@ class ElevatedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-          fixedSize: MaterialStatePropertyAll(
-              Size(context.percentWidth * 8, context.percentWidth * 2.5)),
+          fixedSize: MaterialStatePropertyAll(Size(
+              ResponsiveBreakpoints.of(context).isMobile
+                  ? context.percentWidth * 20
+                  : context.percentWidth * 8,
+              context.percentWidth * 2.5)),
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
               side: BorderSide(width: 1.5, color: kWhite),
               borderRadius: BorderRadius.circular(kBorderRadius))),
@@ -36,12 +39,17 @@ class ElevatedWidget extends StatelessWidget {
             if (states.contains(MaterialState.hovered)) {
               return Colors.blue;
             }
-            return kTransparent;
+            return ResponsiveBreakpoints.of(context).isMobile
+                ? Colors.blue
+                : kTransparent;
           })),
       onPressed: onPress,
       child: Text(
         ktitle,
-        style: kPoppinSemiBold.copyWith(fontSize: context.percentWidth * 1.4),
+        style: kPoppinSemiBold.copyWith(
+            fontSize: ResponsiveBreakpoints.of(context).isMobile
+                ? context.percentWidth * 3
+                : context.percentWidth * 1.4),
       ),
     );
   }
