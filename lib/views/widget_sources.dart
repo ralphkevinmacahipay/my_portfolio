@@ -1,127 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/configuration/constant.dart';
+import 'package:get/get.dart';
+import 'package:my_profile/services/general_services.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../configuration/enum.dart';
-import '../views_control/ui.dart';
+import '../configuration/constant.dart';
 
-// TABLET
-class NavDrawerTablet extends StatelessWidget {
-  const NavDrawerTablet({
+class ElevatedWidget extends StatelessWidget {
+  final double h;
+  final double w;
+  final double s;
+
+  final String ktitle;
+  final void Function()? onPress;
+
+  const ElevatedWidget({
     super.key,
+    required this.ktitle,
+    required this.onPress,
+    required this.h,
+    required this.w,
+    required this.s,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      width: context.percentWidth * 40,
-      backgroundColor: kDarkBlue,
-      child: Column(
-        children: [
-          SizedBox(height: context.percentHeight * 2),
-          Text(kRalph,
-              style: kPoppinExtraBold.copyWith(
-                  color: kWhite, fontSize: context.percentWidth * 6)),
-          SizedBox(height: context.percentHeight * 3),
-          Expanded(
-            child: ListView.builder(
-              itemCount: kNavigator.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    // onPressedNav(
-                    //     context: context, enumVal: kNavigator[index]['type']);
-                  },
-                  title: Text(
-                    kNavigator[index]['title'],
-                    style: kPoppinSemiBold.copyWith(color: kWhite),
-                  ),
-                  leading: kNavigator[index]['icon'],
-                );
-              },
-            ),
-          ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateColor.resolveWith(
-                (states) => kLightBlue,
-              ),
-            ),
-            onPressed: () => openURL(uri: parseURL(url: kCV)),
-            child: Text(kDownloadCV),
-          ),
-          SizedBox(height: context.percentHeight * 50),
-        ],
+    return ElevatedButton(
+      style: ButtonStyle(
+          fixedSize: MaterialStatePropertyAll(Size(
+              ResponsiveBreakpoints.of(context).isMobile
+                  ? context.percentWidth * 20
+                  : context.percentWidth * 8,
+              context.percentWidth * 2.5)),
+          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+              side: BorderSide(width: 1.5, color: kWhite),
+              borderRadius: BorderRadius.circular(kBorderRadius))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.hovered)) {
+              return Colors.blue;
+            }
+            return ResponsiveBreakpoints.of(context).isMobile
+                ? Colors.blue
+                : kTransparent;
+          })),
+      onPressed: onPress,
+      child: Text(
+        ktitle,
+        style: kPoppinSemiBold.copyWith(
+            fontSize: ResponsiveBreakpoints.of(context).isMobile
+                ? context.percentWidth * 3
+                : context.percentWidth * 1.4),
       ),
     );
   }
 }
 
-// MOBILE
-
-class NavDrawerMobile extends StatelessWidget {
-  const NavDrawerMobile({
-    super.key,
-  });
+class TitleWidget extends StatelessWidget {
+  final String kTitle;
+  final String servicesDesc;
+  const TitleWidget(
+      {super.key, required this.servicesDesc, required this.kTitle});
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      width: context.percentWidth * 50,
-      backgroundColor: kDarkBlue,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(height: context.percentHeight * 2),
-          Text(kRalph,
-              style: kPoppinExtraBold.copyWith(
-                  color: kWhite, fontSize: context.percentWidth * 6)),
-          SizedBox(height: context.percentHeight * 3),
-          Expanded(
-            child: ListView.builder(
-              itemCount: ViewsControll().kNavigator.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () => ViewsControll().onPress(
-                      context: context,
-                      type: ViewsControll().kNavigator[index]['title']),
-                  title: Text(
-                    ViewsControll().kNavigator[index]['title'],
-                    style: kPoppinSemiBold.copyWith(color: kWhite),
-                  ),
-                  leading: ViewsControll().kNavigator[index]['icon'],
-                );
-              },
+    return ResponsiveBreakpoints.of(context).isMobile
+        ? Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              servicesDesc,
+              textAlign: TextAlign.center,
+              style: kPoppinSemiBold.copyWith(
+                  color: kLightGrey, fontSize: context.percentWidth * 3.5),
             ),
-          ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateColor.resolveWith(
-                (states) => kLightBlue,
-              ),
-            ),
-            onPressed: () => openURL(uri: parseURL(url: kCV)),
-            child: Text(kDownloadCV),
-          ),
-          const Spacer(
-            flex: 2,
-          )
-        ],
-      ),
-    );
+          ).marginAll(context.percentHeight * 2.5)
+        : Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(
+                  kTitle,
+                  style: kPoppinBold.copyWith(
+                      color: kWhite,
+                      fontSize: ResponsiveBreakpoints.of(context).isDesktop
+                          ? context.percentWidth * 3
+                          : ResponsiveBreakpoints.of(context).isTablet
+                              ? context.percentWidth * 5
+                              : 0),
+                ),
+                Text(
+                  servicesDesc,
+                  textAlign: TextAlign.center,
+                  style: kPoppinSemiBold.copyWith(
+                      color: kLightGrey,
+                      fontSize: ResponsiveBreakpoints.of(context).isDesktop
+                          ? context.percentWidth * 1.5
+                          : context.percentWidth * 2.5),
+                ).paddingSymmetric(
+                    horizontal: 50,
+                    vertical:
+                        ResponsiveBreakpoints.of(context).isTablet ? 50 : 0),
+              ],
+            )).marginOnly(top: context.percentHeight * 0);
   }
-}
-
-Future<void> openURL({required Uri uri}) async {
-  debugPrint("code ishere");
-  if (!await launchUrl(uri)) {
-    throw Exception('Could not launch $uri');
-  }
-}
-
-Uri parseURL({required String url}) {
-  final Uri uri = Uri.parse(url);
-  return uri;
 }

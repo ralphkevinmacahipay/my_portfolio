@@ -202,34 +202,6 @@ class TextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        switch (kTextFormFieldEnum) {
-          case TextFormFieldEnum.name:
-            kValidatorFunction(
-                value: value, kColor: controllerGetManager.kColorName);
-
-            break;
-          case TextFormFieldEnum.email:
-            kValidatorFunction(
-                value: value, kColor: controllerGetManager.kColorEmail);
-
-            break;
-
-          case TextFormFieldEnum.subject:
-            kValidatorFunction(
-                value: value, kColor: controllerGetManager.kColorSubject);
-
-            break;
-
-          case TextFormFieldEnum.content:
-            kValidatorFunction(
-                value: value, kColor: controllerGetManager.kColorContent);
-
-            break;
-        }
-
-        return null;
-      },
       onFieldSubmitted: (value) {
         controller.senderNameController.value.text = value;
       },

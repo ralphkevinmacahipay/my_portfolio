@@ -5,6 +5,7 @@ import 'package:my_profile/configuration/style.dart';
 
 import 'enum.dart';
 
+String sourceData = "assets/mock_data_services.json";
 // asset image
 String kBackground = "assets/background.png";
 String kProfile = "assets/profile.png";
@@ -15,7 +16,7 @@ String kFlatIconImage = "assets/flaticon_image.png";
 String kFlutterImage = "assets/flutter_image.png";
 String kUiImage = "assets/ui_image.png";
 String kProjectOne = "assets/project_one.png";
-String kProjectOneMobile = "assets/project_one.png";
+String kProjectSafeMo = "assets/safemoApp.png";
 
 String kWebImage = "assets/web_image.png";
 String kFaceBook = "assets/facebook_image.png";
@@ -89,7 +90,7 @@ final kPoppinRegular = GoogleFonts.poppins(fontWeight: FontWeight.w400);
 // navigator item
 final List<Map<String, dynamic>> kNavigator = [
   {
-    "title": getNavNmae(NavItemEnum.home),
+    "title": "Home",
     "type": NavItemEnum.home,
     "icon": Icon(Icons.home_filled, color: kWhite),
   },
@@ -164,7 +165,7 @@ final List<Map<String, dynamic>> listItemCorouselServices = [
 ];
 
 final List<Map<String, dynamic>> listItemCorouselWork = [
-  {"image": kProjectOneMobile}
+  {"image": kProjectSafeMo}
 ];
 
 List<Map<String, dynamic>> myListIcon = [

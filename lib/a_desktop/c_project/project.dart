@@ -78,7 +78,7 @@ class ProjectWidgets extends StatelessWidget {
               width: kWidth,
               height: kHeight,
               child: Image.asset(
-                kProjectOneMobile,
+                kProjectSafeMo,
                 fit: BoxFit.contain,
               ),
             ),
